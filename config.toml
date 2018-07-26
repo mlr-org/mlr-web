@@ -1,0 +1,38 @@
+theme = "hugo-tanka"
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+pygmentsstyle      = "vs"
+pygmentscodefences = true
+
+enableEmoji = true
+hasCJKLanguage = true
+
+disable_mathjax = false
+
+[params]
+  sitename = "mlr blog"
+
+[[menu.main]]
+    name = "Home"
+    url = "./index.html"
+    weight = 1
+[[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/mlr-org/mlr"
+    weight = 2
+[[menu.main]]
+    name = "Authors"
+    url = "https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page"
+    weight = 3
+[[menu.main]]
+    name = "Tutorial"
+    url = "https://mlr-org.github.io/mlr/"
+    weight = 4
+[[menu.main]]
+    name = "RSS"
+    url = "/index.xml"
+    weight = 5
