@@ -108,12 +108,6 @@ cowplot::plot_grid(plotlist = plots[["Plots"]], ncol = 5, nrow = 2,
   labels = plots[["Labels"]])
 ```
 
-
-
 # References
 
 Brenning, A. (2012). Spatial cross-validation and bootstrap for the assessment of prediction rules in remote sensing: The R package sperrorest. In 2012 IEEE International Geoscience and Remote Sensing Symposium. IEEE. https://doi.org/10.1109/igarss.2012.6352393
-
-
-
-
