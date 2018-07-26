@@ -1,0 +1,138 @@
+---
+title: "mlr 2.10"
+author: "Janek Thomas"
+date: 2017-02-13
+categories: ["R"]
+# tags: ["R Markdown", "plot", "regression"]
+---
+
+
+
+<p>mlr 2.10 is now on CRAN. Please update your package if you haven’t done so in a while.</p>
+<p>Here is an overview of the changes:</p>
+<div id="functions---general" class="section level2">
+<h2>functions - general</h2>
+<ul>
+<li>fixed bug in resample when using predict = “train” (issue #1284)</li>
+<li>update to irace 2.0 – there are algorithmic changes in irace that may affect
+performance</li>
+<li>generateFilterValuesData: fixed a bug wrt feature ordering</li>
+<li>imputeLearner: fixed a bug when data actually contained no NAs</li>
+<li>print.Learner: if a learner hyperpar was set to value “NA” this was not
+displayed in printer</li>
+<li>makeLearner, setHyperPars: if you mistype a learner or hyperpar name, mlr
+uses fuzzy matching to suggest the 3 closest names in the message</li>
+<li>tuneParams: tuning with irace is now also parallelized, i.e., different
+learner configs are evaluated in parallel.</li>
+<li>benchmark: mini fix, arg ‘learners’ now also accepts class strings</li>
+<li>object printers: some mlr printers show head previews of data.frames.
+these now also print info on the total nr of rows and cols and are less confusing</li>
+<li>aggregations: have better properties now, they know whether they require training or
+test set evals</li>
+<li>the filter methods have better R docs</li>
+<li>filter randomForestSRC.var.select: new arg “method”</li>
+<li>filter mrmr: fixed some smaller bugs and updated properties</li>
+<li>generateLearningCurveData: also accepts single learner, does not require a list</li>
+<li>plotThreshVsPerf: added “measures” arg</li>
+<li>plotPartialDependence: can create tile plots with joint partial dependence
+on two features for multiclass classification by facetting across the classes</li>
+<li>generatePartialDependenceData and generateFunctionalANOVAData: expanded
+“fun” argument to allow for calculation of weights</li>
+<li>new “?mlrFamilies” manual page which lists all families and the functions
+belonging to it</li>
+<li>we are converging on data.table as a standard internally, this should not
+change any API behavior on the outside, though</li>
+<li>generateHyperParsEffectData and plotHyperParsEffect now support more than 2
+hyperparameters</li>
+<li>linear.correlation, rank.correlation, anova.test: use Rfast instead of
+FSelector/custom implementation now, performance should be much better</li>
+<li>use of our own colAUC function instead of the ROCR package for AUC calculation
+to improve performance</li>
+<li>we output resample performance messages for every iteration now</li>
+<li>performance improvements for the auc measure</li>
+<li>createDummyFeatures supports vectors now</li>
+<li>removed the pretty.names argument from plotHyperParsEffect – labels can be set
+though normal ggplot2 functions on the returned object</li>
+<li>Fixed a bad bug in resample, the slot “runtime” or a ResampleResult,
+when the runtime was measured not in seconds but e.g. mins. R measures then potentially in mins,
+but mlr claimed it would be seconds.</li>
+<li>New “dummy” learners (that disregard features completely) can be fitted now for baseline comparisons,
+see “featureless” learners below.</li>
+</ul>
+</div>
+<div id="functions---new" class="section level2">
+<h2>functions - new</h2>
+<ul>
+<li>filter: randomForest.importance</li>
+<li>generateFeatureImportanceData: permutation-based feature importance and local
+importance</li>
+<li>getFeatureImportanceLearner: new Learner API function</li>
+<li>getFeatureImportance: top level function to extract feature importance
+information</li>
+<li>calculateROCMeasures</li>
+<li>calculateConfusionMatrix: new confusion-matrix like function that calculates
+and tables many receiver operator measures</li>
+<li>makeLearners: create multiple learners at once</li>
+<li>getLearnerId, getLearnerType, getLearnerPredictType, getLearnerPackages</li>
+<li>getLearnerParamSet, getLearnerParVals</li>
+<li>getRRPredictionList</li>
+<li>addRRMeasure</li>
+<li>plotResiduals</li>
+<li>getLearnerShortName</li>
+<li>mergeBenchmarkResults</li>
+</ul>
+</div>
+<div id="functions---renamed" class="section level2">
+<h2>functions - renamed</h2>
+<ul>
+<li>Renamed rf.importance filter (now deprecated) to randomForestSRC.var.rfsrc</li>
+<li>Renamed rf.min.depth filter (now deprecated) to randomForestSRC.var.select</li>
+<li>Renamed getConfMatrix (now deprecated) to calculateConfusionMatrix</li>
+<li>Renamed setId (now deprecated) to setLearnerId</li>
+</ul>
+</div>
+<div id="functions---removed" class="section level2">
+<h2>functions - removed</h2>
+<ul>
+<li>mergeBenchmarkResultLearner, mergeBenchmarkResultTask</li>
+</ul>
+</div>
+<div id="learners---general" class="section level2">
+<h2>learners - general</h2>
+<ul>
+<li>classif.ada: fixed some param problem with rpart.control params</li>
+<li>classif.cforest, regr.cforest, surv.cforest:
+removed parameters “minprob”, “pvalue”, “randomsplits”
+as these are set internally and cannot be changed by the user</li>
+<li>regr.GPfit: some more params for correlation kernel</li>
+<li>classif.xgboost, regr.xgboost: can now properly handle NAs (property was missing and other problems), added “colsample_bylevel” parameter</li>
+<li>adapted {classif,regr,surv}.ranger parameters for new ranger version</li>
+</ul>
+</div>
+<div id="learners---new" class="section level2">
+<h2>learners - new</h2>
+<ul>
+<li>multilabel.cforest</li>
+<li>surv.gbm</li>
+<li>regr.cvglmnet</li>
+<li>{classif,regr,surv}.gamboost</li>
+<li>classif.earth</li>
+<li>{classif,regr}.evtree</li>
+<li>{classif,regr}.evtree</li>
+</ul>
+</div>
+<div id="learners---removed" class="section level2">
+<h2>learners - removed</h2>
+<ul>
+<li>classif.randomForestSRCSyn, regr.randomForestSRCSyn: due to continued stability issues</li>
+</ul>
+</div>
+<div id="measures---new" class="section level2">
+<h2>measures - new</h2>
+<ul>
+<li>ssr, qsr, lsr</li>
+<li>rrse, rae, mape</li>
+<li>kappa, wkappa</li>
+<li>msle, rmsle</li>
+</ul>
+</div>

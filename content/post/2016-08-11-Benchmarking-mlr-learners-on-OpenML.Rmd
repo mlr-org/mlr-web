@@ -77,7 +77,7 @@ If there were several learners they get all the *averaged* worst rank.
 
 The results in the classification case, regarding the accuracy are summarized in the following barplot graphic:
 
-![graphic](/images/2016-08-11-Benchmarking-mlr-learners-on-OpenML/1_best_algo_classif_with_na_rank.png)
+![](/images/2016-08-11-Benchmarking-mlr-learners-on-OpenML/1_best_algo_classif_with_na_rank.png)
 
 It depicts the average rank regarding accuracy over all classification dataset of each learner. 
 
@@ -98,7 +98,7 @@ If an algorithm provided an error it was ranked with the worst rank like in the 
 
 The results for the mean squared error can be seen here:
 
-![graphic](/images/2016-08-11-Benchmarking-mlr-learners-on-OpenML/1_best_algo_regr_with_na_rank.png)
+![](/images/2016-08-11-Benchmarking-mlr-learners-on-OpenML/1_best_algo_regr_with_na_rank.png)
 
 It depicts the average rank regarding mean square error over all regression dataset of each learner. 
 
