@@ -29,7 +29,7 @@ disable_mathjax = false
     url = "https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page"
     weight = 3
 [[menu.main]]
-    name = "Tutorial"
+    name = "mlr-tutorial"
     url = "https://mlr-org.github.io/mlr/"
     weight = 4
 [[menu.main]]
