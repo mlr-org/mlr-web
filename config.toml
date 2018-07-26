@@ -1,5 +1,5 @@
 theme = "hugo-tanka"
-baseURL = "mlr-blog.netlify.com"
+baseURL = "https://mlr-blog.netlify.com/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 
@@ -18,7 +18,7 @@ disable_mathjax = false
 
 [[menu.main]]
     name = "Home"
-    url = "./index.html"
+    url = "https://mlr-blog.netlify.com/"
     weight = 1
 [[menu.main]]
     name = "GitHub"
