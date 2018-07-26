@@ -34,7 +34,8 @@ This is where [**mlrHyperopt**](http://jakob-r.de/mlrHyperopt/) comes into play.
 ### Installation
 
 ```{r installation, eval = FALSE}
-devtools::install_github("berndbischl/ParamHelpers") # version >= 1.11 needed.
+# version >= 1.11 needed.
+devtools::install_github("berndbischl/ParamHelpers") 
 devtools::install_github("jakob-r/mlrHyperopt", dependencies = TRUE)
 ```
 
@@ -79,7 +80,8 @@ Here is one example how you can use the default search spaces for an easy benchm
 ```{r seed4benchmark, include=FALSE}
 set.seed(3)
 ```
-```{r benchmark, message=FALSE}
+
+```{r benchmark, message=FALSE, warning=FALSE}
 lrns = c("classif.xgboost", "classif.nnet")
 lrns = makeLearners(lrns)
 tsk = pid.task
@@ -94,12 +96,15 @@ lrns.tuned = lapply(lrns, function(lrn) {
   }
   ps = getParConfigParSet(pc)
   # some parameters are dependend on the data (eg. the number of columns)
-  ps = evaluateParamExpressions(ps, dict = mlrHyperopt::getTaskDictionary(task = tsk))
+  ps = evaluateParamExpressions(ps, 
+    dict = mlrHyperopt::getTaskDictionary(task = tsk))
   lrn = setHyperPars(lrn, par.vals = getParConfigParVals(pc))
   ctrl = makeTuneControlRandom(maxit = 20)
-  makeTuneWrapper(learner = lrn, resampling = rr, par.set = ps, control = ctrl)
+  makeTuneWrapper(learner = lrn, resampling = rr, par.set = ps, 
+                  control = ctrl)
 })
-res = benchmark(learners = c(lrns, lrns.tuned), tasks = tsk, resamplings = cv10)
+res = benchmark(learners = c(lrns, lrns.tuned), tasks = tsk, 
+                resamplings = cv10)
 plotBMRBoxplots(res) 
 ```
 

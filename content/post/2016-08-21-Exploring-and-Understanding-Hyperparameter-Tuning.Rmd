@@ -175,7 +175,8 @@ actually tested and which were interpolated:
 
 ```{r fourth_chart, message = FALSE, warning = FALSE}
 plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
-  plot.type = "heatmap", interpolate = "regr.earth", show.experiments = TRUE)
+  plot.type = "heatmap", interpolate = "regr.earth", 
+  show.experiments = TRUE)
 ```
 
 `plotHyperParsEffect` returns a `ggplot2` object, so we can always customize it 
@@ -183,7 +184,8 @@ to better fit our needs downstream:
 
 ```{r fifth_chart, message = FALSE, warning = FALSE}
 plt = plotHyperParsEffect(data, x = "C", y = "sigma", z = "mmce.test.mean",
-  plot.type = "heatmap", interpolate = "regr.earth", show.experiments = TRUE)
+  plot.type = "heatmap", interpolate = "regr.earth", 
+  show.experiments = TRUE)
 min_plt = min(plt$data$mmce.test.mean, na.rm = TRUE)
 max_plt = max(plt$data$mmce.test.mean, na.rm = TRUE)
 mean_plt = mean(c(min_plt, max_plt))

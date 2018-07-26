@@ -55,8 +55,8 @@ Let's start with the configuration of the optimization:
 ```{r makeMBOControl}
 # In this simple example we construct the control object with the defaults:
 ctrl = makeMBOControl()
-# For this numeric optimization we are going to use the Expected Improvement 
-# as infill criterion:
+# For this numeric optimization we are going to use the Expected 
+# Improvement as infill criterion:
 ctrl = setMBOControlInfill(ctrl, crit = crit.ei)
 # We will allow for exactly 25 evaluations of the objective function:
 ctrl = setMBOControlTermination(ctrl, max.evals = 25L)
@@ -133,7 +133,8 @@ It is no surprise, that the grid search could not cover the search space well en
 random.des = generateRandomDesign(par.set = getParamSet(fun), n = 25L)
 random.des$y = apply(random.des, 1, fun)
 random.des[which.min(random.des$y),]
-autoplot(fun, render.levels = TRUE, render.contours = FALSE) + geom_point(data = random.des)
+autoplot(fun, render.levels = TRUE, render.contours = FALSE) + 
+  geom_point(data = random.des)
 ```
 
 With the random search you could always be lucky but in average the optimum is not reached if smarter optimization strategies work well.

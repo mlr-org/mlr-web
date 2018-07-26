@@ -13,19 +13,16 @@ The gains in performance have a price: The models operate as black boxes which a
 <p>Fortunately, there are many methods that can make machine learning models interpretable.
 The R package <code>iml</code> provides tools for analysing any black box machine learning model:</p>
 <ul>
-<li><p>Feature importance: Which were the most important features?</p></li>
-<li><p>Feature effects: How does a feature influence the prediction? (Partial dependence plots and individual conditional expectation curves)</p></li>
-<li><p>Explanations for single predictions: How did the feature values of a single data point affect its prediction? (LIME and Shapley value)</p></li>
-<li><p>Surrogate trees: Can we approximate the underlying black box model with a short decision tree?</p></li>
-<li><p>The iml package works for any classification and regression machine learning model: random forests, linear models, neural networks, xgboost, etc.</p></li>
+<li>Feature importance: Which were the most important features?</li>
+<li>Feature effects: How does a feature influence the prediction? (Partial dependence plots and individual conditional expectation curves)</li>
+<li>Explanations for single predictions: How did the feature values of a single data point affect its prediction? (LIME and Shapley value)</li>
+<li>Surrogate trees: Can we approximate the underlying black box model with a short decision tree?</li>
+<li>The iml package works for any classification and regression machine learning model: random forests, linear models, neural networks, xgboost, etc.</li>
 </ul>
 <p>This blog post shows you how to use the <code>iml</code> package to analyse machine learning models.
 While the <code>mlr</code> package makes it super easy to train machine learning models, the <code>iml</code> package makes it easy to extract insights about the learned black box machine learning models.</p>
 <p>If you want to learn more about the technical details of all the methods, read the <a href="https://christophm.github.io/interpretable-ml-book/agnostic.html">Interpretable Machine Learning book</a>.</p>
-<div class="figure">
-<img src="/images/2018-04-30-interpretable-machine-learning-iml-and-mlr/iml-bear.jpg" alt="Time for Interpretable Machine Learning" />
-<p class="caption">Time for Interpretable Machine Learning</p>
-</div>
+<p><img src="/images/2018-04-30-interpretable-machine-learning-iml-and-mlr/iml-bear.jpg" /></p>
 <p>Let’s explore the <code>iml</code>-toolbox for interpreting an <code>mlr</code> machine learning model with concrete examples!</p>
 <div id="data-boston-housing" class="section level2">
 <h2>Data: Boston Housing</h2>

@@ -15,12 +15,13 @@ We implemented several methods, which make use of the standardized mlr framework
 So if you're interested in using several multilabel algorithms and want to know how to use them in the mlr framework, then this post is for you!
 
 ### 1) Introduction to multilabel classification
+
 First, let me introduce you to multilabel classification. This is a classification problem, where every instance can have more than one label. Let's have a look at a typical multilabel dataset (which I, of course, download from the [OpenML server](https://www.openml.org/search?q=2016_multilabel_r_benchmark_paper)):
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(mlr)
 library(OpenML)
-setOMLConfig(apikey = "c1994bdb7ecb3c6f3c8f3b35f4b47f1f") #read only api key
+setOMLConfig(apikey = "c1994bdb7ecb3c6f3c8f3b35f4b47f1f") # api key
 oml.id = listOMLDataSets(tag = "2016_multilabel_r_benchmark_paper")$data.id
 scene = getOMLDataSet(data.id = oml.id[8])
 target = scene$target.features

@@ -98,7 +98,7 @@ print(r)
 ## Task: PimaIndiansDiabetes-example
 ## Learner: classif.ksvm
 ## Aggr perf: mmce.test.mean=0.2434896
-## Runtime: 1.36512</code></pre>
+## Runtime: 0.606555</code></pre>
 <p>While this result may seem decent, we have a nagging doubt: what if we chose
 hyperparameter values different from the defaults? Would we get better results?</p>
 <p>Maybe we believe that the default of <code>kernel = &quot;rbfdot&quot;</code> will work well based
@@ -213,12 +213,14 @@ argument:</p>
 <p>If we use the <code>show.experiments</code> argument, we can see which points were
 actually tested and which were interpolated:</p>
 <pre class="r"><code>plotHyperParsEffect(data, x = &quot;C&quot;, y = &quot;sigma&quot;, z = &quot;mmce.test.mean&quot;,
-  plot.type = &quot;heatmap&quot;, interpolate = &quot;regr.earth&quot;, show.experiments = TRUE)</code></pre>
+  plot.type = &quot;heatmap&quot;, interpolate = &quot;regr.earth&quot;, 
+  show.experiments = TRUE)</code></pre>
 <p><img src="/post/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/fourth_chart-1.png" width="672" /></p>
 <p><code>plotHyperParsEffect</code> returns a <code>ggplot2</code> object, so we can always customize it
 to better fit our needs downstream:</p>
 <pre class="r"><code>plt = plotHyperParsEffect(data, x = &quot;C&quot;, y = &quot;sigma&quot;, z = &quot;mmce.test.mean&quot;,
-  plot.type = &quot;heatmap&quot;, interpolate = &quot;regr.earth&quot;, show.experiments = TRUE)
+  plot.type = &quot;heatmap&quot;, interpolate = &quot;regr.earth&quot;, 
+  show.experiments = TRUE)
 min_plt = min(plt$data$mmce.test.mean, na.rm = TRUE)
 max_plt = max(plt$data$mmce.test.mean, na.rm = TRUE)
 mean_plt = mean(c(min_plt, max_plt))
