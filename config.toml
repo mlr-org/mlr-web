@@ -1,12 +1,9 @@
 theme = "hugo-tanka"
 baseURL = "https://mlr-blog.netlify.com/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "mlr blog"
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-
-pygmentsstyle      = "vs"
-pygmentscodefences = true
 
 enableEmoji = true
 hasCJKLanguage = true
