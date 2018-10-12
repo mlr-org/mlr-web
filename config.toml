@@ -1,7 +1,7 @@
 theme = "hugo-tanka"
-baseURL = "https://mlr-blog.netlify.com/"
+baseURL = "https://mlr-web.netlify.com/"
 languageCode = "en-us"
-title = "mlr blog"
+title = "mlr-org"
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -13,25 +13,29 @@ disqusShortname = "mlr-org-blog"
 disable_mathjax = false
 
 [params]
-  sitename = "mlr blog"
+  sitename = "mlr: Machine learning in R"
 
 [[menu.main]]
     name = "Home"
-    url = "https://mlr-blog.netlify.com/"
+    url = "https://mlr-web.netlify.com/"
     weight = 1
 [[menu.main]]
     name = "GitHub"
-    url = "https://github.com/mlr-org/mlr"
+    url = "https://github.com/mlr-org"
     weight = 2
 [[menu.main]]
     name = "Authors"
     url = "https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page"
     weight = 3
 [[menu.main]]
-    name = "mlr-tutorial"
+    name = "Docs"
     url = "https://mlr-org.github.io/mlr/"
     weight = 4
 [[menu.main]]
+    name = "Stackoverflow"
+    url = "https://stackoverflow.com/questions/tagged/mlr"
+    weight = 5
+[[menu.main]]
     name = "RSS"
     url = "/index.xml"
-    weight = 5
+    weight = 6
