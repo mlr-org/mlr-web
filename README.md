@@ -1,8 +1,8 @@
-Blog sources of the [mlr blog](https://mlr-blog.netlify.com/).
+Sources of the main [mlr website](https://mlr-web.netlify.com/) including the blog post sources.
 
-We use `blogdown` and Hugo to render the site. Deployment is done via Netlify.
+`blogdown` and Hugo are used to render the site. Deployment is done via Netlify.
 
-# How to contribute
+# How to add a new blog post
 
 1. Add yourself as an author to https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page.
 
