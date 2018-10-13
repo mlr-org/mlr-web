@@ -1,4 +1,4 @@
-theme = "hugo-tanka"
+theme = "minimo"
 baseURL = "https://mlr-web.netlify.com/"
 languageCode = "en-us"
 title = "mlr-org"
