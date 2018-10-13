@@ -1,0 +1,13 @@
+id = "Patrick"
+
+[email]
+username = "patrick.schratz"
+host = "gmail.com"
+
+[name]
+display = "Patrick Schratz"
+
+[social]
+email = ""
+facebook  = ""
+twitter = "pjs_228"
