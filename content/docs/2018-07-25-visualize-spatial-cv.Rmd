@@ -3,6 +3,9 @@ title: "Visualization of spatial cross-validation partitioning"
 authors: ["patrick-schratz"]
 date: 2018-07-25
 categories: ["R"]
+output:
+  blogdown::html_page:
+    toc: true
 tags: ["spatial", "resampling", "spatial-CV"]
 ---
 

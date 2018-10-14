@@ -3,8 +3,11 @@ date: 2017-09-28T08:00:00+06:00
 title: Developer instructions
 authors: ["patrick-schratz"]
 slug: developer-instructions
-menu: main
-weight: -220
+menu:
+   main:
+      parent: wiki
+weight: -1
+toc: true
 ---
 
 # mlr coding guidelines

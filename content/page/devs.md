@@ -3,7 +3,9 @@ date: 2017-09-28T08:00:00+06:00
 title: Devs
 authors: ["patrick-schratz", "bernd-bischl"]
 slug: devs
-menu: main
+menu:
+   main:
+      parent: wiki
 weight: -230
 ---
 

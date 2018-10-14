@@ -1,5 +1,5 @@
 baseURL = "https:/mlr-web.netlify.com"
-title = "mlr"
+title = "mlr: Machine Learning in R"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
@@ -15,7 +15,9 @@ preserveTaxonomyNames = true
 enableRobotsTXT = true # generate robots.txt
 
 # Syntax Highlighting ( https://gohugo.io/content-management/syntax-highlighting/ )
-pygmentsCodefences = true
+# we use highlight.js in /layouts/partials/footer/extra.html
+# because the hugo native highlighting doesn't work with .Rmd files
+pygmentsCodefences = false
 
 enableEmoji = true
 
@@ -23,7 +25,7 @@ enableEmoji = true
 defaultContentLanguage = "en"
 
 [params.info]
-description = "Machine Learning in R"
+description = ""
 title404 = "Nothing's here!"
 
 [params.assets]
@@ -48,7 +50,7 @@ showReadingTime = true
 showLastmod = true
 taxonomyCloudShuffle = true
 accentColor = "#03638E"
-hideMainMenu = false
+hideMainMenu = true
 
 [params.sidebar]
 enable = true
@@ -57,7 +59,7 @@ enable = true
 homepage = ["recent_posts"]
 sidebar = ["about",
            #"search",
-           #"sidebar_menu",
+           "sidebar_menu",
            "taxonomy_cloud"]
 footer = ["social_menu"]
 
@@ -122,20 +124,26 @@ tag = "tags"
 page = "/:slug/"
 
 [[menu.main]]
-name = "Github"
-weight = -10
-identifier = "repository"
-url = "https://github.com/mlr-org/"
+name = "mlr3"
+weight = -40
+parent = "Packages"
+url = "https://mlr-org.github.io/mlr3/"
+
+[[menu.main]]
+name = "mlrMBO"
+weight = -40
+parent = "Packages"
+url = "https://mlr-org.github.io/mlrMBO/"
 
 [[menu.main]]
 name = "Blog"
-weight = -20
+weight = -50
 #identifier = "repository"
 url = "/docs"
 
 [[menu.main]]
 name = "RSS"
-weight = -05
+weight = -35
 #identifier = "repository"
 url = "/index.xml"
 

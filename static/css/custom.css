@@ -1,5 +1,16 @@
 /* Custom CSS */
 
+/* don't duplicate name in sidebar */
 .widget-about .site-title {
   display: none;
+}
+
+/* custom width of page */
+.container {
+  max-width: 840px;
+}
+
+/* remove whitespace of hidden main menu */
+.main {
+  padding-top: 0em;
 }

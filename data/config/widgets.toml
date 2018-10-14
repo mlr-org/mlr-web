@@ -17,7 +17,7 @@ title = "Search"                      # default: "Search"
 # Sidebar Menu Widget config
 [sidebar_menu]
 title = "Sidebar"                            # default: ""
-mirror = ""                           # default: ""
+mirror = "main"                           # default: ""
 
 # Social Menu Widget config
 [social_menu]
