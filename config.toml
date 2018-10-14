@@ -131,13 +131,13 @@ url = "https://github.com/mlr-org/"
 name = "Blog"
 weight = -20
 #identifier = "repository"
-url = "./docs"
+url = "/docs"
 
 [[menu.main]]
 name = "RSS"
 weight = -05
 #identifier = "repository"
-url = "./index.xml"
+url = "/index.xml"
 
 [blackfriday]
 hrefTargetBlank = true

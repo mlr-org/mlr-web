@@ -3,7 +3,7 @@ title: "Why R Conference"
 author: "Quay Au"
 date: 2018-07-05
 categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+tags: ["whyr-conference"]
 ---
 
 ```{r, echo = FALSE, message = FALSE}

@@ -1,9 +1,9 @@
 ---
 title: "Visualization of spatial cross-validation partitioning"
-#authors: ["Patrick"]
+authors: ["patrick-schratz"]
 date: 2018-07-25
 categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
+tags: ["spatial", "resampling", "spatial-CV"]
 ---
 
 ```{r, echo = FALSE, message = FALSE}
