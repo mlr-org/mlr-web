@@ -1,6 +1,6 @@
 ---
 title: "First release of mlrMBO - the toolbox for (Bayesian) Black-Box Optimization"
-author: "Jakob richter"
+authors: ["jakob-richter"]
 date: 2017-03-13
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

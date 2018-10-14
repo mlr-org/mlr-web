@@ -1,6 +1,6 @@
 ---
 title: "Most Popular Learners in mlr"
-author: "Jakob Richter"
+authors: ["jakob-richter"]
 date: 2017-03-30
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

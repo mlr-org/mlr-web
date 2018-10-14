@@ -1,6 +1,6 @@
 ---
 title: "Interpretable Machine Learning with iml and mlr"
-author: "Christoph Molnar"
+authors: ["christoph-molnar"]
 date: 2018-02-28
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]
@@ -70,35 +70,35 @@ predictor = Predictor$new(mod, data = X, y = Boston$medv)</code></pre>
 We can call the <code>plot()</code> function of the object or look at the results in a data.frame.</p>
 <pre class="r"><code>imp = FeatureImp$new(predictor, loss = &quot;mae&quot;)
 plot(imp)</code></pre>
-<p><img src="/post/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>imp$results
 #&gt;    feature original.error permutation.error importance
-#&gt; 1    lstat      0.9546924          4.332851   4.538478
-#&gt; 2       rm      0.9546924          3.381778   3.542270
-#&gt; 3      dis      0.9546924          1.655473   1.734038
-#&gt; 4      nox      0.9546924          1.612015   1.688518
-#&gt; 5     crim      0.9546924          1.579774   1.654746
-#&gt; 6    indus      0.9546924          1.514526   1.586402
-#&gt; 7  ptratio      0.9546924          1.473427   1.543353
-#&gt; 8      tax      0.9546924          1.381901   1.447483
-#&gt; 9      age      0.9546924          1.320978   1.383669
-#&gt; 10   black      0.9546924          1.214922   1.272579
-#&gt; 11     rad      0.9546924          1.061383   1.111753
-#&gt; 12      zn      0.9546924          1.006517   1.054284
-#&gt; 13    chas      0.9546924          0.977070   1.023440</code></pre>
+#&gt; 1    lstat      0.9546924         4.4301626   4.640408
+#&gt; 2       rm      0.9546924         3.4838984   3.649237
+#&gt; 3      nox      0.9546924         1.6936588   1.774036
+#&gt; 4     crim      0.9546924         1.6168185   1.693549
+#&gt; 5      dis      0.9546924         1.5895507   1.664987
+#&gt; 6  ptratio      0.9546924         1.5544831   1.628255
+#&gt; 7    indus      0.9546924         1.5182089   1.590260
+#&gt; 8      age      0.9546924         1.4034536   1.470058
+#&gt; 9      tax      0.9546924         1.3047505   1.366671
+#&gt; 10   black      0.9546924         1.2429762   1.301965
+#&gt; 11     rad      0.9546924         1.0200721   1.068483
+#&gt; 12    chas      0.9546924         0.9989070   1.046313
+#&gt; 13      zn      0.9546924         0.9587879   1.004290</code></pre>
 </div>
 <div id="partial-dependence" class="section level2">
 <h2>Partial dependence</h2>
 <p>Besides learning which features were important, we are interested in how the features influence the predicted outcome. The <code>Partial</code> class implements partial dependence plots and individual conditional expectation curves. Each individual line represents the predictions (y-axis) for one data point when we change one of the features (e.g. ‘lstat’ on the x-axis). The highlighted line is the point-wise average of the individual lines and equals the partial dependence plot. The marks on the x-axis indicates the distribution of the ‘lstat’ feature, showing how relevant a region is for interpretation (little or no points mean that we should not over-interpret this region).</p>
 <pre class="r"><code>pdp.obj = Partial$new(predictor, feature = &quot;lstat&quot;)
 plot(pdp.obj)</code></pre>
-<p><img src="/post/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>If we want to compute the partial dependence curves for another feature, we can simply reset the feature.
 Also, we can center the curves at a feature value of our choice, which makes it easier to see the trend of the curves:</p>
 <pre class="r"><code>pdp.obj$set.feature(&quot;rm&quot;)
 pdp.obj$center(min(Boston$rm))
 plot(pdp.obj)</code></pre>
-<p><img src="/post/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="surrogate-model" class="section level2">
 <h2>Surrogate model</h2>
@@ -107,7 +107,7 @@ The plot shows the terminal nodes of the fitted tree.
 The maxdepth parameter controls how deep the tree can grow and therefore how interpretable it is.</p>
 <pre class="r"><code>tree = TreeSurrogate$new(predictor, maxdepth = 2)
 plot(tree)</code></pre>
-<p><img src="/post/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>We can use the tree to make predictions:</p>
 <pre class="r"><code>head(tree$predict(Boston))
 #&gt;     .y.hat
@@ -129,7 +129,7 @@ lime.explain$results
 #&gt; ptratio -0.5208891    15.300 -7.969603       15.3 ptratio  ptratio=15.3
 #&gt; lstat   -0.4295847     4.980 -2.139332       4.98   lstat    lstat=4.98
 plot(lime.explain)</code></pre>
-<p><img src="/post/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="explain-single-predictions-with-game-theory" class="section level2">
 <h2>Explain single predictions with game theory</h2>
@@ -137,20 +137,20 @@ plot(lime.explain)</code></pre>
 Assume that for one data point, the feature values play a game together, in which they get the prediction as a payout. The Shapley value tells us how to fairly distribute the payout among the feature values.</p>
 <pre class="r"><code>shapley = Shapley$new(predictor, x.interest = X[1,])
 plot(shapley)</code></pre>
-<p><img src="/post/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>We can reuse the object to explain other data points:</p>
 <pre class="r"><code>shapley$explain(x.interest = X[2,])
 plot(shapley)</code></pre>
-<p><img src="/post/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>The results in data.frame form can be extracted like this:</p>
 <pre class="r"><code>results = shapley$results
 head(results)
 #&gt;   feature         phi      phi.var feature.value
-#&gt; 1    crim -0.08846234  0.818159053  crim=0.02731
-#&gt; 2      zn -0.01368417  0.011241865          zn=0
-#&gt; 3   indus  0.05417828  0.302074218    indus=7.07
-#&gt; 4    chas -0.02080483  0.008439247        chas=0
-#&gt; 5     nox  0.25648566  0.530465203     nox=0.469
-#&gt; 6      rm -0.74864181 16.324695606      rm=6.421</code></pre>
+#&gt; 1    crim  0.00678256  1.084280662  crim=0.02731
+#&gt; 2      zn -0.03610350  0.007022100          zn=0
+#&gt; 3   indus  0.02527449  0.267206656    indus=7.07
+#&gt; 4    chas -0.02598383  0.009941115        chas=0
+#&gt; 5     nox  0.41512115  0.928767187     nox=0.469
+#&gt; 6      rm -0.85564962 12.309151401      rm=6.421</code></pre>
 <p>The <code>iml</code> package is available on <a href="https://cran.r-project.org/web/packages/iml/index.html">CRAN</a> and on <a href="https://github.com/christophM/iml">Github</a>.</p>
 </div>

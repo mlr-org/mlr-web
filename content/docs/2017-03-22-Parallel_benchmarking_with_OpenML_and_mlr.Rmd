@@ -1,6 +1,6 @@
 ---
 title: "Parallel benchmarking with OpenML and mlr"
-author: "Heidi Seibold"
+authors: ["heidi-seibold"]
 date: 2017-03-22
 categories: ["R"]
 draft: true

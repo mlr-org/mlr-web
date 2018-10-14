@@ -1,6 +1,6 @@
 ---
 title: "mlr loves OpenML"
-author: "Heidi Seibold"
+authors: ["heidi-seibold"]
 date: 2016-09-09
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

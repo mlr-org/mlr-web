@@ -1,6 +1,6 @@
 ---
 title: "Exploring and Understanding Hyperparameter Tuning"
-author: "Mason Gallo"
+author: ["mason-gallo"]
 date: 2016-08-21
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]
@@ -98,7 +98,7 @@ print(r)
 ## Task: PimaIndiansDiabetes-example
 ## Learner: classif.ksvm
 ## Aggr perf: mmce.test.mean=0.2434896
-## Runtime: 0.606555</code></pre>
+## Runtime: 1.13215</code></pre>
 <p>While this result may seem decent, we have a nagging doubt: what if we chose
 hyperparameter values different from the defaults? Would we get better results?</p>
 <p>Maybe we believe that the default of <code>kernel = &quot;rbfdot&quot;</code> will work well based
@@ -172,13 +172,13 @@ built-in for the user to plot the data.</p>
 <p>Let’s investigate the results from before where we tuned <code>C</code>:</p>
 <pre class="r"><code>data = generateHyperParsEffectData(res)
 plotHyperParsEffect(data, x = &quot;C&quot;, y = &quot;mmce.test.mean&quot;)</code></pre>
-<p><img src="/post/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/first_chart-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/first_chart-1.png" width="672" /></p>
 <p>From the scatterplot, it appears our optimal performance is somewhere in the
 region between <code>2^-2.5</code> and <code>2^-1.75</code>. This could provide us a region to further
 explore if we wanted to try to get even better performance!</p>
 <p>We could also evaluate how “long” it takes us to find that optimal value:</p>
 <pre class="r"><code>plotHyperParsEffect(data, x = &quot;iteration&quot;, y = &quot;mmce.test.mean&quot;)</code></pre>
-<p><img src="/post/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/second_chart-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/second_chart-1.png" width="672" /></p>
 <p>By default, the plot only shows the global optimum, so we can see that we found
 the “best” performance in less than 25 iterations!</p>
 <p>But wait, I hear you saying. I also want to tune <code>sigma</code>, the inverse kernel
@@ -209,13 +209,13 @@ even test! All we need to do is pass a regression learner to the <code>interpola
 argument:</p>
 <pre class="r"><code>plotHyperParsEffect(data, x = &quot;C&quot;, y = &quot;sigma&quot;, z = &quot;mmce.test.mean&quot;,
   plot.type = &quot;heatmap&quot;, interpolate = &quot;regr.earth&quot;)</code></pre>
-<p><img src="/post/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/third_chart-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/third_chart-1.png" width="672" /></p>
 <p>If we use the <code>show.experiments</code> argument, we can see which points were
 actually tested and which were interpolated:</p>
 <pre class="r"><code>plotHyperParsEffect(data, x = &quot;C&quot;, y = &quot;sigma&quot;, z = &quot;mmce.test.mean&quot;,
   plot.type = &quot;heatmap&quot;, interpolate = &quot;regr.earth&quot;, 
   show.experiments = TRUE)</code></pre>
-<p><img src="/post/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/fourth_chart-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/fourth_chart-1.png" width="672" /></p>
 <p><code>plotHyperParsEffect</code> returns a <code>ggplot2</code> object, so we can always customize it
 to better fit our needs downstream:</p>
 <pre class="r"><code>plt = plotHyperParsEffect(data, x = &quot;C&quot;, y = &quot;sigma&quot;, z = &quot;mmce.test.mean&quot;,
@@ -226,7 +226,7 @@ max_plt = max(plt$data$mmce.test.mean, na.rm = TRUE)
 mean_plt = mean(c(min_plt, max_plt))
 plt + scale_fill_gradient2(breaks = seq(min_plt, max_plt, length.out = 4),
   low = &quot;red&quot;, mid = &quot;white&quot;, high = &quot;blue&quot;, midpoint = mean_plt)</code></pre>
-<p><img src="/post/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/fifth_chart-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2016-08-21-Exploring-and-Understanding-Hyperparameter-Tuning_files/figure-html/fifth_chart-1.png" width="672" /></p>
 <p>Now we can get a good sense of where the separation happens for each of the
 hyperparameters: in this particular example, we want lower values for <code>sigma</code>
 and values around 1 for <code>C</code>.</p>

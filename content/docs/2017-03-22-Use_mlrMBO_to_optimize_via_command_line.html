@@ -1,6 +1,6 @@
 ---
 title: "Use mlrMBO to optimize via command line"
-author: "Jakob Richter"
+authors: ["jakob-richter"]
 date: 2017-03-22
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]
@@ -135,34 +135,34 @@ ctrl = setMBOControlTermination(ctrl, iters = 10)
 configureMlr(show.info = FALSE, show.learner.output = FALSE)
 run = mbo(fun = fn, control = ctrl)
 ## Computing y column(s) for design. Not provided.
-## [mbo] 0: x1=-1.47; x2=-1.67 : y = 4.34 : 0.0 secs : initdesign
-## [mbo] 0: x1=0.308; x2=0.142 : y = 0.523 : 0.0 secs : initdesign
-## [mbo] 0: x1=1.67; x2=-0.17 : y = 3.44 : 0.0 secs : initdesign
-## [mbo] 0: x1=-2.68; x2=2.12 : y = 12.2 : 0.0 secs : initdesign
-## [mbo] 0: x1=-0.365; x2=-2.41 : y = 4.98 : 0.0 secs : initdesign
-## [mbo] 0: x1=1.26; x2=1.55 : y = 4.26 : 0.0 secs : initdesign
-## [mbo] 0: x1=2.7; x2=-0.791 : y = 8.9 : 0.0 secs : initdesign
-## [mbo] 0: x1=-1.89; x2=1.2 : y = 4.77 : 0.0 secs : initdesign
-## [mbo] 1: x1=0.607; x2=0.541 : y = 0.277 : 0.0 secs : infill_ei
-## [mbo] 2: x1=-0.472; x2=0.402 : y = 0.611 : 0.0 secs : infill_ei
-## [mbo] 3: x1=0.213; x2=0.645 : y = 0.247 : 0.0 secs : infill_ei
-## [mbo] 4: x1=0.246; x2=0.473 : y = 0.4 : 0.0 secs : infill_ei
-## [mbo] 5: x1=-3; x2=-0.0112 : y = 9.76 : 0.0 secs : infill_ei
-## [mbo] 6: x1=0.474; x2=0.717 : y = 0.237 : 0.0 secs : infill_ei
-## [mbo] 7: x1=-0.115; x2=0.697 : y = 0.399 : 0.0 secs : infill_ei
-## [mbo] 8: x1=0.532; x2=0.642 : y = 0.244 : 0.0 secs : infill_ei
-## [mbo] 9: x1=0.678; x2=-0.55 : y = 0.446 : 0.0 secs : infill_ei
-## [mbo] 10: x1=-0.761; x2=0.782 : y = 0.208 : 0.0 secs : infill_ei
+## [mbo] 0: x1=2.04; x2=0.929 : y = 5.89 : 0.0 secs : initdesign
+## [mbo] 0: x1=-0.858; x2=2 : y = 3.79 : 0.0 secs : initdesign
+## [mbo] 0: x1=-1.72; x2=-0.453 : y = 2.74 : 0.0 secs : initdesign
+## [mbo] 0: x1=1.24; x2=-1.03 : y = 2.84 : 0.0 secs : initdesign
+## [mbo] 0: x1=-0.736; x2=-2.23 : y = 4.53 : 0.0 secs : initdesign
+## [mbo] 0: x1=0.131; x2=0.32 : y = 0.644 : 0.0 secs : initdesign
+## [mbo] 0: x1=-2.49; x2=1.27 : y = 8.18 : 0.0 secs : initdesign
+## [mbo] 0: x1=2.37; x2=-1.41 : y = 8.56 : 0.0 secs : initdesign
+## [mbo] 1: x1=-2.82; x2=0.552 : y = 8.91 : 0.0 secs : infill_ei
+## [mbo] 2: x1=0.448; x2=1.69 : y = 2.53 : 0.0 secs : infill_ei
+## [mbo] 3: x1=-0.0345; x2=2.5 : y = 5.39 : 0.0 secs : infill_ei
+## [mbo] 4: x1=0.497; x2=-0.112 : y = 0.222 : 0.0 secs : infill_ei
+## [mbo] 5: x1=-0.56; x2=-0.232 : y = 0.632 : 0.0 secs : infill_ei
+## [mbo] 6: x1=0.314; x2=-0.394 : y = 0.38 : 0.0 secs : infill_ei
+## [mbo] 7: x1=0.403; x2=-0.0486 : y = 0.398 : 0.0 secs : infill_ei
+## [mbo] 8: x1=0.616; x2=-0.301 : y = 0.0964 : 0.0 secs : infill_ei
+## [mbo] 9: x1=0.585; x2=-0.479 : y = 0.168 : 0.0 secs : infill_ei
+## [mbo] 10: x1=0.679; x2=0.417 : y = 0.319 : 0.0 secs : infill_ei
 # The resulting optimal configuration:
 run$x
 ## $x1
-## [1] -0.7607047
+## [1] 0.6163314
 ## 
 ## $x2
-## [1] 0.7816945
+## [1] -0.3014004
 # The best reached value:
 run$y
-## [1] 0.2076961</code></pre>
+## [1] 0.09638063</code></pre>
 </div>
 <div id="execute-the-r-script-from-a-shell" class="section level3">
 <h3>Execute the R script from a shell</h3>

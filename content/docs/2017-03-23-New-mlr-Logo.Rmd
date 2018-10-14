@@ -1,6 +1,6 @@
 ---
 title: "New mlr Logo"
-author: "Mason Gallo"
+authors: ["mason-gallo"]
 date: 2017-03-24
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

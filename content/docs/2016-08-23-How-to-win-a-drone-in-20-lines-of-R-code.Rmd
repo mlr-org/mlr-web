@@ -1,6 +1,6 @@
 ---
 title: "How to win a drone in 20 lines of R code"
-author: "Janek Thomas"
+authors: ["janek-thomas"]
 date: 2016-08-23
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

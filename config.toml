@@ -130,6 +130,12 @@ parent = "Packages"
 url = "https://mlr-org.github.io/mlr3/"
 
 [[menu.main]]
+name = "mlr"
+weight = -40
+parent = "Packages"
+url = "https://mlr-org.github.io/mlr/"
+
+[[menu.main]]
 name = "mlrMBO"
 weight = -40
 parent = "Packages"

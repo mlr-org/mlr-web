@@ -1,6 +1,6 @@
 ---
 title: "First release of mlrMBO - the toolbox for (Bayesian) Black-Box Optimization"
-author: "Jakob richter"
+authors: ["jakob-richter"]
 date: 2017-03-13
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]
@@ -46,7 +46,7 @@ fun = makeSingleObjectiveFunction(
 <em>If you happen to be in need of functions to optimize and benchmark your optimization algorithm I recommend you to have a look at the package!</em></p>
 <pre class="r"><code>library(plot3D)
 plot3D(fun, contour = TRUE, lightning = TRUE)</code></pre>
-<p><img src="/post/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/plotObjectiveFunction-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/plotObjectiveFunction-1.png" width="672" /></p>
 <p>Let’s start with the configuration of the optimization:</p>
 <pre class="r"><code># In this simple example we construct the control object with the defaults:
 ctrl = makeMBOControl()
@@ -61,7 +61,7 @@ ctrl = setMBOControlTermination(ctrl, max.evals = 25L)</code></pre>
 des = generateDesign(n = 8L, par.set = getParamSet(fun), 
   fun = lhs::randomLHS)
 autoplot(fun, render.levels = TRUE) + geom_point(data = des)</code></pre>
-<p><img src="/post/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/design-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/design-1.png" width="672" /></p>
 <p>The points demonstrate how the initial design already covers the search space but is missing the area of the global minimum.
 Before we can start the Bayesian optimization we have to set the surrogate learner to <em>Kriging</em>.
 Therefore we use an <em>mlr</em> regression learner.
@@ -110,7 +110,7 @@ Therefore we can use the <code>OptPath</code> which stores all information about
 <pre class="r"><code>opdf = as.data.frame(res$opt.path)
 autoplot(fun, render.levels = TRUE, render.contours = FALSE) + 
   geom_text(data = opdf, aes(label = dob))</code></pre>
-<p><img src="/post/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/mboPoints-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/mboPoints-1.png" width="672" /></p>
 <p>It is interesting to see, that for this run the algorithm first went to the local minimum on the top right in the 6th and 7th iteration but later, thanks to the explorative character of the <em>Expected Improvement</em>, found the real global minimum.</p>
 </div>
 <div id="comparison" class="section level3">
@@ -129,7 +129,7 @@ grid.des[which.min(grid.des$y),]
 ## 12 -2.5  0 -0.04923607
 autoplot(fun, render.levels = TRUE, render.contours = FALSE) + 
   geom_point(data = grid.des)</code></pre>
-<p><img src="/post/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/gridSeach-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/gridSeach-1.png" width="672" /></p>
 <p>It is no surprise, that the grid search could not cover the search space well enough and we only reach a bad result.</p>
 </div>
 <div id="what-about-a-simple-random-search" class="section level4">
@@ -141,7 +141,7 @@ random.des[which.min(random.des$y),]
 ## 17 0.0948004 1.061824 0.06852087
 autoplot(fun, render.levels = TRUE, render.contours = FALSE) + 
   geom_point(data = random.des)</code></pre>
-<p><img src="/post/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/randomSearch-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.comdocs/2017-03-13-First_release_of_mlrMBO_the_toolbox_for_Bayesian_Black_Box_Optimization_files/figure-html/randomSearch-1.png" width="672" /></p>
 <p>With the random search you could always be lucky but in average the optimum is not reached if smarter optimization strategies work well.</p>
 </div>
 <div id="a-fair-comarison" class="section level4">

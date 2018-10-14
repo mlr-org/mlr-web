@@ -1,6 +1,6 @@
 ---
 title: "Parameter tuning with mlrHyperopt"
-author: "Jakob Richter"
+authors: ["jakob-richter"]
 date: 2017-07-19
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

@@ -1,6 +1,6 @@
 ---
 title: "OpenML Workshop 2017"
-author: "Giuseppe Casalicchio"
+authors: ["giuseppe-casalicchio"]
 date: 2017-09-01
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

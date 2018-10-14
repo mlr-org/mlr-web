@@ -1,6 +1,6 @@
 ---
 title: "Interpretable Machine Learning with iml and mlr"
-author: "Christoph Molnar"
+authors: ["christoph-molnar"]
 date: 2018-02-28
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

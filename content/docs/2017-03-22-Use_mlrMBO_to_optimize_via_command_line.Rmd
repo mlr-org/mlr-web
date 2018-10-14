@@ -1,6 +1,6 @@
 ---
 title: "Use mlrMBO to optimize via command line"
-author: "Jakob Richter"
+authors: ["jakob-richter"]
 date: 2017-03-22
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

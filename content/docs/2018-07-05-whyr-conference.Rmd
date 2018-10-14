@@ -1,6 +1,6 @@
 ---
 title: "Why R Conference"
-author: "Quay Au"
+authors: ["quay-au"]
 date: 2018-07-05
 categories: ["R"]
 tags: ["whyr-conference"]

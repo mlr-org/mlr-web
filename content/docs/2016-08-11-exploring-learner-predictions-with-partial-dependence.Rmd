@@ -1,6 +1,6 @@
 ---
 title: "Exploring Learner Predictions with Partial Dependence and Functional ANOVA"
-author: "Zachary Jones"
+authors: ["zachary-jones"]
 date: 2016-08-11
 draft: true
 categories: ["R"]

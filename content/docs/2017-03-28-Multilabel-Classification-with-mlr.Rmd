@@ -1,6 +1,6 @@
 ---
 title: "Multilabel Classification with mlr"
-author: "Quay Au"
+authors: ["quay-au"]
 date: 2017-03-28
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]

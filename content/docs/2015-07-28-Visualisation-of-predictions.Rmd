@@ -1,6 +1,6 @@
 ---
 title: "Visualization of predictions"
-author: "Jakob Richter"
+authors: ["jakob-richter"]
 date: 2015-07-28
 categories: ["R"]
 # tags: ["R Markdown", "plot", "regression"]
