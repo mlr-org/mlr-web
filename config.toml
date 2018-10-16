@@ -1,4 +1,4 @@
-baseURL = "https:/mlr-web.netlify.com/"
+baseURL = "https:/mlr-org.com/"
 title = "mlr: Machine Learning in R"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
@@ -103,8 +103,8 @@ enable = false
 issueTerm = "pathname" # pathname / url / title
 
 [params.comments.utterances.github]
-username = "MunifTanjim"
-repository = "minimo"
+#username = "MunifTanjim"
+#repository = "minimo"
 
 [params.search]
 client = "" # algolia / fuse / lunr
@@ -127,19 +127,19 @@ page = "/:slug/"
 name = "mlr3"
 weight = -40
 parent = "Packages"
-url = "https://mlr-org.github.io/mlr3/"
+url = "https://mlr3.mlr-org.com"
 
 [[menu.main]]
 name = "mlr"
 weight = -40
 parent = "Packages"
-url = "https://mlr-org.github.io/mlr/"
+url = "https://mlr.mlr-org.com"
 
 [[menu.main]]
 name = "mlrMBO"
 weight = -40
 parent = "Packages"
-url = "https://mlr-org.github.io/mlrMBO/"
+url = "https://mlrMBO.mlr-org.com"
 
 [[menu.main]]
 name = "Blog"
