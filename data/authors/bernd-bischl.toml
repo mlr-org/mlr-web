@@ -1,0 +1,13 @@
+id = "Bernd"
+
+[email]
+username = "berndbischl"
+host = "gmail.com"
+
+[name]
+display = "Bernd Bischl"
+
+[social]
+email = ""
+facebook  = ""
+twitter = ""

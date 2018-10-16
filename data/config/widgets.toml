@@ -1,0 +1,31 @@
+# About Widget config
+[about]
+title = ""                            # default: .Site.Title
+description = " "                      # default: .Site.Params.info.description
+logo = "/images/logo_navbar.png"             # default: "/images/logo.png"
+
+# Recent Posts Widget config
+[recent_posts]
+title = ""                            # default: "Recent Posts"
+length = 9                            # default: 5
+excludeTypes = ["page"]               # default: ["page"]
+
+# Search Widget config
+[search]
+title = "Search"                      # default: "Search"
+
+# Sidebar Menu Widget config
+[sidebar_menu]
+title = "Sidebar"                            # default: ""
+mirror = "main"                           # default: ""
+
+# Social Menu Widget config
+[social_menu]
+title = ""                            # default: ""
+platforms = ["github", "so"]
+
+# Taxonomy Cloud Widget config
+[taxonomy_cloud]
+title = ""                            # default: Plural Name for `taxonomyCloud.taxonomy`
+taxonomy = "tags"                     # default: "tags"
+shuffle = true                        # default: true

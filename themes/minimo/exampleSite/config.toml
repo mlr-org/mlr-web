@@ -1,23 +1,20 @@
-baseURL = "https:/mlr-org.com/"
-title = "Machine Learning in R"
+baseURL = "http://www.example.com"
+title = "Minimo"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 theme = "minimo"
 
 disqusShortname = ""
 googleAnalytics = ""
 
-Paginate = 10
+Paginate = 5
 preserveTaxonomyNames = true
 
 enableRobotsTXT = true # generate robots.txt
 
 # Syntax Highlighting ( https://gohugo.io/content-management/syntax-highlighting/ )
-# we use highlight.js in /layouts/partials/footer/extra.html
-# because the hugo native highlighting doesn't work with .Rmd files
-pygmentsCodefences = false
+pygmentsCodefences = true
 
 enableEmoji = true
 
@@ -25,7 +22,7 @@ enableEmoji = true
 defaultContentLanguage = "en"
 
 [params.info]
-description = ""
+description = "Minimalist theme for Hugo"
 title404 = "Nothing's here!"
 
 [params.assets]
@@ -36,8 +33,8 @@ gopher = "" # used in 404 template ( Generator: https://gopherize.me )
 
 [params.copyright]
 prefix = ""
-holder = "Bernd Bischl"
-startYear = "2013"
+holder = "MunifTanjim"
+startYear = "2017"
 suffix = ""
 
 [params.settings]
@@ -49,18 +46,15 @@ hideEntryNavigation = ["page"] # boolean / array of sections
 showReadingTime = true
 showLastmod = true
 taxonomyCloudShuffle = true
-accentColor = "#03638E"
-hideMainMenu = true
+accentColor = "#ffcd00"
+hideMainMenu = false
 
 [params.sidebar]
 enable = true
 
 [params.widgets]
 homepage = ["recent_posts"]
-sidebar = ["about",
-           #"search",
-           "sidebar_menu",
-           "taxonomy_cloud"]
+sidebar = ["about","search","sidebar_menu","taxonomy_cloud"]
 footer = ["social_menu"]
 
 [params.opengraph.facebook]
@@ -76,7 +70,17 @@ page = "" # Twitter page username
 titleSeparator = "•"
 
 [params.social]
-github = "mlr-org"
+codepen = "MunifTanjim"
+email = "contact@example.com"
+facebook = "MunifTanjim"
+github = "MunifTanjim"
+gitlab = "MunifTanjim"
+instagram = "MunifTanjim"
+linkedin = "muniftanjim"
+twitter = "MunifTanjim"
+telegram = "MunifTanjim"
+google_scholar = "qc6CJjYAAAAJ"
+youtube = "UCT-U0rNerYxItGcuoPX-WYA"
 
 [params.comments]
 enable = false
@@ -93,8 +97,8 @@ apiEndpoint = "https://api.staticman.net/v2/entry"
 maxDepth = 2
 
 [params.comments.staticman.github]
-username = "mlr-org"
-repository = "mlr"
+username = "MunifTanjim"
+repository = "minimo"
 branch = "master"
 
 # Utterances: https://utteranc.es
@@ -103,8 +107,8 @@ enable = false
 issueTerm = "pathname" # pathname / url / title
 
 [params.comments.utterances.github]
-#username = "MunifTanjim"
-#repository = "minimo"
+username = "MunifTanjim"
+repository = "minimo"
 
 [params.search]
 client = "" # algolia / fuse / lunr
@@ -124,34 +128,10 @@ tag = "tags"
 page = "/:slug/"
 
 [[menu.main]]
-name = "mlr3"
-weight = -40
-parent = "Packages"
-url = "https://mlr3.mlr-org.com"
-
-[[menu.main]]
-name = "mlr"
-weight = -40
-parent = "Packages"
-url = "https://mlr.mlr-org.com"
-
-[[menu.main]]
-name = "mlrMBO"
-weight = -40
-parent = "Packages"
-url = "https://mlrMBO.mlr-org.com"
-
-[[menu.main]]
-name = "Blog"
-weight = -50
-#identifier = "repository"
-url = "/docs"
-
-[[menu.main]]
-name = "RSS"
-weight = -35
-#identifier = "repository"
-url = "/index.xml"
+name = "Repo"
+weight = -10
+identifier = "repository"
+url = "https://github.com/MunifTanjim/minimo"
 
 [blackfriday]
 hrefTargetBlank = true
