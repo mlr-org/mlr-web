@@ -2,11 +2,11 @@
 title: "Visualization of spatial cross-validation partitioning"
 authors: ["patrick-schratz"]
 date: 2018-07-25
-categories: ["R"]
+categories: ["R", "r-bloggers"]
 output:
   blogdown::html_page:
     toc: true
-tags: ["spatial", "resampling", "spatial-CV"]
+tags: ["spatial", "resampling", "spatial-CV", "rstats", "performance estimation"]
 ---
 
 
@@ -60,14 +60,14 @@ We still need to plot them!</p>
 <p>Single <code>ggplot</code> objects can be plotted by just extracting a certain object from the list, e.g. <code>plots[[1]][[3]]</code>.
 This would plot fold #3 of repetition one.</p>
 <pre class="r"><code>plots[[1]][[3]]</code></pre>
-<p><img src="/https:/mlr-web.netlify.comdocs/2018-07-25-visualize-spatial-cv_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="/https:/mlr-web.netlify.com/docs/2018-07-25-visualize-spatial-cv_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
 However usually we want to visualize all plots in a grid.
 For this purpose we highly recommend to use the <code>cowplot</code> package and its function <code>plot_grid()</code>.</p>
 <p>The returned objects of <code>createSpatialResamplingPlots()</code> are already tailored to be used with this function.
 We just need to hand over the list of plots and (optional) the labels:</p>
 <pre class="r"><code>cowplot::plot_grid(plotlist = plots[[&quot;Plots&quot;]], ncol = 5, nrow = 2,
   labels = plots[[&quot;Labels&quot;]])</code></pre>
-<p><img src="/https:/mlr-web.netlify.comdocs/2018-07-25-visualize-spatial-cv_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/https:/mlr-web.netlify.com/docs/2018-07-25-visualize-spatial-cv_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multiple-resample-objects" class="section level1">
 <h1>Multiple resample objects</h1>
@@ -86,7 +86,7 @@ This way the list names will also directly be used as a prefix in the resulting 
 
 cowplot::plot_grid(plotlist = plots[[&quot;Plots&quot;]], ncol = 5, nrow = 2,
   labels = plots[[&quot;Labels&quot;]])</code></pre>
-<p><img src="/https:/mlr-web.netlify.comdocs/2018-07-25-visualize-spatial-cv_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/https:/mlr-web.netlify.com/docs/2018-07-25-visualize-spatial-cv_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>

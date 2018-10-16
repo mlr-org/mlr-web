@@ -2,8 +2,8 @@
 title: "Interpretable Machine Learning with iml and mlr"
 authors: ["christoph-molnar"]
 date: 2018-02-28
-categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+categories: ["R", "r-bloggers"]
+tags: ["iml", "interpretable", "machine-learning", "mlr", "rstats"]
 ---
 
 ```{r, echo = FALSE, message = FALSE}

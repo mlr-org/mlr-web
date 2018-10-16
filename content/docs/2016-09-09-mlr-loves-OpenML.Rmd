@@ -2,8 +2,8 @@
 title: "mlr loves OpenML"
 authors: ["heidi-seibold"]
 date: 2016-09-09
-categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+categories: ["R", "r-bloggers"]
+tags: ["OpenML", "rstats"]
 ---
 
 ```{r setup, include=FALSE}

@@ -2,9 +2,9 @@
 title: "Exploring and Understanding Hyperparameter Tuning"
 author: ["mason-gallo"]
 date: 2016-08-21
-categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
----
+categories: ["R", "r-bloggers"]
+tags: ["hyperparameter", "tuning", "rstats"]
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)

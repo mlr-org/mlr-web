@@ -3,7 +3,7 @@ title: "OpenML Workshop 2017"
 authors: ["giuseppe-casalicchio"]
 date: 2017-09-01
 categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+tags: ["workshop", "tutorial", "mlr", "rstats"]
 ---
 
 ```{r setup, include=FALSE}

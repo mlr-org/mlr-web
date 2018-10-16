@@ -2,8 +2,8 @@
 title: "Visualization of predictions"
 authors: ["jakob-richter"]
 date: 2015-07-28
-categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+categories: ["R", "r-bloggers"]
+tags: ["visualization", "prediction", "rstats"]
 ---
 
 ```{r setup, include=FALSE}

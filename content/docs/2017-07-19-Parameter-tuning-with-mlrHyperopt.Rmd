@@ -2,8 +2,8 @@
 title: "Parameter tuning with mlrHyperopt"
 authors: ["jakob-richter"]
 date: 2017-07-19
-categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+categories: ["R", "r-bloggers"]
+tags: ["tuning", "hyperparameter", "optimization", "mlrHyperopt", "rstats"]
 ---
 
 ```{r setup, include=FALSE}

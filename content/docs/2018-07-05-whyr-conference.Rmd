@@ -3,7 +3,7 @@ title: "Why R Conference"
 authors: ["quay-au"]
 date: 2018-07-05
 categories: ["R"]
-tags: ["whyr-conference"]
+tags: ["conference", "why-r", "tutorial"]
 ---
 
 ```{r, echo = FALSE, message = FALSE}

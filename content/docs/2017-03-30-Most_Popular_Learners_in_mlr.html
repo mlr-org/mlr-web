@@ -2,8 +2,8 @@
 title: "Most Popular Learners in mlr"
 authors: ["jakob-richter"]
 date: 2017-03-30
-categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+categories: ["R", "r-bloggers"]
+tags: ["learner", "algorithm", "popular", "machine-learning", "rstats"]
 ---
 
 
@@ -53,31 +53,31 @@ lrns[, .(class, name, package, downloads)]</code></pre>
 <td align="left">classif.naiveBayes</td>
 <td align="left">Naive Bayes</td>
 <td align="left">e1071</td>
-<td align="right">156744</td>
+<td align="right">154393</td>
 </tr>
 <tr class="even">
 <td align="left">classif.svm</td>
 <td align="left">Support Vector Machines (libsvm)</td>
 <td align="left">e1071</td>
-<td align="right">156744</td>
+<td align="right">154393</td>
 </tr>
 <tr class="odd">
 <td align="left">regr.svm</td>
 <td align="left">Support Vector Machines (libsvm)</td>
 <td align="left">e1071</td>
-<td align="right">156744</td>
+<td align="right">154393</td>
 </tr>
 <tr class="even">
 <td align="left">classif.gausspr</td>
 <td align="left">Gaussian Processes</td>
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 </tr>
 <tr class="odd">
 <td align="left">classif.ksvm</td>
 <td align="left">Support Vector Machines</td>
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 </tr>
 </tbody>
 </table>
@@ -101,121 +101,121 @@ lrns.small[, .(class, name, package, downloads)]</code></pre>
 <td align="left">classif.naiveBayes</td>
 <td align="left">Naive Bayes</td>
 <td align="left">e1071</td>
-<td align="right">156744</td>
+<td align="right">154393</td>
 </tr>
 <tr class="even">
 <td align="left">classif.svm</td>
 <td align="left">Support Vector Machines (libsvm)</td>
 <td align="left">e1071</td>
-<td align="right">156744</td>
+<td align="right">154393</td>
 </tr>
 <tr class="odd">
 <td align="left">classif.gausspr</td>
 <td align="left">Gaussian Processes</td>
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 </tr>
 <tr class="even">
 <td align="left">classif.ksvm</td>
 <td align="left">Support Vector Machines</td>
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 </tr>
 <tr class="odd">
 <td align="left">classif.lssvm</td>
 <td align="left">Least Squares Support Vector Machine</td>
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 </tr>
 <tr class="even">
 <td align="left">cluster.kkmeans</td>
 <td align="left">Kernel K-Means</td>
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 </tr>
 <tr class="odd">
 <td align="left">regr.rvm</td>
 <td align="left">Relevance Vector Machine</td>
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 </tr>
 <tr class="even">
 <td align="left">classif.lda</td>
 <td align="left">Linear Discriminant Analysis</td>
 <td align="left">MASS</td>
-<td align="right">109462</td>
+<td align="right">107154</td>
 </tr>
 <tr class="odd">
 <td align="left">classif.qda</td>
 <td align="left">Quadratic Discriminant Analysis</td>
 <td align="left">MASS</td>
-<td align="right">109462</td>
+<td align="right">107154</td>
 </tr>
 <tr class="even">
 <td align="left">surv.coxph</td>
 <td align="left">Cox Proportional Hazard Model</td>
 <td align="left">survival</td>
-<td align="right">102386</td>
+<td align="right">100118</td>
 </tr>
 <tr class="odd">
 <td align="left">classif.plsdaCaret</td>
 <td align="left">Partial Least Squares (PLS) Discriminant Analysis</td>
 <td align="left">caret,pls</td>
-<td align="right">84583</td>
+<td align="right">83296</td>
 </tr>
 <tr class="even">
 <td align="left">regr.pcr</td>
 <td align="left">Principal Component Regression</td>
 <td align="left">pls</td>
-<td align="right">84583</td>
+<td align="right">83296</td>
 </tr>
 <tr class="odd">
 <td align="left">regr.plsr</td>
 <td align="left">Partial Least Squares Regression</td>
 <td align="left">pls</td>
-<td align="right">84583</td>
+<td align="right">83296</td>
 </tr>
 <tr class="even">
 <td align="left">classif.randomForest</td>
 <td align="left">Random Forest</td>
 <td align="left">randomForest</td>
-<td align="right">68445</td>
+<td align="right">67680</td>
 </tr>
 <tr class="odd">
 <td align="left">classif.rpart</td>
 <td align="left">Decision Tree</td>
 <td align="left">rpart</td>
-<td align="right">58102</td>
+<td align="right">57326</td>
 </tr>
 <tr class="even">
 <td align="left">surv.rpart</td>
 <td align="left">Survival Tree</td>
 <td align="left">rpart</td>
-<td align="right">58102</td>
+<td align="right">57326</td>
 </tr>
 <tr class="odd">
 <td align="left">cluster.dbscan</td>
 <td align="left">DBScan Clustering</td>
 <td align="left">fpc</td>
-<td align="right">57005</td>
+<td align="right">55963</td>
 </tr>
 <tr class="even">
 <td align="left">classif.cvglmnet</td>
 <td align="left">GLM with Lasso or Elasticnet Regularization (Cross Validated Lambda)</td>
 <td align="left">glmnet</td>
-<td align="right">46777</td>
+<td align="right">46076</td>
 </tr>
 <tr class="odd">
 <td align="left">classif.glmnet</td>
 <td align="left">GLM with Lasso or Elasticnet Regularization</td>
 <td align="left">glmnet</td>
-<td align="right">46777</td>
+<td align="right">46076</td>
 </tr>
 <tr class="even">
 <td align="left">surv.cvglmnet</td>
 <td align="left">GLM with Regularization (Cross Validated Lambda)</td>
 <td align="left">glmnet</td>
-<td align="right">46777</td>
+<td align="right">46076</td>
 </tr>
 </tbody>
 </table>
@@ -238,102 +238,102 @@ lrns.pgks</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">e1071</td>
-<td align="right">156744</td>
+<td align="right">154393</td>
 <td align="left">classif.naiveBayes,classif.svm,regr.svm</td>
 </tr>
 <tr class="even">
 <td align="left">kernlab</td>
-<td align="right">122882</td>
+<td align="right">121082</td>
 <td align="left">classif.gausspr,classif.ksvm,classif.lssvm,cluster.kkmeans,regr.gausspr,regr.ksvm,regr.rvm</td>
 </tr>
 <tr class="odd">
 <td align="left">MASS</td>
-<td align="right">109462</td>
+<td align="right">107154</td>
 <td align="left">classif.lda,classif.qda</td>
 </tr>
 <tr class="even">
 <td align="left">survival</td>
-<td align="right">102386</td>
+<td align="right">100118</td>
 <td align="left">surv.coxph</td>
 </tr>
 <tr class="odd">
 <td align="left">caret,pls</td>
-<td align="right">84583</td>
+<td align="right">83296</td>
 <td align="left">classif.plsdaCaret</td>
 </tr>
 <tr class="even">
 <td align="left">pls</td>
-<td align="right">84583</td>
+<td align="right">83296</td>
 <td align="left">regr.pcr,regr.plsr</td>
 </tr>
 <tr class="odd">
 <td align="left">randomForest</td>
-<td align="right">68445</td>
+<td align="right">67680</td>
 <td align="left">classif.randomForest,regr.randomForest</td>
 </tr>
 <tr class="even">
 <td align="left">rpart</td>
-<td align="right">58102</td>
+<td align="right">57326</td>
 <td align="left">classif.rpart,regr.rpart,surv.rpart</td>
 </tr>
 <tr class="odd">
 <td align="left">fpc</td>
-<td align="right">57005</td>
+<td align="right">55963</td>
 <td align="left">cluster.dbscan</td>
 </tr>
 <tr class="even">
 <td align="left">glmnet</td>
-<td align="right">46777</td>
+<td align="right">46076</td>
 <td align="left">classif.cvglmnet,classif.glmnet,regr.cvglmnet,regr.glmnet,surv.cvglmnet,surv.glmnet</td>
 </tr>
 <tr class="odd">
 <td align="left">FNN</td>
-<td align="right">34807</td>
+<td align="right">34087</td>
 <td align="left">classif.fnn,regr.fnn</td>
 </tr>
 <tr class="even">
-<td align="left">xgboost</td>
-<td align="right">27873</td>
-<td align="left">classif.xgboost,regr.xgboost</td>
-</tr>
-<tr class="odd">
 <td align="left">party</td>
-<td align="right">27526</td>
+<td align="right">27409</td>
 <td align="left">classif.cforest,classif.ctree,multilabel.cforest,regr.cforest,regr.ctree</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">party,modeltools</td>
-<td align="right">27526</td>
+<td align="right">27409</td>
 <td align="left">regr.mob</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">party,survival</td>
-<td align="right">27526</td>
+<td align="right">27409</td>
 <td align="left">surv.cforest</td>
+</tr>
+<tr class="odd">
+<td align="left">xgboost</td>
+<td align="right">26747</td>
+<td align="left">classif.xgboost,regr.xgboost</td>
 </tr>
 <tr class="even">
 <td align="left">gbm</td>
-<td align="right">26339</td>
+<td align="right">26153</td>
 <td align="left">classif.gbm,regr.gbm,surv.gbm</td>
 </tr>
 <tr class="odd">
 <td align="left">klaR</td>
-<td align="right">24928</td>
+<td align="right">24643</td>
 <td align="left">classif.rda</td>
 </tr>
 <tr class="even">
 <td align="left">RWeka</td>
-<td align="right">19439</td>
+<td align="right">19094</td>
 <td align="left">classif.adaboostm1,classif.IBk,classif.J48,classif.JRip,classif.OneR,classif.PART,cluster.Cobweb,cluster.EM,cluster.FarthestFirst,cluster.SimpleKMeans,cluster.XMeans,regr.IBk</td>
 </tr>
 <tr class="odd">
 <td align="left">h2o</td>
-<td align="right">19222</td>
+<td align="right">19076</td>
 <td align="left">classif.h2o.deeplearning,classif.h2o.gbm,classif.h2o.glm,classif.h2o.randomForest,regr.h2o.deeplearning,regr.h2o.gbm,regr.h2o.glm,regr.h2o.randomForest</td>
 </tr>
 <tr class="even">
 <td align="left">nnet</td>
-<td align="right">18309</td>
+<td align="right">18145</td>
 <td align="left">classif.multinom,classif.nnet,regr.nnet</td>
 </tr>
 </tbody>
@@ -348,7 +348,7 @@ g + geom_bar(stat = &quot;identity&quot;) +
   coord_flip() + 
   xlab(&quot;&quot;) + 
   scale_fill_continuous(guide=FALSE)</code></pre>
-<p><img src="/https:/mlr-web.netlify.comdocs/2017-03-30-Most_Popular_Learners_in_mlr_files/figure-html/compressTablePlot-1.png" width="672" /></p>
+<p><img src="/https:/mlr-web.netlify.com/docs/2017-03-30-Most_Popular_Learners_in_mlr_files/figure-html/compressTablePlot-1.png" width="672" /></p>
 </div>
 <div id="remarks" class="section level2">
 <h2>Remarks</h2>

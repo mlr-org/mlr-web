@@ -2,8 +2,8 @@
 title: "How to win a drone in 20 lines of R code"
 authors: ["janek-thomas"]
 date: 2016-08-23
-categories: ["R"]
-# tags: ["R Markdown", "plot", "regression"]
+categories: ["R", "r-bloggers"]
+tags: ["kaggle", "xgboost", "rstats"]
 ---
 
 
@@ -59,7 +59,7 @@ The problem with that is, that these methods generally take a large number of fu
 the space of hyper-parameters and search promising points. Having only numeric hyper-parameter makes the optimization
 even nicer because we can use a Gaussian process as our surrogate model. In the figure you can see an example of model based optimization in 1 dimension. The upper figure shows evaluated points, the estimated model (dashed line) and its variance (gray area). The lower picture shows how interesting every possible point is for future exploration of the space.
 For an in-depth introduction to model-based optimization you can read <a href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/f84f7ac703bf5862c12576d8002f5259/$FILE/Jones98.pdf">Jones(1998)</a>.</p>
-<p><img src="/https:/mlr-web.netlify.comdocs/2016-08-23-How-to-win-a-drone-in-20-lines-of-R-code_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/https:/mlr-web.netlify.com/docs/2016-08-23-How-to-win-a-drone-in-20-lines-of-R-code_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We use <a href="https://github.com/mlr-org/mlrMBO">mlrMBO</a> as a general black-box optimization toolkit with is already nicely connected to mlr. The optimization definition looks like this:</p>
 <pre class="r"><code>library(mlrMBO)
 library(parallelMap)
