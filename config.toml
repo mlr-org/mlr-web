@@ -9,6 +9,8 @@ theme = "minimo"
 disqusShortname = ""
 googleAnalytics = ""
 
+relativeurls = true
+
 Paginate = 10
 preserveTaxonomyNames = true
 
