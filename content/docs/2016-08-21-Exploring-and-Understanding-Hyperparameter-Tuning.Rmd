@@ -8,6 +8,7 @@ tags: ["hyperparameter", "tuning", "rstats"]
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
+set.seed(123)
 ```
 
 Learners use hyperparameters to achieve better performance on particular 
