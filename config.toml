@@ -61,7 +61,7 @@ enable = true
 [params.widgets]
 homepage = ["recent_posts"]
 sidebar = ["about",
-           #"search",
+           "search",
            "sidebar_menu",
            "taxonomy_cloud"]
 footer = ["social_menu"]
@@ -82,7 +82,7 @@ titleSeparator = "•"
 github = "mlr-org"
 
 [params.comments]
-enable = false
+enable = true
 
 # Isso: https://posativ.org/isso/
 [params.comments.isso]
@@ -91,7 +91,7 @@ scriptSrc = "" # "https://isso.example.com/js/embed.min.js"
 dataAttrs = "" # "data-isso='https://isso.example.com' data-isso-require-author='true'"
 
 [params.comments.staticman]
-enable = true
+enable = false
 apiEndpoint = "https://api.staticman.net/v2/entry"
 maxDepth = 2
 
@@ -102,15 +102,15 @@ branch = "master"
 
 # Utterances: https://utteranc.es
 [params.comments.utterances]
-enable = false
-issueTerm = "pathname" # pathname / url / title
+enable = true
+issueTerm = "title" # pathname / url / title
 
 [params.comments.utterances.github]
-#username = "MunifTanjim"
-#repository = "minimo"
+username = "mlr-org"
+repository = "mlr-web"
 
 [params.search]
-client = "" # algolia / fuse / lunr
+client = "lunr" # algolia / fuse / lunr
 
 [params.search.algolia]
 appId = ""
@@ -143,6 +143,18 @@ name = "mlrMBO"
 weight = -40
 parent = "Packages"
 url = "https://mlrMBO.mlr-org.com"
+
+[[menu.main]]
+name = "mlrCPO"
+weight = -40
+parent = "Packages"
+url = "https://mlrCPO.mlr-org.com"
+
+[[menu.main]]
+name = "OpenML"
+weight = -40
+parent = "Packages"
+url = "https://www.openml.org/"
 
 [[menu.main]]
 name = "Blog"
