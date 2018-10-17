@@ -7,7 +7,7 @@ tags: ["tuning", "hyperparameter", "optimization", "mlrHyperopt", "rstats"]
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE, eval = FALSE)
+knitr::opts_chunk$set(collapse = TRUE)
 set.seed(123)
 library(mlr)
 mlr::configureMlr(show.info = FALSE, show.learner.output = FALSE)
