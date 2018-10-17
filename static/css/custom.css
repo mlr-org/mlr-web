@@ -19,8 +19,8 @@
 
 code, kbd, pre, samp, var {
     font-family: Menlo,Consolas,Monaco,Ubuntu Mono,Liberation Mono,Lucida Console,monospace;
-    color: #dcdcdc;
-    background: #2d2d2d;
+    color: black;
+    background: #e1e4e8c7;
     border: 0px solid #dcdcdc;
     padding: 0.2em .4em;
 }
@@ -28,7 +28,11 @@ code, kbd, pre, samp, var {
 .hljs {
     display: block;
     overflow-x: auto;
-    background: #2d2d2d;
-    /* color: #cccccc; */
-    padding: 0em;
+    padding: 0.5em;
+    background: #e1e4e8c7 !important;
+    color: black;
+}
+
+body {
+     font-size: 1.0em;
 }
