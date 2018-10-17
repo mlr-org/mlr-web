@@ -110,12 +110,12 @@ username = "mlr-org"
 repository = "mlr-web"
 
 [params.search]
-client = "lunr" # algolia / fuse / lunr
+client = "fuse" # algolia / fuse / lunr
 
 [params.search.algolia]
-appId = ""
-indexName = ""
-searchApiKey = ""
+#appId = "mlr"
+#indexName = "search"
+#searchApiKey = "d27c984717db8247b502930e8a99cc06"
 
 [taxonomies]
 author = "authors"
@@ -157,7 +157,7 @@ parent = "Packages"
 url = "https://www.openml.org/"
 
 [[menu.main]]
-name = "Blog"
+name = "All blog posts"
 weight = -50
 #identifier = "repository"
 url = "/docs"
