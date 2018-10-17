@@ -36,3 +36,16 @@ code, kbd, pre, samp, var {
 body {
      font-size: 1.0em;
 }
+
+/* move hamburg button to left side */
+.main .sidebar-toggler {
+    padding: 0;
+    position: absolute;
+    left: 15px;
+	top: 15px;
+}
+
+/* increase top margins in articles */
+.header-info {
+	margin-top: 40px;
+}
