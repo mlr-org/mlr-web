@@ -70,7 +70,7 @@ predictor = Predictor$new(mod, data = X, y = Boston$medv)</code></pre>
 We can call the <code>plot()</code> function of the object or look at the results in a data.frame.</p>
 <pre class="r"><code>imp = FeatureImp$new(predictor, loss = &quot;mae&quot;)
 plot(imp)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>imp$results
 #&gt;    feature original.error permutation.error importance
 #&gt; 1    lstat      0.9546924         4.4301626   4.640408
@@ -92,13 +92,13 @@ plot(imp)</code></pre>
 <p>Besides learning which features were important, we are interested in how the features influence the predicted outcome. The <code>Partial</code> class implements partial dependence plots and individual conditional expectation curves. Each individual line represents the predictions (y-axis) for one data point when we change one of the features (e.g. ‘lstat’ on the x-axis). The highlighted line is the point-wise average of the individual lines and equals the partial dependence plot. The marks on the x-axis indicates the distribution of the ‘lstat’ feature, showing how relevant a region is for interpretation (little or no points mean that we should not over-interpret this region).</p>
 <pre class="r"><code>pdp.obj = Partial$new(predictor, feature = &quot;lstat&quot;)
 plot(pdp.obj)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>If we want to compute the partial dependence curves for another feature, we can simply reset the feature.
 Also, we can center the curves at a feature value of our choice, which makes it easier to see the trend of the curves:</p>
 <pre class="r"><code>pdp.obj$set.feature(&quot;rm&quot;)
 pdp.obj$center(min(Boston$rm))
 plot(pdp.obj)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="surrogate-model" class="section level2">
 <h2>Surrogate model</h2>
@@ -107,7 +107,7 @@ The plot shows the terminal nodes of the fitted tree.
 The maxdepth parameter controls how deep the tree can grow and therefore how interpretable it is.</p>
 <pre class="r"><code>tree = TreeSurrogate$new(predictor, maxdepth = 2)
 plot(tree)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>We can use the tree to make predictions:</p>
 <pre class="r"><code>head(tree$predict(Boston))
 #&gt;     .y.hat
@@ -129,7 +129,7 @@ lime.explain$results
 #&gt; ptratio -0.5208891    15.300 -7.969603       15.3 ptratio  ptratio=15.3
 #&gt; lstat   -0.4295847     4.980 -2.139332       4.98   lstat    lstat=4.98
 plot(lime.explain)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="explain-single-predictions-with-game-theory" class="section level2">
 <h2>Explain single predictions with game theory</h2>
@@ -137,11 +137,11 @@ plot(lime.explain)</code></pre>
 Assume that for one data point, the feature values play a game together, in which they get the prediction as a payout. The Shapley value tells us how to fairly distribute the payout among the feature values.</p>
 <pre class="r"><code>shapley = Shapley$new(predictor, x.interest = X[1,])
 plot(shapley)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>We can reuse the object to explain other data points:</p>
 <pre class="r"><code>shapley$explain(x.interest = X[2,])
 plot(shapley)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="/docs/2018-04-30-interpretable-machine-learning-iml-and-mlr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>The results in data.frame form can be extracted like this:</p>
 <pre class="r"><code>results = shapley$results
 head(results)

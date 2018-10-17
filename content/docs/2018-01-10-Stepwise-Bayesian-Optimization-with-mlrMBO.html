@@ -52,7 +52,7 @@ opt.state = initSMBO(
 <p>The <code>opt.state</code> now contains all necessary information for the optimization.
 We can even plot it to see how the Gaussian process models the objective function.</p>
 <pre class="r"><code>plot(opt.state)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/optstate1-1.png" width="672" /></p>
+<p><img src="/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/optstate1-1.png" width="672" /></p>
 <p>In the first panel the <em>expected improvement</em> (<span class="math inline">\(EI = E(y_{min}-\hat{y})\)</span>) (see <a href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/f84f7ac703bf5862c12576d8002f5259/$FILE/Jones98.pdf">Jones et.al.</a>) is plotted over the search space.
 The maximum of the <em>EI</em> indicates the point that we should evaluate next.
 The second panel shows the mean prediction of the surrogate model, which is the Gaussian regression model aka <em>Kriging</em> in this example.
@@ -66,7 +66,7 @@ prop
 ## 969 -2.999979
 ## 
 ## $propose.time
-## [1] 0.038
+## [1] 0.067
 ## 
 ## $prop.type
 ## [1] &quot;infill_ei&quot;
@@ -96,7 +96,7 @@ Let’s assume we have an expert who tells us to evaluate the values <span class
 ys = apply(custom.prop, 1, fun)
 updateSMBO(opt.state, x = custom.prop, y = as.list(ys))
 plot(opt.state, scale.panels = TRUE)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/feedmanual-1.png" width="672" /></p>
+<p><img src="/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/feedmanual-1.png" width="672" /></p>
 <p>We can also automate the process easily:</p>
 <pre class="r"><code>replicate(3, {
   prop = proposePoints(opt.state)
@@ -106,7 +106,7 @@ plot(opt.state, scale.panels = TRUE)</code></pre>
 <p><em>Note:</em> We suggest to use the normal mlrMBO if you are only doing this as mlrMBO has more advanced logging, termination and handling of errors etc.</p>
 <p>Let’s see how the surrogate models the true objective function after having seen seven configurations:</p>
 <pre class="r"><code>plot(opt.state, scale.panels = TRUE)</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/optstate2-1.png" width="672" /></p>
+<p><img src="/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/optstate2-1.png" width="672" /></p>
 <p>You can convert the <code>opt.state</code> object from this run to a normal mlrMBO result object like this:</p>
 <pre class="r"><code>res = finalizeSMBO(opt.state)
 res
@@ -140,6 +140,6 @@ res
 <p>For the curious, let’s see how our original function actually looks like and which points we evaluated during our optimization:</p>
 <pre class="r"><code>plot(fun, -3, 3)
 points(x = getOptPathX(res$opt.path)$x, y = getOptPathY(res$opt.path))</code></pre>
-<p><img src="/https:/mlr-web.netlify.com/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/plottrue-1.png" width="672" /></p>
+<p><img src="/docs/2018-01-10-Stepwise-Bayesian-Optimization-with-mlrMBO_files/figure-html/plottrue-1.png" width="672" /></p>
 <p>We can see, that we got pretty close to the global optimum and that the surrogate in the previous plot models the objective quite accurate.</p>
 <p>For more in-depth information look at the <a href="https://mlr-org.github.io/mlrMBO/articles/supplementary/human_in_the_loop_MBO.html">Vignette for Human-in-the-loop MBO</a> and check out the other topics of our <a href="https://mlr-org.github.io/mlrMBO">mlrMBO page</a>.</p>
