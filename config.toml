@@ -61,7 +61,7 @@ enable = true
 [params.widgets]
 homepage = ["recent_posts"]
 sidebar = ["about",
-           "search",
+           #"search",
            "sidebar_menu",
            "taxonomy_cloud"]
 footer = ["social_menu"]
