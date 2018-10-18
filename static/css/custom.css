@@ -23,6 +23,7 @@ code, kbd, pre, samp, var {
     background: #e1e4e8c7;
     border: 0px solid #dcdcdc;
     padding: 0.2em .4em;
+    font-size: .85em;
 }
 
 .hljs {
