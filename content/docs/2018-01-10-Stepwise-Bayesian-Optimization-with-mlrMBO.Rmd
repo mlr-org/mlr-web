@@ -14,7 +14,7 @@ library(ggplot2)
 library(rgenoud)
 ```
   
-With the release of the new version of [mlrMBO](https://mlr-org.github.io/mlrMBO/) we added some minor fixes and added a practical feature called *[Human-in-the-loop MBO](https://mlr-org.github.io/mlrMBO/articles/supplementary/human_in_the_loop_MBO.html)*.
+With the release of the new version of [mlrMBO](https://mlrMBO.mlr-org.com/) we added some minor fixes and added a practical feature called *[Human-in-the-loop MBO](https://mlrMBO.mlr-org.com/articles/supplementary/human_in_the_loop_MBO.html)*.
 It enables you to sequentially
 
 * visualize the state of the surrogate model,
@@ -143,4 +143,4 @@ points(x = getOptPathX(res$opt.path)$x, y = getOptPathY(res$opt.path))
 
 We can see, that we got pretty close to the global optimum and that the surrogate in the previous plot models the objective quite accurate.
 
-For more in-depth information look at the [Vignette for Human-in-the-loop MBO](https://mlr-org.github.io/mlrMBO/articles/supplementary/human_in_the_loop_MBO.html) and check out the other topics of our [mlrMBO page](https://mlr-org.github.io/mlrMBO).
+For more in-depth information look at the [Vignette for Human-in-the-loop MBO](https://mlrMBO.mlr-org.com/articles/supplementary/human_in_the_loop_MBO.html) and check out the other topics of our [mlrMBO page](https://mlrMBO.mlr-org.com/).

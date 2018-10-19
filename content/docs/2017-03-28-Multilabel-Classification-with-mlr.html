@@ -40,7 +40,7 @@ feats = setdiff(colnames(scene$data), target)</code></pre>
 <li>Dependent binary relevance</li>
 <li>Stacking</li>
 </ul>
-<p>How these methods are defined, can be read in the <a href="https://mlr-org.github.io/mlr/articles/tutorial/devel/multilabel.html">mlr tutorial</a> or in more detail in our <a href="https://arxiv.org/pdf/1703.08991.pdf">paper</a>. Enough theory now, let’s apply these methods on our dataset.</p>
+<p>How these methods are defined, can be read in the <a href="https://mlr.mlr-org.com/articles/tutorial/multilabel.html">mlr tutorial</a> or in more detail in our <a href="https://arxiv.org/pdf/1703.08991.pdf">paper</a>. Enough theory now, let’s apply these methods on our dataset.</p>
 </div>
 <div id="lets-train-and-predict" class="section level3">
 <h3>2) Let’s Train and Predict!</h3>
@@ -61,7 +61,7 @@ test.set = seq(2, n, by = 2)
 
 scene.mod.cc = train(lrncc, scene.task, subset = train.set)
 scene.pred.cc = predict(scene.mod.cc, task = scene.task, subset = test.set)</code></pre>
-<p>We also implemented common multilabel performance measures. Here is a list with <a href="https://mlr-org.github.io/mlr/articles/tutorial/devel/measures.html#multilabel-classification">available multilabel performance measures</a>:</p>
+<p>We also implemented common multilabel performance measures. Here is a list with <a href="https://mlr.mlr-org.com/articles/tutorial/measures.html#multilabel-classification">available multilabel performance measures</a>:</p>
 <pre class="r"><code>listMeasures(&quot;multilabel&quot;)
 ##  [1] &quot;featperc&quot;            &quot;multilabel.tpr&quot;      &quot;multilabel.hamloss&quot; 
 ##  [4] &quot;multilabel.subset01&quot; &quot;timeboth&quot;            &quot;timetrain&quot;          
@@ -93,7 +93,7 @@ performance(scene.pred.br, measures = list(multilabel.hamloss,
 </div>
 <div id="resampling" class="section level3">
 <h3>4) Resampling</h3>
-<p>Here I’ll show you how to use resampling methods in the multilabel setting. Resampling methods are key for assessing the performance of a learning algorithm. To read more about resampling, see the page on our <a href="https://mlr-org.github.io/mlr/articles/tutorial/devel/resample.html">tutorial</a>.</p>
+<p>Here I’ll show you how to use resampling methods in the multilabel setting. Resampling methods are key for assessing the performance of a learning algorithm. To read more about resampling, see the page on our <a href="https://mlr.mlr-org.com/articles/tutorial/devel/resample.html">tutorial</a>.</p>
 <p>First, we need to define a resampling strategy. I chose subsampling, which is also called Monte-Carlo cross-validation. The dataset is split into training and test set at a predefined ratio. The learner is trained on the training set, the performance is evaluated with the test set. This whole process is repeated many times and the performance values are averaged. In mlr this is done the following way:</p>
 <pre class="r"><code>rdesc = makeResampleDesc(&quot;Subsample&quot;, iters = 10, split = 2/3)</code></pre>
 <p>Now we can choose a measure, which shall be resampled. All there is left to do is to run the resampling:</p>
@@ -103,7 +103,7 @@ performance(scene.pred.br, measures = list(multilabel.hamloss,
 ## Task: scene$data
 ## Learner: multilabel.classifierChains.classif.rpart
 ## Aggr perf: multilabel.subset01.test.mean=0.4838107
-## Runtime: 17.4199</code></pre>
+## Runtime: 14.9185</code></pre>
 <p>If you followed the mlr tutorial or if you are already familiar with mlr, you most likely saw, that using resampling in the multilabel setting isn’t any different than generally using resampling in mlr.
-Many methods, which are available in mlr, like <a href="https://mlr-org.github.io/mlr/articles/tutorial/devel/preproc.html">preprocessing</a>, <a href="https://mlr-org.github.io/mlr/articles/tutorial/devel/tune.html">tuning</a> or <a href="https://mlr-org.github.io/mlr/articles/tutorial/devel/benchmark_experiments.html">benchmark experiments</a> can also be used for multilabel datasets and the good thing here is: the syntax stays the same!</p>
+Many methods, which are available in mlr, like <a href="https://mlr.mlr-org.com/articles/tutorial/preproc.html">preprocessing</a>, <a href="https://mlr.mlr-org.com/articles/tutorial/tune.html">tuning</a> or <a href="https://mlr.mlr-org.com/articles/tutorial/benchmark_experiments.html">benchmark experiments</a> can also be used for multilabel datasets and the good thing here is: the syntax stays the same!</p>
 </div>

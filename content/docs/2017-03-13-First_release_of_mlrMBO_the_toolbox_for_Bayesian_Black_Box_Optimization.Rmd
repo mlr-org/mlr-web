@@ -20,7 +20,7 @@ The key features of **mlrMBO** are:
 * Parallelization through multi-point proposals.
 * Support for optimization over categorical variables using random forests as a surrogate.
 
-For examples covering different scenarios we have Vignettes that are also available as an [online documentation](https://mlr-org.github.io/mlrMBO/).
+For examples covering different scenarios we have Vignettes that are also available as an [online documentation](https://mlrMBO.mlr-org.com/).
 For **mlr** users **mlrMBO** is especially interesting for hyperparameter optimization.
 
 <!--more-->

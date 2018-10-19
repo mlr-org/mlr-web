@@ -98,7 +98,7 @@ print(r)
 ## Task: PimaIndiansDiabetes-example
 ## Learner: classif.ksvm
 ## Aggr perf: mmce.test.mean=0.2434896
-## Runtime: 0.74563</code></pre>
+## Runtime: 1.60308</code></pre>
 <p>While this result may seem decent, we have a nagging doubt: what if we chose
 hyperparameter values different from the defaults? Would we get better results?</p>
 <p>Maybe we believe that the default of <code>kernel = &quot;rbfdot&quot;</code> will work well based
@@ -230,7 +230,7 @@ plt + scale_fill_gradient2(breaks = seq(min_plt, max_plt, length.out = 4),
 <p>Now we can get a good sense of where the separation happens for each of the
 hyperparameters: in this particular example, we want lower values for <code>sigma</code>
 and values around 1 for <code>C</code>.</p>
-<p>This was just a taste of mlr’s hyperparameter tuning visualization capabilities. For the full tutorial, check out the <a href="https://mlr-org.github.io/mlr/articles/tutorial/devel/hyperpar_tuning_effects.html">mlr tutorial</a>.</p>
+<p>This was just a taste of mlr’s hyperparameter tuning visualization capabilities. For the full tutorial, check out the <a href="https://mlr.mlr-org.com/articles/tutorial/devel/hyperpar_tuning_effects.html">mlr tutorial</a>.</p>
 <p>Some features coming soon:</p>
 <ul>
 <li>“Prettier” plot defaults</li>

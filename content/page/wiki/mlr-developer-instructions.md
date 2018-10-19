@@ -1,8 +1,8 @@
 ---
 date: 2017-09-28T08:00:00+06:00
-title: Developer instructions
+title: mlr Developer instructions
 authors: ["patrick-schratz"]
-slug: developer-instructions
+slug: mlr-developer-instructions
 menu:
    main:
       parent: wiki
@@ -210,7 +210,7 @@ To make really sure, we run Travis CI for every commit and pull request. This is
 
 Once you're happy with your code, please open a [pull request for the main repository](https://github.com/mlr-org/mlr/pulls). This will automatically run [Travis CI](https://travis-ci.org/mlr-org/mlr) on your changes to see if it still builds and all the tests pass. The developer team will get notified automatically of your pull request.
 
-For some common tasks like integrating another learner or performance measure we have manuals in section "Extend" of the [mlr tutorial](http://mlr-org.github.io/mlr-tutorial/devel/html/). 
+For some common tasks like integrating another learner or performance measure we have manuals in section "Extend" of the [mlr tutorial](https://mlr.mlr-org.com/index.html). 
 
 # Build process hints and FAQ
 
@@ -385,7 +385,7 @@ If you are a new developer, please first check out our [coding guidelines](https
 
 # New Learners From Existing R Package
 
-- Check out the tutorial guide for [custom learners](http://mlr-org.github.io/mlr-tutorial/devel/html/create_learner/index.html) for guidance
+- Check out the tutorial guide for [custom learners](https://mlr.mlr-org.com/articles/tutorial/create_learner.html) for guidance
 
 |  |      Number      |   Package      |                     Method                            | Description |
 :--|  :----------:    |   :---------:  |                :-----------------:                    |   :------:  |

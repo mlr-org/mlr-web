@@ -16,7 +16,7 @@ For this we want to use [`batchtools`](https://mllg.github.io/batchtools/).
 
 The data that we will use here is stored on the open machine learning platform [openml.org](https://www.openml.org/) and we can download it together with information on what to do with it in form of a task.
 
-If you have a small project and don't need to parallelize, you might want to just look at the previous blog post called [mlr loves OpenML](https://mlr-org.github.io/mlr-loves-OpenML/).
+If you have a small project and don't need to parallelize, you might want to just look at the previous blog post called [mlr loves OpenML](https://mlr-org.com/docs/2016-09-09-mlr-loves-openml/).
 
 The following packages are needed for this:
 

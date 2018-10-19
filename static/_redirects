@@ -4,5 +4,3 @@ http://mlr-web.netlify.com/* http://mlr-org.com/:splat 301!
 
 https://mlr-org.de/* https://mlr-org.com/:splat 301!
 http://mlr-org.de/* http://mlr-org.com/:splat 301!
-
-https://mlr-org.com/https:/mlr-web.netlify.com/ https://mlr-org.com/:splat 301!
