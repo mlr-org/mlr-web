@@ -157,12 +157,6 @@ parent = "Packages"
 url = "https://www.openml.org/"
 
 [[menu.main]]
-name = "All blog posts"
-weight = -50
-#identifier = "repository"
-url = "/docs"
-
-[[menu.main]]
 name = "RSS"
 weight = -35
 #identifier = "repository"
