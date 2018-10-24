@@ -16,6 +16,4 @@ Sources of the main [mlr website](https://mlr-web.netlify.com/) including the bl
 
 6. Open a Pull Request. You can preview the changes you made by blicking on "Details" of your opened PR on Github:
 
-<img src="static/images/readme01.png", width=800/>
-
 ![](static/images/readme01.png)
