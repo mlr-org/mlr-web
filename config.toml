@@ -133,6 +133,12 @@ identifier = "blog"
 url = "#"
 
 [[menu.main]]
+name = "Outreach"
+weight = -35
+identifier = "outreach"
+url = "#"
+
+[[menu.main]]
 name = "Packages"
 weight = -30
 identifier = "Packages"
