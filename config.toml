@@ -127,16 +127,34 @@ tag = "tags"
 page = "/:slug/"
 
 [[menu.main]]
-name = "mlr3"
+name = "Blog"
 weight = -40
-parent = "Packages"
-url = "https://mlr3.mlr-org.com"
+identifier = "blog"
+url = "#"
 
 [[menu.main]]
-name = "mlr"
+name = "Packages"
+weight = -30
+identifier = "Packages"
+url = "#"
+
+[[menu.main]]
+name = "Wiki"
+weight = -20
+identifier = "wiki"
+url = "#"
+
+[[menu.main]]
+name = "RSS"
+weight = -10
+#identifier = "repository"
+url = "/index.xml"
+
+[[menu.main]]
+name = "Packages"
 weight = -40
-parent = "Packages"
-url = "https://mlr.mlr-org.com"
+identifier = "Packages"
+url = "#"
 
 [[menu.main]]
 name = "mlrMBO"
@@ -151,16 +169,16 @@ parent = "Packages"
 url = "https://mlrCPO.mlr-org.com"
 
 [[menu.main]]
+name = "mlr3"
+weight = -40
+parent = "Packages"
+url = "https://mlr3.mlr-org.com"
+
+[[menu.main]]
 name = "OpenML"
 weight = -40
 parent = "Packages"
 url = "https://www.openml.org/"
-
-[[menu.main]]
-name = "RSS"
-weight = -35
-#identifier = "repository"
-url = "/index.xml"
 
 [blackfriday]
 hrefTargetBlank = true
