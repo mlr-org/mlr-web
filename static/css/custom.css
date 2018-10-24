@@ -50,3 +50,11 @@ body {
 .header-info {
 	margin-top: 40px;
 }
+
+/* space between top and right blue separation line */
+.sep-after:after, .sep-before:before {
+    content: "";
+    display: block;
+    width: 4em;
+    margin-top: 1.35em;
+}
