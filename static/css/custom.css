@@ -50,3 +50,17 @@ body {
 .header-info {
 	margin-top: 40px;
 }
+
+.sidebar-menu .item.has-children {
+  position: relative;
+}
+.sidebar-menu .has-children > a {
+  margin-right: 1em;
+}
+.sub-menu-toggler {
+  width: 100%;
+  text-align: right;
+  background: transparent;
+  position: absolute;
+  top: 3px;
+}
