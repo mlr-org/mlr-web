@@ -51,6 +51,7 @@ body {
 	margin-top: 40px;
 }
 
+/* makes the whole sub-menu clickable, not just the "+" button */
 .sidebar-menu .item.has-children {
   position: relative;
 }
@@ -63,4 +64,9 @@ body {
   background: transparent;
   position: absolute;
   top: 3px;
+}
+
+/* no uppercase only menu */
+.menu li {
+    text-transform: none;
 }
