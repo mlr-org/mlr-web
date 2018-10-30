@@ -2,6 +2,9 @@ Sources of the main [mlr website](https://mlr-web.netlify.com/) including the bl
 
 `blogdown` and Hugo are used to render the site. Deployment is done via Netlify.
 
+It is highly recommended to use **RStudio** for tasks in this repo. 
+It integrates very well with the live preview of `blogdown`.
+
 # How to add a new blog post
 
 1. Add yourself as an author to https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page and create an "author page" for the website (similar to the ones in `data/authors`).
@@ -12,8 +15,8 @@ Sources of the main [mlr website](https://mlr-web.netlify.com/) including the bl
 
 4. Preview your post by running `blogdown::serve_site()`.
 
-5. Commit the Rmd and HTML file and possible external ressources.
+5. Commit the **Rmd and HTML** file and possible external resources.
 
-6. Open a Pull Request. You can preview the changes you made by blicking on "Details" of your opened PR on Github:
+6. Open a Pull Request. You can preview the changes you made by clicking on "Details" of your opened PR on Github:
 
 ![](static/images/readme01.png)
