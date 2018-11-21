@@ -54,7 +54,7 @@ data(BostonHousing, package = "mlbench")
 regr.task = makeRegrTask(data = BostonHousing, target = "medv")
 lrn = makeLearner("regr.ranger")
 rdesc = makeResampleDesc("CV", iters = 5)
-res = resample(learner = lrn, task = regr.task, resampling = rdesc, measure = list(RMSE))
+res = resample(learner = lrn, task = regr.task, resampling = rdesc, measure = list(rmse))
 res
 ```
 
@@ -94,7 +94,7 @@ Both packages have several possibilities for preprocessing of the dataset. Both 
 
 ## Learners
 
-Currently 271 learners are supported in **caret**. For **mlr** it is *only* 165. I think bigger quantity is not very important here, as the most common and most important learners are implemented in both packages.
+Currently 271 learners are supported in **caret**. For **mlr** there are *only* 165. I think bigger quantity is not very important here, as the most common and most important learners are implemented in both packages.
 
 **mlr** provides an easy way to look up the learners and their properties via ```listLearners()``` or via the [tutorial]((https://mlr.mlr-org.com/index.html)) in a table format. Learners for **caret** can be looked up in the tutorial, [chapter 7](http://topepo.github.io/caret/train-models-by-tag.html).
 Both packages provide the possibility to extend the learners.
@@ -125,19 +125,46 @@ In **mlr** there are currently [71 measures](https://mlr.mlr-org.com/articles/tu
 
 ## Tuning
 
-Tuning is done internally and automatically in the **caret** package. What is tuned is described in the [learner section](http://topepo.github.io/caret/train-models-by-tag.html) of the tutorial. This can be changed by the user to grid search or random search.
+In **mlr** tuning is not done automatically. There are functions and wrappers to perform the tuning. Tuning methods that are supported are random search, grid search, F-Racing and model-based optimization via the **mlrMBO** package. Code example with a simple tuning of the support vector machine:
 
-In **mlr** tuning is not done automatically. There are functions and wrappers to perform the tuning. Tuning methods that are supported are random search, grid search, F-Racing and model-based optimization via the **mlrMBO** package.
+```{r, eval = FALSE}
+library(mlr)
+data(BostonHousing, package = "mlbench")
+regr.task = makeRegrTask(data = BostonHousing, target = "medv")
+
+discrete_ps = makeParamSet(
+  makeDiscreteParam("C", values = c(0.5, 1.0, 1.5, 2.0)),
+  makeDiscreteParam("sigma", values = c(0.5, 1.0, 1.5, 2.0))
+)
+ctrl = makeTuneControlGrid()
+rdesc = makeResampleDesc("CV", iters = 3L)
+res = tuneParams("regr.ksvm", task = regr.task, resampling = rdesc,
+  par.set = discrete_ps, control = ctrl)
+res
+```
+
+The tuning strategy is defined in ```control```. For tuning while resampling a learner has to be wrapped via ```makeTuneWrapper```.
+
+Tuning is done internally and automatically in the **caret** package. What is tuned is described in the [learner section](http://topepo.github.io/caret/train-models-by-tag.html) of the tutorial. This can be changed by the user to grid search or random search by setting it in ```trainControl```:
+
+```{r, eval = FALSE}
+library(caret)
+gbmGrid <-  expand.grid(interaction.depth = c(1, 5, 9),  n.trees = (1:30)*50, 
+                        shrinkage = 0.1,  n.minobsinnode = 20)
+fitControl = trainControl(method = "cv", number = 5, search = "grid")
+fit = caret::train(medv ~ ., data = BostonHousing, method = "gbm", trControl = fitControl)
+fit
+```
 
 For both packages there are plots to visualize the tuning process, for example to plot the tuning parameters (1 or 2) vs. the performance or for plotting the development of the performance in the tuning iteration steps. 
 
-**Light advantage for mlr here as it support advanced tuning algorithms like F-Racing and model-based optimization: 7:6**
+**Light advantage for mlr here as it support advanced tuning algorithms like F-Racing and model-based optimization. Executing the tuning is easier in caret: 7:7**
 
 ## Visualization of results
 
 Visualising your results and getting informations about your models is an important task in the modelling pipeline. Both packages provide a lot of possibilities here. For both packages we have ROC-Analysis and calibration curves. For **mlr** there are additionally partial dependence plots, learning curves, cut-off curves and residual plotting, while **caret** provides method specific variable importances and lift curves.
 
-**No clear winner here: 8:7**
+**No clear winner here: 8:8**
 
 ## Datasets
 
@@ -145,7 +172,7 @@ Datasets can be nice for illustration and testing purposes.
 **caret** comes with 10 datasets, which are nicely [documented](http://topepo.github.io/caret/data-sets.html).
 **mlr** provides 16 already build tasks. Moreover in **mlr** there is a nice connection to the [**OpenML**](https://github.com/openml/openml-r) package and its [online platform](https://www.openml.org/) with over 20000 datasets from all domains.
 
-**Advantage for mlr here: 9:7**
+**Advantage for mlr here: 9:8**
 
 # Speed
 
@@ -155,7 +182,7 @@ There shouldn`t be a big time difference for the operations of the package itsel
 
 **caret** has prespecified tuning if the learners are used in their default version so it will take more time than **mlr** for which tuning is not done in the default method. In the example above it lead to a runtime of 2.4 seconds for **mlr** and 3.2 seconds for **caret**. The difference will be much larger, when bigger datasets are used. In general the automatic tuning of **caret** will also lead to better performance.
 
-**No clear winner here: 10:8**
+**No clear winner here: 10:9**
 
 ## Parallelization
 
@@ -163,14 +190,14 @@ Parallelization in the **caret** package only works internally when applying a t
 
 In contrast in **mlr** you have more options. You can parallelize on different [levels](https://mlr.mlr-org.com/articles/tutorial/parallelization.html): While using benchmark with different learners and datasets, when resampling, while selecting Features, while tuning and while training an ensemble. Parallelization can be done via [**parallelMap**](https://cran.r-project.org/web/packages/parallelMap/index.html) which works with all major parallelization backends: [**parallel**](https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf), [**snow**](https://cran.r-project.org/web/packages/snow/index.html) or via [**batchtools**](https://cran.r-project.org/web/packages/batchtools/batchtools.pdf). Especially useful is the function ```batchmark``` which is good for parallelizing benchmarks via [**batchtools**](https://cran.r-project.org/web/packages/batchtools/batchtools.pdf).
 
-**mlr has more possibilities here: 11:8**
+**mlr has more possibilities here: 11:9**
 
 # Objects and configurability
 
 In **mlr** you have an object for every part of the process: a task, a learner, a measure, a resample object. In **caret** you have the ```trainControl``` object that is used in ```train``` which is configurable, but I would say that **mlr** is more intuitive and clear here.
 Because of this it is also easier in **mlr** to integrate new custom learners, measures, filters and imputation methods.
 
-**mlr wins here: 12:8**
+**mlr wins here: 12:9**
 
 # Further development
 
@@ -180,7 +207,7 @@ Because of this it is also easier in **mlr** to integrate new custom learners, m
 
 # Overall result
 
-Counting together all categories **mlr** wins by 12:8.
+Counting together all categories **mlr** wins by 12:9.
 
 <!--## Overview in table --> 
 
