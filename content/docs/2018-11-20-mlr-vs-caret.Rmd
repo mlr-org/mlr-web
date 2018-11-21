@@ -158,7 +158,7 @@ fit
 
 For both packages there are plots to visualize the tuning process, for example to plot the tuning parameters (1 or 2) vs. the performance or for plotting the development of the performance in the tuning iteration steps. 
 
-**Light advantage for mlr here as it support advanced tuning algorithms like F-Racing and model-based optimization. Executing the tuning is easier in caret: 7:7**
+**Light advantage for mlr here as it supports advanced tuning algorithms like F-Racing and model-based optimization. Executing the tuning is easier in caret: 7:7**
 
 ## Visualization of results
 
@@ -180,7 +180,7 @@ There shouldn`t be a big time difference for the operations of the package itsel
 
 ## Difference in the default mode
 
-**caret** has prespecified tuning if the learners are used in their default version so it will take more time than **mlr** for which tuning is not done in the default method. In the example above it lead to a runtime of 2.4 seconds for **mlr** and 3.2 seconds for **caret**. The difference will be much larger, when bigger datasets are used. In general the automatic tuning of **caret** will also lead to better performance.
+**caret** has prespecified tuning if the learners are used in their default version so it will take more time than **mlr** for which tuning is not done in the default method. In the first example above **mlr** had a runtime of 2.4 seconds while **caret** took 3.2 seconds. The difference will be much larger, when bigger datasets are used. In general the automatic tuning of **caret** will also lead to better performance.
 
 **No clear winner here: 10:9**
 
