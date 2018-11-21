@@ -11,7 +11,7 @@ tags: ["mlr", "caret", "machine learning", "R"]
 
 Let`s compare the two popular R packages for machine learning [**mlr**](https://github.com/mlr-org/mlr) and [**caret**](https://github.com/topepo/caret).
 
-**caret** is longer on the market, its first CRAN release seems to be from 2007, while **mlr** came to CRAN on 2013. As for now, **caret** seems to be more popular, according to [cranlogs](https://cran.r-project.org/web/packages/cranlogs/index.html) **caret** was downloaded 178029 times in the last 30 days, while **mlr** was downloaded 11408 times in the last 30 days.
+**caret** is longer on the market, its first CRAN release seems to be from 2007, while **mlr** came to CRAN on 2013. As for now, **caret** seems to be more popular, according to [**cranlogs**](https://cran.r-project.org/web/packages/cranlogs/index.html) **caret** was downloaded 178029 times in the last 30 days, while **mlr** was downloaded 11408 times in the last 30 days.
 
 <!--excerpt-->
 
@@ -35,7 +35,7 @@ Both packages heavily depend on other packages and hence installation takes a lo
 
 Both have an online tutorial. [**caret**`s one](http://topepo.github.io/caret/index.html) is good for learning from scratch, but for looking things up quickly it is rather unpractical. Here lies the strength of the [*mlr* tutorial](https://mlr.mlr-org.com/index.html).
 
-**caret** provides more things. There is the [Applied Predictive Modelling book](https://www.springer.com/de/book/9781461468486) which tries to *cover the overall predictive modeling process.* It is not freely available online, like ,for example, some books of Hadley Wickham (e.g., [Advanced R](http://adv-r.had.co.nz/), [R for Data Science](https://r4ds.had.co.nz/) or [R packages](http://r-pkgs.had.co.nz/)) or [The elements of statistical learning](https://web.stanford.edu/~hastie/Papers/ESLII.pdf).
+**caret** provides more things. There is the [Applied Predictive Modelling book](https://www.springer.com/de/book/9781461468486) which tries to *cover the overall predictive modeling process.* It is not freely available online, like, for example, some books of Hadley Wickham (e.g., [Advanced R](http://adv-r.had.co.nz/), [R for Data Science](https://r4ds.had.co.nz/) or [R packages](http://r-pkgs.had.co.nz/)) or [The elements of statistical learning](https://web.stanford.edu/~hastie/Papers/ESLII.pdf).
 
 Moreover there is a [datacamp course](https://www.datacamp.com/courses/machine-learning-toolbox) that uses **caret**.
 Cheatsheets are available for both. The one for [**mlr**](https://github.com/rstudio/cheatsheets/raw/master/mlr.pdf) seems to be more extensive and detailed than the [**caret**](https://github.com/rstudio/cheatsheets/raw/master/caret.pdf) one.
@@ -44,7 +44,7 @@ Cheatsheets are available for both. The one for [**mlr**](https://github.com/rst
 
 # Simple code example
 
-To compare the two packages directly here you can see the standard codes of lines that are necessary to perform a simple 5-fold cross-validation for the boston housing dataset and random forest package ranger.
+To compare the two packages directly here you can see the standard codes of lines that are necessary to perform a simple 5-fold cross-validation for the boston housing dataset and with the random forest package **ranger**.
 
 For **mlr**:
 
@@ -68,7 +68,7 @@ fit = train(medv ~ ., data = BostonHousing, method = "ranger", trControl = fitCo
 fit
 ```
 
-In this code you can already see a crucial difference. In **mlr** you have to create a task and a learner. This means more code writing, but gives the user also more flexibility and overview of what he is doing. In **caret** you can give the data and the method directly to the ```train``` function and internally some tuning is done for the user without having the possibility to adjust this easily.
+In this code you can already see a crucial difference. In **mlr** you have to create a task and a learner. This means more code writing, but gives the user also more flexibility and overview of what he (or she) is doing. In **caret** you can give the data and the method directly to the ```train``` function and internally some tuning is done for the user without having the possibility to adjust this easily.
 
 Things can be changed in both packages (e.g., by giving directly the character ```"regr.ranger"``` as learner in ```train``` or by creating your own learner in **caret** like described [here](http://topepo.github.io/caret/using-your-own-model-in-train.html)) but these are the standard ways of doing things in the two packages.
 
@@ -80,7 +80,7 @@ Let`s compare the different feature that the two packages have to offer for diff
 
 ## Preprocessing
 
-Both packages have several possibilities for preprocessing of the dataset. Both include standard procedures like dummy feature creation (e.g. for categorical predictors), normalization and imputation and include several feature selection methods. In **caret** also standard transformations (scaling, PCA, Box-Cox, Yeo-Johnson, etc.) can be used. An advantage of **mlr** is, that all preprocessing methods of **caret** can be used via a Wrapper that makes them accessible for **mlr**. In both packages these preprocessing steps can be used in the resampling process.
+Both packages have several possibilities for preprocessing of the dataset. Both include standard procedures like dummy feature creation (e.g. for categorical predictors), normalization and imputation and include several feature selection methods. In **caret** also standard transformations (scaling, PCA, Box-Cox, Yeo-Johnson, etc.) can be used. An advantage of **mlr** is, that all preprocessing methods of **caret** can be used via a wrapper function (called ```makePreprocWrapperCaret```) that makes them accessible for **mlr**. In both packages these preprocessing steps can be used in the resampling process.
 
 **No clear winner here: 2:3**
 
@@ -143,7 +143,7 @@ Visualising your results and getting informations about your models is an import
 
 Datasets can be nice for illustration and testing purposes.
 **caret** comes with 10 datasets, which are nicely [documented](http://topepo.github.io/caret/data-sets.html).
-**mlr** provides 16 already build tasks. Moreover there is a nice connection to the [**OpenML**](https://github.com/openml/openml-r) package and its [online platform](https://www.openml.org/) with over 20000 datasets from all domains.
+**mlr** provides 16 already build tasks. Moreover in **mlr** there is a nice connection to the [**OpenML**](https://github.com/openml/openml-r) package and its [online platform](https://www.openml.org/) with over 20000 datasets from all domains.
 
 **Advantage for mlr here: 9:7**
 
@@ -153,7 +153,7 @@ There shouldn`t be a big time difference for the operations of the package itsel
 
 ## Difference in the default mode
 
-**caret** has prespecified tuning if the learners are used in their default version so it will in the default mode take more time than **mlr** for which tuning is not done in the default method. In the example above it lead to a runtime of 2.4 seconds for **mlr** and 3.2 seconds for **caret**. In general the automatic tuning will also lead to better performance.
+**caret** has prespecified tuning if the learners are used in their default version so it will take more time than **mlr** for which tuning is not done in the default method. In the example above it lead to a runtime of 2.4 seconds for **mlr** and 3.2 seconds for **caret**. The difference will be much larger, when bigger datasets are used. In general the automatic tuning of **caret** will also lead to better performance.
 
 **No clear winner here: 10:8**
 
@@ -167,7 +167,7 @@ In contrast in **mlr** you have more options. You can parallelize on different [
 
 # Objects and configurability
 
-In **mlr** you have an object for every part of the process: a task, a learner, a measure, a resample object. In **caret** you have the ```trainControl``` object which is configurable, but I would say that **mlr** is more intuitive and clear here.
+In **mlr** you have an object for every part of the process: a task, a learner, a measure, a resample object. In **caret** you have the ```trainControl``` object that is used in ```train``` which is configurable, but I would say that **mlr** is more intuitive and clear here.
 Because of this it is also easier in **mlr** to integrate new custom learners, measures, filters and imputation methods.
 
 **mlr wins here: 12:8**
@@ -176,13 +176,13 @@ Because of this it is also easier in **mlr** to integrate new custom learners, m
 
 **caret** will be retired. New developments include the packages **recipes**, **yardstick**, **infer**, **parsnip** and are all part of **tidymodels**.
 
-**mlr** developers are currently working on [mlr3](https://github.com/mlr-org/mlr3) which aims at being even more extensible and using **R6**, **data.table** and other useful packages that were not used by **mlr**.
+**mlr** developers are currently working on [**mlr3**](https://github.com/mlr-org/mlr3) which aims at being even more extensible and using **R6**, **data.table** and other useful packages that were not used by **mlr**.
 
 # Overall result
 
 Counting together all categories **mlr** wins by 12:8.
 
-## Overview in table
+<!--## Overview in table --> 
 
 ## Thanks
-Thanks to Rahul Sangole, who helped me a bit with informations about the **caret** package as I was not very familiar with it.
+Thanks to Rahul Sangole, who helped me a bit with informations about the **caret** package as I was not very familiar with it. This blog post also appears on my [personal blog site](http://philipppro.github.io/).
