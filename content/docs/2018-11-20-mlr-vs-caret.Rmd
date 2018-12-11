@@ -11,7 +11,9 @@ tags: ["mlr", "caret", "machine learning", "R"]
 
 Let`s compare the two popular R packages for machine learning [**mlr**](https://github.com/mlr-org/mlr) and [**caret**](https://github.com/topepo/caret).
 
-**caret** is longer on the market, its first CRAN release seems to be from 2007, while **mlr** came to CRAN on 2013. As for now, **caret** seems to be more popular, according to [**cranlogs**](https://cran.r-project.org/web/packages/cranlogs/index.html) **caret** was downloaded 178029 times in the last 30 days, while **mlr** was downloaded 11408 times in the last 30 days.
+**caret** is longer on the market, its first CRAN release is from 2007, while **mlr** came to CRAN on 2013. 
+As for now, **caret** seems to be more popular, according to [**cranlogs**](https://cran.r-project.org/web/packages/cranlogs/index.html). 
+**caret** was downloaded 178029 times while **mlr** sums up to 11408 downloads in the last 30 days.
 
 <!--excerpt-->
 
