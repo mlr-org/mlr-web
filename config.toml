@@ -157,6 +157,12 @@ identifier = "Packages"
 url = "#"
 
 [[menu.main]]
+name = "mlr"
+weight = -40
+parent = "Packages"
+url = "https://mlr.mlr-org.com"
+
+[[menu.main]]
 name = "mlrMBO"
 weight = -40
 parent = "Packages"
@@ -173,6 +179,12 @@ name = "mlr3"
 weight = -40
 parent = "Packages"
 url = "https://mlr3.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3db"
+weight = -40
+parent = "Packages"
+url = "https://mlr3db.mlr-org.com"
 
 [[menu.main]]
 name = "OpenML"
