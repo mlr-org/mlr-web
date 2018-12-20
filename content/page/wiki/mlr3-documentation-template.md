@@ -10,8 +10,6 @@ weight: -1
 toc: false
 ---
 
-# mlr3 documentation template
-
 ## Rules
 
 * The "Usage" section is listed as follows (both in usage and details). In the subsection (e.g. members), we list alphabetically.
