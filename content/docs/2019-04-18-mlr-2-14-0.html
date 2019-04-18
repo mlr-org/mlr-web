@@ -1,0 +1,86 @@
+---
+title: mlr-2.14.0
+authors: ["patrick-schratz"]
+date: '2019-04-18'
+slug: mlr-2-14-0
+output:
+  blogdown::html_page:
+    toc: true
+categories:
+  - r-bloggers
+tags:
+  - release
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#filters">Filters</a></li>
+<li><a href="#learners">Learners</a></li>
+<li><a href="#resampling">Resampling</a></li>
+<li><a href="#mlr-org-news">mlr-org NEWS</a></li>
+<li><a href="#roadmap-for-mlr">Roadmap for mlr</a></li>
+</ul>
+</div>
+
+<p>The last <em>mlr</em> release was in August 2018 - so it was definitely time for a new release after around 9 months of development!</p>
+<p>The NEWS file can be found directly <a href="https://mlr.mlr-org.com/news/index.html">here</a>.</p>
+<p>In this post we highlight some of the new implementations that come along with this release of v2.14.0</p>
+<div id="filters" class="section level2">
+<h2>Filters</h2>
+<p>We integrated the filter methods from the <em>praznik</em> package. These were quite few:</p>
+<ul>
+<li>praznik_JMI</li>
+<li>praznik_DISR</li>
+<li>praznik_JMIM</li>
+<li>praznik_MIM</li>
+<li>praznik_NJMIM</li>
+<li>praznik_MRMR</li>
+<li>praznik_CMIM</li>
+</ul>
+<p>Also, a long awaited PR that we finally merged was the inclusion of the <em>FSelectorRcpp</em> filters.
+These are around 100 times faster than the Java-driven ones from the <em>FSelector</em> package.</p>
+<p>In addition, we are now using a consistent naming scheme for the filters following <code>&lt;package-name&gt;_&lt;filter-name&gt;</code>.
+This change might break your existing code if you used <em>mlr</em> filters before.
+However, since it is just a naming change we think the burden of updating your code is acceptable.</p>
+</div>
+<div id="learners" class="section level2">
+<h2>Learners</h2>
+<p>Two new learners were added:</p>
+<ul>
+<li>classif.liquidSVM</li>
+<li>regr.liquidSVM</li>
+</ul>
+<p>Learner <code>regr.h2o.gbm</code> now uses “h2o.use.data.table” = TRUE` by default which should result in a runtime increase.</p>
+<p>Also, it is now possible to retrieve the feature importance of h2O learners.</p>
+</div>
+<div id="resampling" class="section level2">
+<h2>Resampling</h2>
+<p>You can now provide fully predefined indices in resampling.
+This is useful for datasets that have a certain grouping structure (e.g. spatial data) to maintain this grouping.</p>
+</div>
+<div id="mlr-org-news" class="section level2">
+<h2>mlr-org NEWS</h2>
+<p>You might be wondering what we’ve been up to in the last months in our group.
+The major project that we started was <a href="https://github.com/mlr-org/mlr3">mlr3</a>.
+This is a clean rewrite of <em>mlr</em> with the concept of a modular structure aiming to simplify usage and maintenance of the “mlr idea” in the future, both for users and developers.
+We are not completely finished yet but you can take a look at the Github repo what we have achieved so far.
+Once we are ready to release the initial version, we will of course write a dedicated post about it.</p>
+<p>Putting a lot of time into <em>mlr3</em> also lead to the fact of having less time for responding to issues and questions in <em>mlr</em>.
+We would like to apologize for this.
+All of us are working in academia and are not getting paid for <em>mlr</em>.
+So our resources are limited to some extent.
+We very welcome anyone that would like to help us and get involved into <em>mlr</em> or <em>mlr3</em>.
+Our team is not a closed group and anyone can contribute to the mlr-org projects.</p>
+<p>This fact also lead to the most recent maintainer change of <em>mlr</em>.
+As <a href="https://www.compstat.statistik.uni-muenchen.de/people/bischl/">Bernd Bischl</a> (the creator and maintainer) of <em>mlr</em> has a lot of duties, we decided to make <a href="http://www.cs.uwyo.edu/~larsko/">Lars Kotthoff</a> and <a href="https://pjs-web.de/">Patrick Schratz</a> the new maintainers of the <em>mlr</em> package.</p>
+<p>Due to the existence of <em>mlr3</em>, most development will go there and <em>mlr</em> is aimed to receive only bug fixes and some clean up in the near future.
+Right now, we have over 400 issues and 30 pull requests so there is a still a lot to do :)</p>
+</div>
+<div id="roadmap-for-mlr" class="section level2">
+<h2>Roadmap for mlr</h2>
+<p>We are aiming at publishing new releases every three months from now on, regardless of the amount of changes.
+<em>mlr</em> will continue to exist next to <em>mlr3</em> and receive bug fixes.
+If users start contributing new features we are also happy to include those into the package.
+As announced already, we aim at cleaning up the <em>mlr</em> repo issue and pull request wise in the next months to be able to fully concentrate on <em>mlr3</em> after its initial release.</p>
+</div>

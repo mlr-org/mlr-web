@@ -1,0 +1,82 @@
+---
+title: mlr-2.14.0
+authors: ["patrick-schratz"]
+date: '2019-04-18'
+slug: mlr-2-14-0
+output:
+  blogdown::html_page:
+    toc: true
+categories:
+  - r-bloggers
+tags:
+  - release
+---
+
+The last _mlr_ release was in August 2018 - so it was definitely time for a new release after around 9 months of development!
+
+The NEWS file can be found directly [here](https://mlr.mlr-org.com/news/index.html).
+
+In this post we highlight some of the new implementations that come along with this release of v2.14.0
+
+## Filters
+
+We integrated the filter methods from the _praznik_ package. These were quite few:
+
+- praznik_JMI
+- praznik_DISR
+- praznik_JMIM
+- praznik_MIM
+- praznik_NJMIM
+- praznik_MRMR
+- praznik_CMIM
+
+Also, a long awaited PR that we finally merged was the inclusion of the _FSelectorRcpp_ filters.
+These are around 100 times faster than the Java-driven ones from the _FSelector_ package.
+
+In addition, we are now using a consistent naming scheme for the filters following `<package-name>_<filter-name>`.
+This change might break your existing code if you used _mlr_ filters before.
+However, since it is just a naming change we think the burden of updating your code is acceptable.
+
+## Learners
+
+Two new learners were added:
+
+- classif.liquidSVM 
+- regr.liquidSVM
+
+Learner `regr.h2o.gbm` now uses "h2o.use.data.table" = TRUE` by default which should result in a runtime increase.
+
+Also, it is now possible to retrieve the feature importance of h2O learners. 
+
+## Resampling
+
+You can now provide fully predefined indices in resampling.
+This is useful for datasets that have a certain grouping structure (e.g. spatial data) to maintain this grouping. 
+
+## mlr-org NEWS
+
+You might be wondering what we've been up to in the last months in our group.
+The major project that we started was [mlr3](https://github.com/mlr-org/mlr3).
+This is a clean rewrite of _mlr_ with the concept of a modular structure aiming to simplify usage and maintenance of the "mlr idea" in the future, both for users and developers.
+We are not completely finished yet but you can take a look at the Github repo what we have achieved so far.
+Once we are ready to release the initial version, we will of course write a dedicated post about it.
+
+Putting a lot of time into _mlr3_ also lead to the fact of having less time for responding to issues and questions in _mlr_.
+We would like to apologize for this.
+All of us are working in academia and are not getting paid for _mlr_.
+So our resources are limited to some extent.
+We very welcome anyone that would like to help us and get involved into _mlr_ or _mlr3_.
+Our team is not a closed group and anyone can contribute to the mlr-org projects.
+
+This fact also lead to the most recent maintainer change of _mlr_.
+As [Bernd Bischl](https://www.compstat.statistik.uni-muenchen.de/people/bischl/) (the creator and maintainer) of _mlr_ has a lot of duties, we decided to make [Lars Kotthoff](http://www.cs.uwyo.edu/~larsko/) and [Patrick Schratz](https://pjs-web.de/) the new maintainers of the _mlr_ package.
+
+Due to the existence of _mlr3_, most development will go there and _mlr_ is aimed to receive only bug fixes and some clean up in the near future.
+Right now, we have over 400 issues and 30 pull requests so there is a still a lot to do :)
+
+## Roadmap for mlr
+
+We are aiming at publishing new releases every three months from now on, regardless of the amount of changes.
+_mlr_ will continue to exist next to _mlr3_ and receive bug fixes.
+If users start contributing new features we are also happy to include those into the package.
+As announced already, we aim at cleaning up the _mlr_ repo issue and pull request wise in the next months to be able to fully concentrate on _mlr3_ after its initial release. 
