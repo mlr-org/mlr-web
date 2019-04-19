@@ -44,39 +44,38 @@ Two new learners were added:
 - classif.liquidSVM 
 - regr.liquidSVM
 
-Learner `regr.h2o.gbm` now uses "h2o.use.data.table" = TRUE` by default which should result in a runtime increase.
+Learner `regr.h2o.gbm` now uses `h2o.use.data.table = TRUE` by default which should result in a runtime performance increase.
 
-Also, it is now possible to retrieve the feature importance of h2O learners. 
+It is also possible to retrieve the feature importance of h2O learners now.
 
 ## Resampling
 
-You can now provide fully predefined indices in resampling.
-This is useful for datasets that have a certain grouping structure (e.g. spatial data) to maintain this grouping. 
+You can now provide fully predefined indices for resampling.
+This is useful for datasets that have a certain grouping structure (e.g. spatial data) that is difficult to specify otherwise. 
 
 ## mlr-org NEWS
 
 You might be wondering what we've been up to in the last months in our group.
 The major project that we started was [mlr3](https://github.com/mlr-org/mlr3).
-This is a clean rewrite of _mlr_ with the concept of a modular structure aiming to simplify usage and maintenance of the "mlr idea" in the future, both for users and developers.
-We are not completely finished yet but you can take a look at the Github repo what we have achieved so far.
+This is a clean rewrite of _mlr_ with a modular structure to simplify usage and maintenance of the "mlr idea" in the future, both for users and developers.
+We are not completely finished yet, but you can take a look at the Github repo at what we have achieved so far.
 Once we are ready to release the initial version, we will of course write a dedicated post about it.
 
-Putting a lot of time into _mlr3_ also lead to the fact of having less time for responding to issues and questions in _mlr_.
+Putting a lot of time into _mlr3_ means having less time for responding to issues and questions in _mlr_.
 We would like to apologize for this.
-All of us are working in academia and are not getting paid for _mlr_.
-So our resources are limited to some extent.
-We very welcome anyone that would like to help us and get involved into _mlr_ or _mlr3_.
+We are working on this more or less as a side project along our day jobs and our resources are limited.
+If you want to help and get involved with _mlr_ or _mlr3_, we would be very happy to have you.
 Our team is not a closed group and anyone can contribute to the mlr-org projects.
 
-This fact also lead to the most recent maintainer change of _mlr_.
-As [Bernd Bischl](https://www.compstat.statistik.uni-muenchen.de/people/bischl/) (the creator and maintainer) of _mlr_ has a lot of duties, we decided to make [Lars Kotthoff](http://www.cs.uwyo.edu/~larsko/) and [Patrick Schratz](https://pjs-web.de/) the new maintainers of the _mlr_ package.
+The change in development focus also led to a change of maintainer for _mlr_.
+As [Bernd Bischl](https://www.compstat.statistik.uni-muenchen.de/people/bischl/) (the creator and maintainer) of _mlr_ has a lot of duties, we decided to make [Lars Kotthoff](https://www.cs.uwyo.edu/~larsko/) and [Patrick Schratz](https://pjs-web.de/) the new maintainers of the _mlr_ package.
 
-Due to the existence of _mlr3_, most development will go there and _mlr_ is aimed to receive only bug fixes and some clean up in the near future.
+_mlr_ will only get bug fixes and minor updates, as we are focusing the development of new things on _mlr3_.
 Right now, we have over 400 issues and 30 pull requests so there is a still a lot to do :)
 
 ## Roadmap for mlr
 
-We are aiming at publishing new releases every three months from now on, regardless of the amount of changes.
-_mlr_ will continue to exist next to _mlr3_ and receive bug fixes.
-If users start contributing new features we are also happy to include those into the package.
-As announced already, we aim at cleaning up the _mlr_ repo issue and pull request wise in the next months to be able to fully concentrate on _mlr3_ after its initial release. 
+We are will publish new releases every three months from now on, regardless of the changes that have come in.
+_mlr_ will continue to exist next to _mlr3_.
+If users start contributing new features to _mlr_, we are also happy to include those in the package.
+As announced already, we will clean up the _mlr_ repo issue and pull request in the coming months to be able to fully concentrate on _mlr3_ after its initial release. 
