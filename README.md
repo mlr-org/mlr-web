@@ -9,7 +9,7 @@ It integrates very well with the live preview of `blogdown`.
 
 1. Add yourself as an author to https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page and create an "author page" for the website (similar to the ones in `data/authors`).
 
-1. Create a new post in `content/post/`.
+1. Create a new post in `content/docs/`.
 
 1. Put external images in `static/images/<name of your post>`.
 
