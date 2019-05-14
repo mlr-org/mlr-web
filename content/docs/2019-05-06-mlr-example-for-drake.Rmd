@@ -42,4 +42,4 @@ One of the newest shows how to use _mlr_ with _drake_ on a HPC.
 Machine-Learning projects/tasks interact especially well with the _drake_ idea since you can easily create [large comparison matrices](https://ropenscilabs.github.io/drake-manual/plans.html#large-plan) using different algorithms / hyperparameter settings.
 At the same time _drake_ can sent these settings in parallel to a HPC for you, simplifying your modeling tasks a lot.
 
-<div style="text-align:center"><img width="100px" src ="../../images/drake.svg" /></div>
+<div style="text-align:center"><img width="100px" src ="../../images/2019-05-06-mlr-example-for-drake/drake.svg" /></div>
