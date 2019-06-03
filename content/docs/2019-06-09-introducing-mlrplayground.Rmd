@@ -17,4 +17,9 @@ tags:
   - hyperparameter
 ---
 
-And so it begins.
+First of all, you may ask yourself how is this name 'mlrPlayground' even justified?
+What a mad man puts two such opposite meanings in a single word and expects people to take him serious? I assume you all know 'mlr' -- it's about productivity, simplicity and especially getting your work done as easily and quickly as possible without any annoyances.
+Quite the opposite from a place, where you can play with your best friends, make new friends, live out your fantasies and just have a great time the whole day until your parents pick you up.
+Well, for most of the readers here this may not be the case anymore -- we know, we are still young in our heart, but let's be honest ... But for sure, we all have those memories and definitely have certain associations by the word 'Playground'.
+So what is it then with this thing called 'mlrPlayground'?
+The idea behind this project was to offer a platform, where a user can try out all different kinds of learners provided in the mlr package ... [WIP]
