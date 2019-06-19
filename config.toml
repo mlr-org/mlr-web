@@ -139,12 +139,6 @@ identifier = "Packages"
 url = "#"
 
 [[menu.main]]
-name = "Wiki"
-weight = -20
-identifier = "wiki"
-url = "#"
-
-[[menu.main]]
 name = "RSS"
 weight = -10
 #identifier = "repository"
