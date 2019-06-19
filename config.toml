@@ -175,6 +175,12 @@ parent = "Packages"
 url = "https://mlr3.mlr-org.com"
 
 [[menu.main]]
+name = "paradox"
+weight = -40
+parent = "Packages"
+url = "https://paradox.mlr-org.com"
+
+[[menu.main]]
 name = "mlr3db"
 weight = -40
 parent = "Packages"
