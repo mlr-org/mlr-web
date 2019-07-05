@@ -1,0 +1,140 @@
+---
+title: mlr3-0.1.0
+authors: ["patrick-schratz"]
+date: '2019-07-05'
+slug: mlr3-0-1-0
+categories:
+  - R
+  - r-bloggers
+tags:
+  - machine-learning
+  - mlr3
+  - release
+  - framework
+  - R
+---
+
+
+
+<div id="mlr3---initial-release" class="section level1">
+<h1>mlr3 - Initial release</h1>
+<p>The mlr-org team is very proud to present the initial release of the mlr3 machine-learning framework for R.</p>
+<p>mlr3 comes with a clean object-oriented-design using the R6 class system.
+With this, it overcomes the limitations of R’s S3 classes.
+It is a rewrite of the well-known mlr package which provides a convenient way of accessing many algorithms in R through a consistent interface.</p>
+<p>While mlr was only one big package that included everything starting from preprocessing, tuning, feature-selection to visualization, mlr3 is a <strong>package framework</strong> consisting of multiple packages containing specific parts of the functionality required for a complete machine-learning workflow.</p>
+<div id="background---why-a-rewrite" class="section level2">
+<h2>Background - why a rewrite?</h2>
+<p>The addition of many features to mlr has led to a “feature creep” which makes it hard to maintain and extend.<br />
+Some details to this: Due to the many tests in mlr, a full CI run of the package on Travis CI takes more than 30 minutes.
+This does not include the installation of dependencies, running R CMD check or building the pkgdown site.
+The dependency installation alone takes 1 hour(!).
+This is due to the huge number of packages that mlr imports to be able to use all the algorithms for which it provides a unified interface.</p>
+<p>mlr consists of multiple thousand lines of code.
+Adding any feature has become a huge pain since it requires passing down objects through many functions.
+In addition, a change to one part of the project might trigger unwanted side-effects at other places or even break functions.
+Even though most of the package is covered by tests, this creates a high wall of reluctance to extend the package further.</p>
+<p>After mlr has become more prominent, many people started opening issues and pull requests (which is great!).
+While the package maintainers and its creator (Bernd Bischl) were able to cope with that in the beginning, the open issues became more and more in the recent years.
+Since nobody has been specifically paid for mlr in the past, there was just not enough man power to be able to handle this amount of questions and feature requests in the past.
+The issue tracker exceeded 400 open issues recently and people often got no reply for their pull requests in a reasonable amount of time.
+At the same time, the core team could invest less time in mlr due to other new responsibilities in their professional life.</p>
+<p>mlr was built using the S3 class system.
+It even relied on its own parallelization library <em>parallelMap</em> due to the lack of professional packages back in time.</p>
+<p>At some point, the developers met and decided that is was time to change something.
+Since so many people like the mlr package and its philosophy, we decided to make a fresh start.
+Taking into account all the problematic points that we learned from in the last years:</p>
+<ul>
+<li>The limitation of the S3 class system</li>
+<li>The fear of a “feature-creep” in one single package</li>
+<li>Long CI checking times</li>
+<li>The burden of maintaining too many parts of a “framework” package yourself</li>
+</ul>
+</div>
+<div id="the-new-mlr3-package-framework" class="section level2">
+<h2>The new mlr3 package framework</h2>
+<ul>
+<li>Uses the new R6 object-oriented class system</li>
+<li>Splits functionalities into extension packages; only the core functionality is provided via package <em>mlr3</em></li>
+<li>Outsources parts of the functionality to external packages (parallelization -&gt; future, measures -&gt; Metrics)</li>
+<li>Documentation is written in bookdown format which is searchable</li>
+<li>Extension packages are assigned to specific persons, reducing reply-times to user requests</li>
+<li>comes with a new package <em>mlr3pipelines</em> (the successor of mlrCPO) providing smart operators for creating a complete machine-learning workflow using the piping approach</li>
+<li>uses data.table under the hood to speed up internal computations</li>
+</ul>
+<p>mlr3 is being developed for around one year openly on Github.
+Not all functionality of the mlr packages is already implemented.
+In fact, this release can be seen as a beta version.
+We’re happy to take user feedback to improve mlr3 in the next months.</p>
+<p>The following list shows only a subset of the mlr3package framework.
+For a full list, please visit our <a href="https://github.com/mlr-org/mlr3/wiki/Extension-Packages">wiki</a>.
+Most should be descriptive enough by their name.
+For more information, visit the respective Github repos of the packages by clicking on the package name.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>CI Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/mlr-org/mlr3">mlr3</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3"><img src="https://travis-ci.org/mlr-org/mlr3.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/mlr-org/mlr3book">mlr3book</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3book"><img src="https://travis-ci.org/mlr-org/mlr3book.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/mlr-org/mlr3db">mlr3db</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3db"><img src="https://travis-ci.org/mlr-org/mlr3db.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/mlr-org/mlr3featsel">mlr3featsel</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3featsel"><img src="https://travis-ci.org/mlr-org/mlr3featsel.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/mlr-org/mlr3learners">mlr3learners</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3learners"><img src="https://travis-ci.org/mlr-org/mlr3learners.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/mlr-org/mlr3misc">mlr3misc</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3misc"><img src="https://travis-ci.org/mlr-org/mlr3misc.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/mlr-org/mlr3ordinal">mlr3ordinal</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3ordinal"><img src="https://travis-ci.org/mlr-org/mlr3ordinal.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/mlr-org/mlr3pipelines">mlr3pipelines</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3pipelines"><img src="https://travis-ci.org/mlr-org/mlr3pipelines.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/mlr-org/mlr3survival">mlr3survival</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3survival"><img src="https://travis-ci.org/mlr-org/mlr3survival.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/mlr-org/mlr3tuning">mlr3tuning</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3tuning"><img src="https://travis-ci.org/mlr-org/mlr3tuning.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/mlr-org/mlr3viz">mlr3viz</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3viz"><img src="https://travis-ci.org/mlr-org/mlr3viz.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/mlr-org/paradox">paradox</a></td>
+<td><a href="https://travis-ci.org/mlr-org/paradox"><img src="https://travis-ci.org/mlr-org/paradox.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="mlr3-at-user2019" class="section level1">
+<h1>mlr3 at useR!2019</h1>
+<p>The mlr-org team will two dedicated talks to present the new mlr3 at the useR! conference in Toulouse.</p>
+<ul>
+<li>Thursday 11.07.2019, 12:06h, Cassiopée (mlr3)</li>
+<li>Thursday 11.07.2019, 12:24h, Cassiopée (mlr3pipelines)</li>
+</ul>
+</div>
