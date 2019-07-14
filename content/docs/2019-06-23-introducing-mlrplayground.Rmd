@@ -22,8 +22,8 @@ tags:
 
 ## First of all
 You may ask yourself how is this name ‘mlrPlayground’ even justified?
-What a madman puts two such opposite terms in a single word and expects people to take him seriously?
-I assume most of you know ‘mlr’, for those who don’t: it’s a framework for machine learning tasks offering a huge variety of different learners based on the best packages available in R, it’s about productivity, simplicity, and extendability.
+What a person dares to put two such opposite terms in a single word and expects people to take him seriously?
+I assume most of you know ‘mlr’, for those who don’t: It is a framework for machine learning tasks offering a huge variety of tools for simplifying machine learning tasks in R.
 Quite the opposite from a place, where you can play with your best friends, make new friends, live out your fantasies and just have a great time the whole day until your parents pick you up.
 Well, for most of the readers here this may not be the case anymore – we know, we are still young in our heart, but let’s be honest … 
 
@@ -32,7 +32,8 @@ So what is it then with this thing called ‘mlrPlayground’?
 <br/>
 
 ## The idea
-The thought behind this project was to offer a platform in the form of a <a href="https://shiny.rstudio.com/">Shiny</a> web application, where a user can try out different kinds of learners provided by the mlr package on a small set of destinct and tunable regression and classification tasks, making it possible to observe the prediction/performance behaviour based on changes on the task, the learner or the learner's hyperparameters.
+The thought behind this project was to offer a platform in the form of a <a href="https://shiny.rstudio.com/">Shiny</a> web application, in which a user can try out different kinds of learners provided by the mlr package.
+On a small set of destinct and tunable regression and classification tasks, it is possible to observe the prediction/performance behaviour based on changes on the task, the learner or the learner's hyperparameters.
 In the best case the user will gain new insights and deeper understanding of how each learner works, where it’s advantages are and also very importantly the cases when the learner fails miserably.
 There are a lot of different settings we want to offer in the user interface, and so – to not remove the fun of our playground – a huge effort went into making the UI as aesthetically pleasing and as smooth as possible.
 To achieve this, a website template was downloaded from <a href="https://templated.co/">Templated</a> and used as a baseline for design. After extending the template with missing CSS classes, most of the used shiny widgets have been overwritten – or even completely replaced –, offering refreshingly new visuals for the well known shiny framework.
@@ -45,10 +46,10 @@ After all ‘mlrPlayground’ may not be as fun as a real playground, but you ar
 In the following an extended overview of almost all available features is presented with the help of animated pictures.
 
 ###### Task selection
-When running the app and scrolling down you can basically see two big boxes with content: the left one is for the task and learner settings, the right one for an overview of the learner’s bevahiour.
-For the first look it may be of help (even though not necessary) to explore the tasks.
-After finding the right button (I leave this task to the motivated reader) a panel with all available datasets is extended over our screen.
-Here, we can choose the tasktype of either classification with two covariables or regression with one covariable and several other parameters influencing the dataset: size, noise and the train/test split.
+When running the app and scrolling down you can basically see two big boxes with content: The left one is for the task and learner settings, the right one for an overview of the learner’s bevahiour.
+For first-time users, it is advisable (but not necessary) to explore the different tasks.
+After finding the right button (this task is left to the motivated reader) a panel with all available datasets is extended over our screen.
+Here, we can choose the tasktype to receive a varied selection of classification or regression tasks and several other parameters influencing each dataset such as size, noise and the train/test split.
 
 <img src="https://i.imgur.com/ZV1wlBE.gif" width=800 />
 <br/>
