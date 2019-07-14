@@ -35,7 +35,7 @@ So what is it then with this thing called ‘mlrPlayground’?
 The thought behind this project was to offer a platform in the form of a <a href="https://shiny.rstudio.com/">Shiny</a> web application, in which a user can try out different kinds of learners provided by the mlr package.
 On a small set of destinct and tunable regression and classification tasks, it is possible to observe the prediction/performance behaviour based on changes on the task, the learner or the learner's hyperparameters.
 The user is able to gain new insights and a deeper understanding of how a learner performs, where it’s advantages are and in which cases the learner might fail.
-There are a lot of different settings we want to offer in the user interface, and so – to not remove the fun of our playground – a huge effort went into creating an aesthetically pleasing and user friendly UI.
+There are a lot of different settings we want to offer in the user interface, and so – to not remove the fun of our playground – a huge effort went into creating an aesthetically pleasing and user-friendly UI.
 To achieve this, a website template was downloaded from <a href="https://templated.co/">Templated</a> and used as the baseline design. 
 After extending the template with missing CSS classes, most of the used shiny widgets have been overwritten – or even completely replaced –, offering refreshingly new visuals for the well-known shiny framework.
 For the smooth feel of the app, an object oriented <a href="https://cran.r-project.org/web/packages/R6/index.html">R6</a> class system with reactive attributes was engineered for the backend to give a well-defined framework of which elements should trigger what evaluation; an otherwise extremely tiresome and error-prone task for dozens of different UI elements.
@@ -57,13 +57,13 @@ Here, we can choose the tasktype to receive a varied selection of classification
 
 ###### Learner selection
 Back at the main panel we can then select a learner for our task – due to limited manpower not all available learners in _ml_r made it into this selection.
-You can expect additions in the future. 
-Now, the app is ready for processing:
+You can expect additions in the future.
+By making a selection, the main process of the app, consisting of several substeps, gets executed:
 
 <ul>
-<li><p>a model is trained on the training set</p></li>
-<li><p>different kinds of performance measures are calculated on the test set</p></li>
-<li><p>a grid of points is used for inference to create a plot showing the prediction surface.</p></li>
+<li><p>a model is trained on the training set of the defined task</p></li>
+<li><p>performance measures are calculated on the corresponding test set</p></li>
+<li><p>the prediction surface is evaluated and depicted in an interactive plot.</p></li>
 </ul>
 
 <img src="https://i.imgur.com/7fAdJEu.gif" width=800 />
@@ -103,7 +103,6 @@ Every additionally selected measure results in an additional plot.
 
 Last but not least, the ROC curve is only an ROC curve with its default settings for the x- and y-axis: Plotting the true positive rate against the false positive rate.
 It shows how well the learner can separate the classes (the bigger the area under the curve, the better).
-Change the settings and you’ll get quite exotic variations, whose names are beyond the scope of the author.
 
 <img src="https://i.imgur.com/qs8E51L.gif" width=800 />
 <br/>
