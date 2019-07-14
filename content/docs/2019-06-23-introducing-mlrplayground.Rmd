@@ -27,7 +27,7 @@ I assume most of you know ‘mlr’, for those who don’t: it’s a framework f
 Quite the opposite from a place, where you can play with your best friends, make new friends, live out your fantasies and just have a great time the whole day until your parents pick you up.
 Well, for most of the readers here this may not be the case anymore – we know, we are still young in our heart, but let’s be honest … 
 
-For sure, we all have those memories and definitely have certain associations by the word ‘Playground’.
+For sure, we all have those memories and definitely have certain associations with the word ‘Playground’.
 So what is it then with this thing called ‘mlrPlayground’?
 <br/>
 
