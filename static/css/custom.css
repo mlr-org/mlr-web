@@ -78,3 +78,8 @@ body {
 .menu li {
     text-transform: none;
 }
+
+.comment-content a, .entry-content a {
+    border-bottom: none;
+    color: #03638E;
+}

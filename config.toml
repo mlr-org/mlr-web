@@ -139,12 +139,6 @@ identifier = "Packages"
 url = "#"
 
 [[menu.main]]
-name = "Wiki"
-weight = -20
-identifier = "wiki"
-url = "#"
-
-[[menu.main]]
 name = "RSS"
 weight = -10
 #identifier = "repository"
@@ -181,10 +175,64 @@ parent = "Packages"
 url = "https://mlr3.mlr-org.com"
 
 [[menu.main]]
+name = "paradox"
+weight = -40
+parent = "Packages"
+url = "https://paradox.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3pipelines"
+weight = -40
+parent = "Packages"
+url = "https://mlr3pipelines.mlr-org.com"
+
+[[menu.main]]
 name = "mlr3db"
 weight = -40
 parent = "Packages"
 url = "https://mlr3db.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3featsel"
+weight = -40
+parent = "Packages"
+url = "https://mlr3featsel.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3tuning"
+weight = -40
+parent = "Packages"
+url = "https://mlr3tuning.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3learners"
+weight = -40
+parent = "Packages"
+url = "https://mlr3learners.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3spatiotemporal"
+weight = -40
+parent = "Packages"
+url = "https://mlr3spatiotemporal.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3survival"
+weight = -40
+parent = "Packages"
+url = "https://mlr3survival.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3viz"
+weight = -40
+parent = "Packages"
+url = "https://mlr3viz.mlr-org.com"
+
+[[menu.main]]
+name = "mlr3keras"
+weight = -40
+parent = "Packages"
+url = "https://mlr3keras.mlr-org.com"
 
 [[menu.main]]
 name = "OpenML"
