@@ -3,6 +3,9 @@ title: mlr3-0.1.0
 authors: ["patrick-schratz"]
 date: '2019-07-29'
 slug: mlr3-0-1-0
+output:
+  blogdown::html_page:
+    toc: true
 categories:
   - R
   - r-bloggers
@@ -15,19 +18,28 @@ tags:
 ---
 
 
+<div id="TOC">
+<ul>
+<li><a href="#mlr3---initial-release">mlr3 - Initial release</a><ul>
+<li><a href="#background---why-a-rewrite">Background - why a rewrite?</a></li>
+<li><a href="#the-new-mlr3-package-framework">The new <span>mlr3</span> package framework</a></li>
+</ul></li>
+<li><a href="#mlr3-at-user2019"><span>mlr3</span> at useR!2019</a></li>
+</ul>
+</div>
 
 <div id="mlr3---initial-release" class="section level1">
 <h1>mlr3 - Initial release</h1>
-<p>The mlr-org team is very proud to present the initial release of the mlr3 machine-learning framework for R.</p>
-<p>mlr3 comes with a clean object-oriented-design using the R6 class system.
+<p>The <a href="https://www.notion.so/mlrorg/Developer-Team-and-Contributors-e2a4b78aee1f43a8b830c2ce419e68a9">mlr-org team</a> is very proud to present the initial release of the <a href="https://github.com/mlr-org/mlr3">mlr3 machine-learning framework</a> for R.</p>
+<p><a href="https://github.com/mlr-org/mlr3">mlr3</a> comes with a clean object-oriented-design using the <a href="https://github.com/r-lib/R6">R6</a> class system.
 With this, it overcomes the limitations of R’s S3 classes.
-It is a rewrite of the well-known mlr package which provides a convenient way of accessing many algorithms in R through a consistent interface.</p>
-<p>While mlr was only one big package that included everything starting from preprocessing, tuning, feature-selection to visualization, mlr3 is a <strong>package framework</strong> consisting of multiple packages which contain specific parts of the functionality required for a complete machine-learning workflow.</p>
+It is a rewrite of the well-known <a href="https://github.com/mlr-org/mlr"><em>mlr</em></a> package which provides a convenient way of accessing many algorithms in R through a consistent interface.</p>
+<p>While <a href="https://github.com/mlr-org/mlr"><em>mlr</em></a> was one big package that included everything starting from preprocessing, tuning, feature-selection to visualization, <a href="https://github.com/mlr-org/mlr3">mlr3</a> is a <strong>package framework</strong> consisting of multiple packages containing specific parts of the functionality required for a complete machine-learning workflow.</p>
 <div id="background---why-a-rewrite" class="section level2">
 <h2>Background - why a rewrite?</h2>
-<p>The addition of many features to mlr has led to a “feature creep” which made it hard to maintain and extend.</p>
-<p>Due to the many tests in mlr, a full CI run of the package on Travis CI takes more than 30 minutes.
-This does not include the installation of dependencies, running R CMD check or building the pkgdown site.
+<p>The addition of many features to <a href="https://github.com/mlr-org/mlr"><em>mlr</em></a> has led to a “feature creep” which makes it hard to maintain and extend.</p>
+<p>Due to the many tests in <a href="https://github.com/mlr-org/mlr"><em>mlr</em></a>, a full CI run of the package on Travis CI takes more than 30 minutes.
+This does not include the installation of dependencies, running <em>R CMD check</em> or building the pkgdown site (which includes more than 20 vignettes with executable code).
 The dependency installation alone takes 1 hour(!).
 This is due to the huge number of packages that <em>mlr</em> imports to be able to use all the algorithms for which it provides a unified interface.
 On a vanilla CI build without cache there woulöd be 326(!) packages to be installed.</p>
@@ -75,7 +87,7 @@ Taking into account all the problematic points that we learned from in the last 
 </ul>
 </div>
 <div id="the-new-mlr3-package-framework" class="section level2">
-<h2>The new mlr3 package framework</h2>
+<h2>The new <a href="https://github.com/mlr-org/mlr3">mlr3</a> package framework</h2>
 <ul>
 <li>Uses the new R6 object-oriented class system</li>
 <li>Splits functionalities into extension packages; only the core functionality is provided via package <em>mlr3</em></li>
@@ -89,9 +101,9 @@ Taking into account all the problematic points that we learned from in the last 
 Not all functionality of the <em>mlr</em> package is already re-implemented.
 In fact, this release can be seen as a beta version.
 We’re happy to take user feedback to improve <em>mlr3</em> in the next months.</p>
-<p>The following list shows only a subset of the mlr3package framework.
+<p>The following list shows only a subset of the mlr3 package framework.
 For a full list, please visit our <a href="https://github.com/mlr-org/mlr3/wiki/Extension-Packages">wiki</a>.
-Most should be descriptive enough by their name.
+The scope of most packages should be clear simply by their name.
 For more information, visit the respective Github repos of the packages by clicking on the package name.</p>
 <table>
 <thead>
@@ -158,7 +170,7 @@ For more information, visit the respective Github repos of the packages by click
 </div>
 </div>
 <div id="mlr3-at-user2019" class="section level1">
-<h1>mlr3 at useR!2019</h1>
+<h1><a href="https://github.com/mlr-org/mlr3">mlr3</a> at useR!2019</h1>
 <p>The mlr-org team gave two dedicated talks to present the new mlr3 at the useR! conference in Toulouse.</p>
 <p>The recorded videos will be inserted here once they are available.</p>
 </div>

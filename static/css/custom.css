@@ -74,6 +74,11 @@ body {
   top: 3px;
 }
 
+.comment-content a, .entry-content a {
+    border-bottom: none;
+    color: #03638E;
+}
+
 /* no uppercase only menu */
 .menu li {
     text-transform: none;
