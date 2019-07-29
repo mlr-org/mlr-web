@@ -1,7 +1,7 @@
 ---
 title: mlr3-0.1.0
 authors: ["patrick-schratz"]
-date: '2019-07-05'
+date: '2019-07-29'
 slug: mlr3-0-1-0
 categories:
   - R
@@ -22,27 +22,50 @@ tags:
 <p>mlr3 comes with a clean object-oriented-design using the R6 class system.
 With this, it overcomes the limitations of R’s S3 classes.
 It is a rewrite of the well-known mlr package which provides a convenient way of accessing many algorithms in R through a consistent interface.</p>
-<p>While mlr was only one big package that included everything starting from preprocessing, tuning, feature-selection to visualization, mlr3 is a <strong>package framework</strong> consisting of multiple packages containing specific parts of the functionality required for a complete machine-learning workflow.</p>
+<p>While mlr was only one big package that included everything starting from preprocessing, tuning, feature-selection to visualization, mlr3 is a <strong>package framework</strong> consisting of multiple packages which contain specific parts of the functionality required for a complete machine-learning workflow.</p>
 <div id="background---why-a-rewrite" class="section level2">
 <h2>Background - why a rewrite?</h2>
-<p>The addition of many features to mlr has led to a “feature creep” which makes it hard to maintain and extend.<br />
-Some details to this: Due to the many tests in mlr, a full CI run of the package on Travis CI takes more than 30 minutes.
+<p>The addition of many features to mlr has led to a “feature creep” which made it hard to maintain and extend.</p>
+<p>Due to the many tests in mlr, a full CI run of the package on Travis CI takes more than 30 minutes.
 This does not include the installation of dependencies, running R CMD check or building the pkgdown site.
 The dependency installation alone takes 1 hour(!).
-This is due to the huge number of packages that mlr imports to be able to use all the algorithms for which it provides a unified interface.</p>
-<p>mlr consists of multiple thousand lines of code.
-Adding any feature has become a huge pain since it requires passing down objects through many functions.
+This is due to the huge number of packages that <em>mlr</em> imports to be able to use all the algorithms for which it provides a unified interface.
+On a vanilla CI build without cache there woulöd be 326(!) packages to be installed.</p>
+<p><em>mlr</em> consists of roughly 40k lines of R code.</p>
+<pre><code>github.com/AlDanial/cloc v 1.82  T=0.98 s (1335.1 files/s, 226920.4 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+HTML                           346          16592           6276         125687
+R                              878           5909          12566          40696
+Rmd                             44           2390           5296           2500
+Markdown                        11            196              0           1136
+XML                              1              0              0            963
+YAML                             4             14              5            244
+CSS                              2             69             66            203
+C                                3             16             33            106
+JSON                             5              0              0             98
+JavaScript                       2             21              9             80
+Bourne Shell                     4              8              6             69
+C/C++ Header                     1              7              0             20
+SVG                              1              0              1             11
+-------------------------------------------------------------------------------
+SUM:                          1302          25222          24258         171813
+-------------------------------------------------------------------------------</code></pre>
+<p>Adding any feature has become a huge pain since it requires passing down objects through many functions.
 In addition, a change to one part of the project might trigger unwanted side-effects at other places or even break functions.
 Even though most of the package is covered by tests, this creates a high wall of reluctance to extend the package further.</p>
 <p>After mlr has become more prominent, many people started opening issues and pull requests (which is great!).
-While the package maintainers and its creator (Bernd Bischl) were able to cope with that in the beginning, the open issues became more and more in the recent years.
-Since nobody has been specifically paid for mlr in the past, there was just not enough man power to be able to handle this amount of questions and feature requests in the past.
+While the package authors and its creator (Bernd Bischl) were able to cope with the amount of user input in the beginning, the number of open issues increased steadily in recent years.
+Since nobody has been specifically paid for <em>mlr</em> in the past, there was just not enough man power to be able to handle this amount of questions and feature requests in the past.
 The issue tracker exceeded 400 open issues recently and people often got no reply for their pull requests in a reasonable amount of time.
-At the same time, the core team could invest less time in mlr due to other new responsibilities in their professional life.</p>
-<p>mlr was built using the S3 class system.
-It even relied on its own parallelization library <em>parallelMap</em> due to the lack of professional packages back in time.</p>
-<p>At some point, the developers met and decided that is was time to change something.
-Since so many people like the mlr package and its philosophy, we decided to make a fresh start.
+At the same time, the core team could invest less time into <em>mlr</em> due to other new responsibilities in their professional lifes.</p>
+<p><em>mlr</em> was built using the S3 class system.
+It functionality relied partyl on packages that were also maintained by the mlr-team (e.g. <em>BBmisc</em>, <em>parallelMap</em>).
+Maintaining so many small packages for a little benefit took away a lot of time.
+However, back in the days these actions were needed since many convient packages and functions were missing at that point in time.</p>
+<p>The mlr-team decided that is was time to change something.
+Since so many people like the <em>mlr</em> package and its philosophy, we decided to make a fresh start.
 Taking into account all the problematic points that we learned from in the last years:</p>
 <ul>
 <li>The limitation of the S3 class system</li>
@@ -60,12 +83,12 @@ Taking into account all the problematic points that we learned from in the last 
 <li>Documentation is written in bookdown format which is searchable</li>
 <li>Extension packages are assigned to specific persons, reducing reply-times to user requests</li>
 <li>comes with a new package <em>mlr3pipelines</em> (the successor of mlrCPO) providing smart operators for creating a complete machine-learning workflow using the piping approach</li>
-<li>uses data.table under the hood to speed up internal computations</li>
+<li>uses <em>data.table</em> under the hood to speed up internal computations</li>
 </ul>
-<p>mlr3 is being developed for around one year openly on Github.
-Not all functionality of the mlr packages is already implemented.
+<p><em>mlr3</em> is openly developed on Github for around one year now.
+Not all functionality of the <em>mlr</em> package is already re-implemented.
 In fact, this release can be seen as a beta version.
-We’re happy to take user feedback to improve mlr3 in the next months.</p>
+We’re happy to take user feedback to improve <em>mlr3</em> in the next months.</p>
 <p>The following list shows only a subset of the mlr3package framework.
 For a full list, please visit our <a href="https://github.com/mlr-org/mlr3/wiki/Extension-Packages">wiki</a>.
 Most should be descriptive enough by their name.
@@ -74,7 +97,7 @@ For more information, visit the respective Github repos of the packages by click
 <thead>
 <tr class="header">
 <th>Package</th>
-<th>CI Status</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
@@ -91,8 +114,8 @@ For more information, visit the respective Github repos of the packages by click
 <td><a href="https://travis-ci.org/mlr-org/mlr3db"><img src="https://travis-ci.org/mlr-org/mlr3db.svg?branch=master" alt="Travis" /></a></td>
 </tr>
 <tr class="even">
-<td><a href="https://github.com/mlr-org/mlr3featsel">mlr3featsel</a></td>
-<td><a href="https://travis-ci.org/mlr-org/mlr3featsel"><img src="https://travis-ci.org/mlr-org/mlr3featsel.svg?branch=master" alt="Travis" /></a></td>
+<td><a href="https://github.com/mlr-org/mlr3featsel">mlr3filters</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3filters"><img src="https://travis-ci.org/mlr-org/mlr3filters.svg?branch=master" alt="Travis" /></a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://github.com/mlr-org/mlr3learners">mlr3learners</a></td>
@@ -111,18 +134,22 @@ For more information, visit the respective Github repos of the packages by click
 <td><a href="https://travis-ci.org/mlr-org/mlr3pipelines"><img src="https://travis-ci.org/mlr-org/mlr3pipelines.svg?branch=master" alt="Travis" /></a></td>
 </tr>
 <tr class="odd">
+<td><a href="https://github.com/mlr-org/mlr3spatiotemporal">mlr3spatiotemporal</a></td>
+<td><a href="https://travis-ci.org/mlr-org/mlr3spatiotemporal"><img src="https://travis-ci.org/mlr-org/mlr3spatiotemporal.svg?branch=master" alt="Travis" /></a></td>
+</tr>
+<tr class="even">
 <td><a href="https://github.com/mlr-org/mlr3survival">mlr3survival</a></td>
 <td><a href="https://travis-ci.org/mlr-org/mlr3survival"><img src="https://travis-ci.org/mlr-org/mlr3survival.svg?branch=master" alt="Travis" /></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/mlr-org/mlr3tuning">mlr3tuning</a></td>
 <td><a href="https://travis-ci.org/mlr-org/mlr3tuning"><img src="https://travis-ci.org/mlr-org/mlr3tuning.svg?branch=master" alt="Travis" /></a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://github.com/mlr-org/mlr3viz">mlr3viz</a></td>
 <td><a href="https://travis-ci.org/mlr-org/mlr3viz"><img src="https://travis-ci.org/mlr-org/mlr3viz.svg?branch=master" alt="Travis" /></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://github.com/mlr-org/paradox">paradox</a></td>
 <td><a href="https://travis-ci.org/mlr-org/paradox"><img src="https://travis-ci.org/mlr-org/paradox.svg?branch=master" alt="Travis" /></a></td>
 </tr>
@@ -132,9 +159,6 @@ For more information, visit the respective Github repos of the packages by click
 </div>
 <div id="mlr3-at-user2019" class="section level1">
 <h1>mlr3 at useR!2019</h1>
-<p>The mlr-org team will two dedicated talks to present the new mlr3 at the useR! conference in Toulouse.</p>
-<ul>
-<li>Thursday 11.07.2019, 12:06h, Cassiopée (mlr3)</li>
-<li>Thursday 11.07.2019, 12:24h, Cassiopée (mlr3pipelines)</li>
-</ul>
+<p>The mlr-org team gave two dedicated talks to present the new mlr3 at the useR! conference in Toulouse.</p>
+<p>The recorded videos will be inserted here once they are available.</p>
 </div>
