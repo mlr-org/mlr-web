@@ -25,9 +25,9 @@ The [mlr-org team](https://www.notion.so/mlrorg/Developer-Team-and-Contributors-
 With this, it overcomes the limitations of R's S3 classes.
 It is a rewrite of the well-known [_mlr_](https://github.com/mlr-org/mlr) package which provides a convenient way of accessing many algorithms in R through a consistent interface.
 
-While [_mlr_](https://github.com/mlr-org/mlr) was one big package that included everything starting from preprocessing, tuning, feature-selection to visualization, [mlr3](https://github.com/mlr-org/mlr3) is a **package framework** consisting of multiple packages containing specific parts of the functionality required for a complete machine-learning workflow.
+While [_mlr_](https://github.com/mlr-org/mlr) was one big package that included everything starting from preprocessing, tuning, feature-selection to visualization, [mlr3](https://github.com/mlr-org/mlr3) is a **package framework** consisting of many packages containing specific parts of the functionality required for a complete machine-learning workflow.
 
-## Background - why a rewrite?
+# Background - why a rewrite?
 
 The addition of many features to [_mlr_](https://github.com/mlr-org/mlr) has led to a "feature creep" which makes it hard to maintain and extend.  
 
@@ -86,7 +86,7 @@ Taking into account all the problematic points that we learned from in the last 
 - Long CI checking times
 - The burden of maintaining too many parts of a "framework" package yourself
 
-## The new [mlr3](https://github.com/mlr-org/mlr3) package framework
+# The new [mlr3](https://github.com/mlr-org/mlr3) package framework
 
 - Uses the new R6 object-oriented class system
 - Splits functionalities into extension packages; only the core functionality is provided via package _mlr3_
