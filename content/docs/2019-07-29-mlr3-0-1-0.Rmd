@@ -122,6 +122,8 @@ For more information, visit the respective Github repos of the packages by click
 | [mlr3viz](https://github.com/mlr-org/mlr3viz)             | [![Travis](https://travis-ci.org/mlr-org/mlr3viz.svg?branch=master)](https://travis-ci.org/mlr-org/mlr3viz)             |
 | [paradox](https://github.com/mlr-org/paradox)             | [![Travis](https://travis-ci.org/mlr-org/paradox.svg?branch=master)](https://travis-ci.org/mlr-org/paradox)             |
 
+We also started to write a [book](https://mlr3book.mlr-org.com/) about _mlr3_ which aims to serve both as a reference book for machine learning in general and as a manual for _mlr3_ specifically.
+
 # [mlr3](https://github.com/mlr-org/mlr3) at useR!2019
 
 The mlr-org team gave two dedicated talks to present the new mlr3 at the useR! conference in Toulouse.
