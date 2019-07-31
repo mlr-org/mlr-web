@@ -1,7 +1,7 @@
 ---
 title: mlr3-0.1.0
 authors: ["patrick-schratz"]
-date: '2019-07-29'
+date: '2019-07-31'
 slug: mlr3-0-1-0
 output:
   blogdown::html_page:
