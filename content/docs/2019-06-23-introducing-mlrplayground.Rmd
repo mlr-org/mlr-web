@@ -17,7 +17,8 @@ tags:
   - hyperparameter
 ---
 
-<img src="https://i.imgur.com/8ggI7qg.gif" width=800 />
+![](/images/2019-06-23-introducing-mlrplayground/07_welcome.gif)
+
 <br/>
 
 ## First of all
@@ -51,7 +52,7 @@ For first-time users, it is advisable (but not necessary) to explore the differe
 After finding the right button (this task is left to the motivated reader) a panel with all available datasets is extended over our screen.
 Here, we can choose the task type to receive a varied selection of classification or regression tasks and several other parameters influencing each dataset such as size, noise, and the train/test split.
 
-<img src="https://i.imgur.com/9LVo8Ek.gif" width=800 />
+![](/images/2019-06-23-introducing-mlrplayground/06_tasks.gif)
 <br/>
 
 ###### Learner selection
@@ -65,7 +66,7 @@ By making a selection, the main process of the app, consisting of several subste
 <li><p>the prediction surface is evaluated and depicted in an interactive plot.</p></li>
 </ul>
 
-<img src="https://i.imgur.com/Kj2HePT.gif" width=800 />
+![](/images/2019-06-23-introducing-mlrplayground/01_learner.gif)
 <br/>
 
 ###### Performance measures
@@ -75,21 +76,21 @@ These provide the opportunity to manually tune each learner on the tasks or comp
 You will not only be able to understand the learner better, but also each measure. 
 What's particularly interesting for the latter is the configurable ratio of train and test data in the task selection window.
 
-<img src="https://i.imgur.com/674toX9.gif" width=800 />
+![](/images/2019-06-23-introducing-mlrplayground/02_measures.gif)
 <br/>
 
 ###### Hyperparameters
 If you want to see the effect of hyperparameters on the plot/performance measures, simply click on the small cog next to the learner selection. 
 Now, the left panel is replaced by a window with all available hyperparameters – changes here will have an immediate effect: The whole model will be rerun and all plots/numbers will get updated.
 
-<img src="https://i.imgur.com/stfJ69o.gif" width=800 />
+![](/images/2019-06-23-introducing-mlrplayground/03_parameters.gif)
 
 
 ###### Second learner
 Only observing changes of a single learner may become a bit boring after time, so an option is available to easily double the fun: Pressing “Add learner” gives the choice of adding a second learner with a second plot, making it possible to compare the prediction surfaces of two different learners on the same task right next of each other. 
 Exciting!
 
-<img src="https://i.imgur.com/4IWcFR6.gif" width=800 />
+![](/images/2019-06-23-introducing-mlrplayground/05_sndlearner.gif)
 <br/>
 
 But wait, there’s still more to offer!
@@ -103,7 +104,7 @@ Every additionally selected measure results in an additional plot.
 Last but not least, the ROC curve is only a ROC curve with its default settings for the x- and y-axis: Plotting the true positive rate against the false positive rate.
 It shows how well the learner can separate the classes (the bigger the area under the curve, the better).
 
-<img src="https://i.imgur.com/PbMFSAn.gif" width=800 />
+![](/images/2019-06-23-introducing-mlrplayground/04_plots.gif)
 <br/>
 
 ## Usage
