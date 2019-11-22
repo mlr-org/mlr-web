@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d1f08466-dd92-49e3-a200-fdedccb8e9ed/deploy-status)](https://app.netlify.com/sites/mlr-web/deploys)
+
 Sources of the main [mlr website](https://mlr-web.netlify.com/) including the blog post sources.
 
 `blogdown` and Hugo are used to render the site. Deployment is done via Netlify.
