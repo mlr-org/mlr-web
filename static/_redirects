@@ -3,5 +3,7 @@
 # Redirect domain aliases to primary domain
 https://mlr-org.de/* https://mlr-org.com/:splat 301!
 
+https://*.mlr-org.de/ https://:splat.mlr-org.com/ 301!
+
 # Optional: Redirect default Netlify subdomain to primary domain
 https://mlr-web.netlify.com/* https://mlr-org.com/:splat 301!
