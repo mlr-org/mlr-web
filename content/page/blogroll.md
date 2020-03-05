@@ -10,3 +10,4 @@ weight: -5
 ---
 
 - https://www.r-bloggers.com/
+- https://rweekly.org/
