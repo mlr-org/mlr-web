@@ -1,5 +1,5 @@
 ---
-title: Understand your models: Explainable machine learning with mlr3 and DALEX
+title: "Understand your models: Explainable machine learning with mlr3 and DALEX"
 authors: ["michel-lang"]
 date: '2020-03-30'
 slug: mlr3 loves dalex
