@@ -1,0 +1,13 @@
+id = "marc-becker"
+
+[email]
+username = "marcbecker"
+host = "posteo.de"
+
+[name]
+display = "Marc Becker"
+
+[social]
+email = "marcbecker@posteo.de"
+facebook  = ""
+twitter = ""
