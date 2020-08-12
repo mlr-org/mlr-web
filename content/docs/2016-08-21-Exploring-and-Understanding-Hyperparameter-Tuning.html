@@ -1,9 +1,14 @@
 ---
 title: "Exploring and Understanding Hyperparameter Tuning"
-author: ["mason-gallo"]
-date: 2016-08-21
-categories: ["R", "r-bloggers"]
-tags: ["hyperparameter", "tuning", "rstats"]
+author: "mason-gallo"
+date: '2016-08-21'
+tags:
+- hyperparameter
+- tuning
+- rstats
+categories:
+- R
+- r-bloggers
 ---
 
 
@@ -98,7 +103,7 @@ print(r)
 ## Task: PimaIndiansDiabetes-example
 ## Learner: classif.ksvm
 ## Aggr perf: mmce.test.mean=0.2434896
-## Runtime: 1.60308</code></pre>
+## Runtime: 0.628566</code></pre>
 <p>While this result may seem decent, we have a nagging doubt: what if we chose
 hyperparameter values different from the defaults? Would we get better results?</p>
 <p>Maybe we believe that the default of <code>kernel = &quot;rbfdot&quot;</code> will work well based
@@ -156,8 +161,8 @@ res = tuneParams(&quot;classif.ksvm&quot;, task = pid.task, control = ctrl,
   resampling = rdesc, par.set = ps, show.info = FALSE)
 print(res)
 ## Tune result:
-## Op. pars: C=0.347
-## mmce.test.mean=0.2330729</code></pre>
+## Op. pars: C=0.506
+## mmce.test.mean=0.2213542</code></pre>
 <p><a href="http://github.com/mlr-org/mlr">mlr</a> gives us the best performing value for <code>C</code>,
 and we can see that we’ve improved our results vs. just accepting the default
 value for <code>C</code>. This functionality is available in other machine learning packages, like
@@ -198,8 +203,8 @@ res = tuneParams(&quot;classif.ksvm&quot;, task = pid.task, control = ctrl,
   resampling = rdesc, par.set = ps, show.info = FALSE)
 print(res)
 ## Tune result:
-## Op. pars: C=0.233; sigma=0.0386
-## mmce.test.mean=0.2317708
+## Op. pars: C=0.709; sigma=0.068
+## mmce.test.mean=0.2330729
 # collect the hyperparameter data
 data = generateHyperParsEffectData(res)</code></pre>
 <p>We can use <code>plotHyperParsEffect</code> to easily create a heatmap with both hyperparameters.

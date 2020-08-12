@@ -1,9 +1,14 @@
 ---
 title: "Exploring and Understanding Hyperparameter Tuning"
-author: ["mason-gallo"]
-date: 2016-08-21
-categories: ["R", "r-bloggers"]
-tags: ["hyperparameter", "tuning", "rstats"]
+author: "mason-gallo"
+date: '2016-08-21'
+tags:
+- hyperparameter
+- tuning
+- rstats
+categories:
+- R
+- r-bloggers
 ---
 
 ```{r setup, include=FALSE}

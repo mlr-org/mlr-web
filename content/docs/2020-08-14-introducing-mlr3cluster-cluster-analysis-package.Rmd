@@ -1,0 +1,109 @@
+---
+title: 'Introducing mlr3cluster: Cluster Analysis Package'
+author: Damir Pulatov
+date: '2020-08-14'
+slug: mlr3cluster,tutorial,cluster
+categories: 
+  - R
+tags:
+  - mlr3
+  - mlr3cluster
+  - cluster analysis
+  - tutorial
+output:
+blogdown::html_page:
+  toc: true
+---
+
+Tired of learning to use multiple packages to access clustering algorithms? 
+
+Using different packages makes it difficult to compare the performance of 
+clusterers?
+
+It would be great to have just one package that makes interfacing 
+all things clustering easy? 
+
+mlr3cluster to rescue!
+
+mlr3cluster is a cluster analysis extention package within mlr3 library. It is 
+a successsor of mlr's cluster capabilities in spirit and functionality. 
+
+In order to take advantage of the clustering package you need to be already 
+familiar with R6 and basics of mlr3. See the [mlr3book (chapters 1-2)](https://mlr3book.mlr-org.com/)
+if you need a refresher. 
+
+## Installation
+To install the package, run the following code chunk:
+
+```{r echo = TRUE, results = 'hide'}
+devtools::install_github("https://github.com/mlr-org/mlr3cluster")
+```
+
+## Getting Started
+
+Assuming you know all the basics and you've installed the package, 
+here's an example on how to perform k-means clustering on classic [usarrests](https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/USArrests.html) data set:
+
+```{r intro}
+library(mlr3)
+library(mlr3cluster)
+
+task = mlr_tasks$get("usarrests")
+learner = mlr_learners$get("clust.kmeans")
+learner$train(task)
+preds = learner$predict(task = task)
+
+preds
+```
+
+## Integrated Learners, Measures and Tasks
+
+List of integrated learners:
+
+```{r}
+mlr_measures$keys("clust")
+```
+
+The list contains all basic types of clustering: partitional, 
+hierarchial, density-based, fuzzy.
+
+List of integrated cluster measures: 
+
+```{r}
+mlr_learners$keys("clust")
+```
+
+## Setting Hyperparameters
+
+Setting hyperparameters for clusterers is as easy as setting parameters for 
+any other mlr3 learner: 
+
+```{r hyperparam}
+task = mlr_tasks$get("usarrests")
+learner = mlr_learners$get("clust.kmeans")
+learner$param_set
+
+learner$param_set$values = list(centers = 3L, algorithm = "Lloyd", iter.max = 100L)
+learner$train(task)
+preds = learner$predict(task = task)
+
+preds
+```
+
+## Evaluating Cluster Assignments 
+
+Talk about cluster measures, list them 
+
+## Integration with mlr3pipelines
+
+example how to use mlr3pipelines with mlr3cluster
+
+## Visualization
+
+how to use mlr3viz with cluster
+
+## Acknowledgements
+I want to thank the following people for helping me contribute to the package 
+and this blogpost: 
+Michel Lang, Lars Kotthoff, Martin Binder, Patrick Stratz, Bernd Bischl. 
+
