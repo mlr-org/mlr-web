@@ -22,18 +22,16 @@ blogdown::html_page:
 clusterers?</p>
 <p>It would be great to have just one package that makes interfacing
 all things clustering easy?</p>
-<p>mlr3cluster to rescue!</p>
+<p><a href="https://github.com/mlr-org/mlr3cluster">mlr3cluster</a> to rescue!</p>
 <p>mlr3cluster is a cluster analysis extention package within mlr3 library. It is
 a successsor of mlr’s cluster capabilities in spirit and functionality.</p>
-<p>In order to take advantage of the clustering package you need to be already
+<p>In order to understand the following mini-tutorial you need to be already
 familiar with R6 and basics of mlr3. See the <a href="https://mlr3book.mlr-org.com/">mlr3book (chapters 1-2)</a>
 if you need a refresher.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>To install the package, run the following code chunk:</p>
 <pre class="r"><code>devtools::install_github(&quot;https://github.com/mlr-org/mlr3cluster&quot;)</code></pre>
-<pre><code>## Skipping install of &#39;mlr3cluster&#39; from a github remote, the SHA1 (c308848c) has not changed since last install.
-##   Use `force = TRUE` to force installation</code></pre>
 </div>
 <div id="getting-started" class="section level2">
 <h2>Getting Started</h2>
@@ -58,19 +56,124 @@ preds</code></pre>
 ##         49         2
 ##         50         2</code></pre>
 </div>
-<div id="integrated-learners-measures-and-tasks" class="section level2">
-<h2>Integrated Learners, Measures and Tasks</h2>
+<div id="integrated-learners" class="section level2">
+<h2>Integrated Learners</h2>
 <p>List of integrated learners:</p>
-<pre class="r"><code>mlr_measures$keys(&quot;clust&quot;)</code></pre>
-<pre><code>## [1] &quot;clust.db&quot;         &quot;clust.dunn&quot;       &quot;clust.hb&quot;        
-## [4] &quot;clust.silhouette&quot;</code></pre>
-<p>The list contains all basic types of clustering: partitional,
-hierarchial, density-based, fuzzy.</p>
-<p>List of integrated cluster measures:</p>
 <pre class="r"><code>mlr_learners$keys(&quot;clust&quot;)</code></pre>
 <pre><code>## [1] &quot;clust.agnes&quot;       &quot;clust.cmeans&quot;      &quot;clust.dbscan&quot;     
 ## [4] &quot;clust.diana&quot;       &quot;clust.fanny&quot;       &quot;clust.featureless&quot;
 ## [7] &quot;clust.kmeans&quot;      &quot;clust.pam&quot;         &quot;clust.xmeans&quot;</code></pre>
+<p>The package contains all the basic types of clustering: partitional,
+hierarchial, density-based and fuzzy. Below is a detailed list of all the integrated learners.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">ID</th>
+<th align="left">Learner</th>
+<th align="left">Package</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustAgnes.html">clust.agnes</a></td>
+<td align="left">Agglomerative Hierarchical Clustering</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=cluster">cluster</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustCMeans.html">clust.cmeans</a></td>
+<td align="left">Fuzzy C-Means Clustering</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=e1071">e1071</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustDBSCAN.html">clust.dbscan</a></td>
+<td align="left">Density-based Clustering</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=dbscan">dbscan</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustDiana.html">clust.diana</a></td>
+<td align="left">Divisive Hierarchical Clustering</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=cluster">cluster</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustFanny.html">clust.fanny</a></td>
+<td align="left">Fuzzy Clustering</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=cluster">cluster</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustFeatureless.html">clust.featureless</a></td>
+<td align="left">Simple Featureless Clustering</td>
+<td align="left"><a href="https://github.com/mlr-org/mlr3cluster">mlr3cluster</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustKMeans.html">clust.kmeans</a></td>
+<td align="left">K-Means Clustering</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=stats">stats</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustPAM.html">clust.pam</a></td>
+<td align="left">Clustering Around Medoids</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=cluster">cluster</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/LearnerClustXMeans.html">clust.xmeans</a></td>
+<td align="left">K-Means with Automatic Determination of k</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=RWeka">RWeka</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="integrated-measures" class="section level2">
+<h2>Integrated Measures</h2>
+<p>List of integrated cluster measures:</p>
+<pre class="r"><code>mlr_measures$keys(&quot;clust&quot;)</code></pre>
+<pre><code>## [1] &quot;clust.db&quot;         &quot;clust.dunn&quot;       &quot;clust.hb&quot;        
+## [4] &quot;clust.silhouette&quot;</code></pre>
+<p>Below is a detailed list of all the integrated learners.
+look at clust.hb again to make sure name is correct. needs to be ch?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">ID</th>
+<th align="left">Measure</th>
+<th align="left">Package</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html">clust.db</a></td>
+<td align="left">Davies-Bouldin Cluster Separation</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=clusterCrit">clusterCrit</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html">clust.dunn</a></td>
+<td align="left">Dunn index</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=clusterCrit">clusterCrit</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/MeasureSurvCalibrationBeta.html">clust.hb</a></td>
+<td align="left">Calinski Harabasz Pseudo F-Statistic</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=clusterCrit">clusterCrit</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html">clust.silhouette</a></td>
+<td align="left">Rousseeuw’s Silhouette Quality Index</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=clusterCrit">clusterCrit</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="integrated-tasks" class="section level2">
+<h2>Integrated Tasks</h2>
+<p>There is only one built-in Task in the package:</p>
+<pre class="r"><code>mlr_tasks$get(&quot;usarrests&quot;)</code></pre>
+<pre><code>## &lt;TaskClust:usarrests&gt; (50 x 4)
+## * Target: -
+## * Properties: -
+## * Features (4):
+##   - int (2): Assault, UrbanPop
+##   - dbl (2): Murder, Rape</code></pre>
+<p>As you can see, the biggest difference in clustering tasks and the rest of the
+tasks in mlr3 is the absense of the Target column.</p>
 </div>
 <div id="setting-hyperparameters" class="section level2">
 <h2>Setting Hyperparameters</h2>
@@ -93,23 +196,24 @@ learner$param_set</code></pre>
 ## 4:             1              
 ## 5:             0             0</code></pre>
 <pre class="r"><code>learner$param_set$values = list(centers = 3L, algorithm = &quot;Lloyd&quot;, iter.max = 100L)
-learner$train(task)
-preds = learner$predict(task = task)
-
-preds</code></pre>
-<pre><code>## &lt;PredictionClust&gt; for 50 observations:
-##     row_id partition
-##          1         2
-##          2         2
-##          3         2
-## ---                 
-##         48         3
-##         49         3
-##         50         1</code></pre>
+learner$train(task)</code></pre>
 </div>
 <div id="evaluating-cluster-assignments" class="section level2">
 <h2>Evaluating Cluster Assignments</h2>
-<p>Talk about cluster measures, list them</p>
+<p>Below is an example how to use built-in measures to access the quality of clustering assignment.</p>
+<pre class="r"><code>library(mlr3)
+library(mlr3cluster)
+
+task = mlr_tasks$get(&quot;usarrests&quot;)
+learner = mlr_learners$get(&quot;clust.dbscan&quot;)
+learner$param_set$values = list(eps = 25)
+learner$train(task)
+preds = learner$predict(task = task)
+
+measure = mlr_measures$get(&quot;clust.silhouette&quot;)
+preds$score(measure, task)</code></pre>
+<pre><code>## clust.silhouette 
+##        0.2689358</code></pre>
 </div>
 <div id="integration-with-mlr3pipelines" class="section level2">
 <h2>Integration with mlr3pipelines</h2>

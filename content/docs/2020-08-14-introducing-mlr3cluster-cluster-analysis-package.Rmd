@@ -23,19 +23,19 @@ clusterers?
 It would be great to have just one package that makes interfacing 
 all things clustering easy? 
 
-mlr3cluster to rescue!
+[mlr3cluster](https://github.com/mlr-org/mlr3cluster) to rescue!
 
 mlr3cluster is a cluster analysis extention package within mlr3 library. It is 
 a successsor of mlr's cluster capabilities in spirit and functionality. 
 
-In order to take advantage of the clustering package you need to be already 
+In order to understand the following mini-tutorial you need to be already 
 familiar with R6 and basics of mlr3. See the [mlr3book (chapters 1-2)](https://mlr3book.mlr-org.com/)
 if you need a refresher. 
 
 ## Installation
 To install the package, run the following code chunk:
 
-```{r echo = TRUE, results = 'hide'}
+```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
 devtools::install_github("https://github.com/mlr-org/mlr3cluster")
 ```
 
@@ -56,22 +56,60 @@ preds = learner$predict(task = task)
 preds
 ```
 
-## Integrated Learners, Measures and Tasks
+## Integrated Learners
 
 List of integrated learners:
+
+```{r}
+mlr_learners$keys("clust")
+```
+
+The package contains all the basic types of clustering: partitional, 
+hierarchial, density-based and fuzzy. Below is a detailed list of all the integrated learners.
+
+| ID | Learner | Package |
+| :--| :------ | :------ |
+| [clust.agnes](https://mlr3cluster.mlr-org.com/reference/LearnerClustAgnes.html) | Agglomerative Hierarchical Clustering |  [cluster](https://CRAN.R-project.org/package=cluster) |
+| [clust.cmeans](https://mlr3cluster.mlr-org.com/reference/LearnerClustCMeans.html) | Fuzzy C-Means Clustering |  [e1071](https://CRAN.R-project.org/package=e1071) |
+| [clust.dbscan](https://mlr3cluster.mlr-org.com/reference/LearnerClustDBSCAN.html) | Density-based Clustering | [dbscan](https://CRAN.R-project.org/package=dbscan) |
+| [clust.diana](https://mlr3cluster.mlr-org.com/reference/LearnerClustDiana.html) | Divisive Hierarchical Clustering | [cluster](https://CRAN.R-project.org/package=cluster) |
+| [clust.fanny](https://mlr3cluster.mlr-org.com/reference/LearnerClustFanny.html) | Fuzzy Clustering | [cluster](https://CRAN.R-project.org/package=cluster) |
+| [clust.featureless](https://mlr3cluster.mlr-org.com/reference/LearnerClustFeatureless.html) | Simple Featureless Clustering | [mlr3cluster](https://github.com/mlr-org/mlr3cluster) |
+| [clust.kmeans](https://mlr3cluster.mlr-org.com/reference/LearnerClustKMeans.html) | K-Means Clustering | [stats](https://CRAN.R-project.org/package=stats) | 
+| [clust.pam](https://mlr3cluster.mlr-org.com/reference/LearnerClustPAM.html) | Clustering Around Medoids | [cluster](https://CRAN.R-project.org/package=cluster) |
+| [clust.xmeans](https://mlr3cluster.mlr-org.com/reference/LearnerClustXMeans.html) | K-Means with Automatic Determination of k | [RWeka](https://CRAN.R-project.org/package=RWeka) |
+
+
+## Integrated Measures
+
+List of integrated cluster measures: 
 
 ```{r}
 mlr_measures$keys("clust")
 ```
 
-The list contains all basic types of clustering: partitional, 
-hierarchial, density-based, fuzzy.
+Below is a detailed list of all the integrated learners.
+look at clust.hb again to make sure name is correct. needs to be ch?
 
-List of integrated cluster measures: 
+| ID | Measure | Package |
+| :--| :------ | :------ |
+| [clust.db](https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html) | Davies-Bouldin Cluster Separation | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
+| [clust.dunn](https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html) | Dunn index | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
+| [clust.hb](https://mlr3proba.mlr-org.com/reference/MeasureSurvCalibrationBeta.html) | Calinski Harabasz Pseudo F-Statistic | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
+  | [clust.silhouette](https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html) | Rousseeuw's Silhouette Quality Index | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
+
+
+## Integrated Tasks
+
+There is only one built-in Task in the package:
 
 ```{r}
-mlr_learners$keys("clust")
+mlr_tasks$get("usarrests")
 ```
+
+As you can see, the biggest difference in clustering tasks and the rest of the 
+tasks in mlr3 is the absense of the Target column. 
+
 
 ## Setting Hyperparameters
 
@@ -85,14 +123,26 @@ learner$param_set
 
 learner$param_set$values = list(centers = 3L, algorithm = "Lloyd", iter.max = 100L)
 learner$train(task)
-preds = learner$predict(task = task)
-
-preds
 ```
 
 ## Evaluating Cluster Assignments 
 
-Talk about cluster measures, list them 
+Below is an example how to use built-in measures to access the quality of clustering assignment. 
+
+```{r}
+library(mlr3)
+library(mlr3cluster)
+
+task = mlr_tasks$get("usarrests")
+learner = mlr_learners$get("clust.dbscan")
+learner$param_set$values = list(eps = 25)
+learner$train(task)
+preds = learner$predict(task = task)
+
+measure = mlr_measures$get("clust.silhouette")
+preds$score(measure, task)
+```
+
 
 ## Integration with mlr3pipelines
 
