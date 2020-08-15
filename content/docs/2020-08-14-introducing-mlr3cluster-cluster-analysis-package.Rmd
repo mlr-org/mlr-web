@@ -23,7 +23,7 @@ clusterers?
 It would be great to have just one package that makes interfacing 
 all things clustering easy? 
 
-[mlr3cluster](https://github.com/mlr-org/mlr3cluster) to rescue!
+[mlr3cluster](https://github.com/mlr-org/mlr3cluster) to the rescue!
 
 mlr3cluster is a cluster analysis extention package within mlr3 library. It is 
 a successsor of mlr's cluster capabilities in spirit and functionality. 
@@ -42,7 +42,7 @@ devtools::install_github("https://github.com/mlr-org/mlr3cluster")
 ## Getting Started
 
 Assuming you know all the basics and you've installed the package, 
-here's an example on how to perform k-means clustering on classic [usarrests](https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/USArrests.html) data set:
+here's an example on how to perform k-means clustering on a classic [usarrests](https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/USArrests.html) data set:
 
 ```{r intro}
 library(mlr3)
@@ -95,7 +95,7 @@ look at clust.hb again to make sure name is correct. needs to be ch?
 | :--| :------ | :------ |
 | [clust.db](https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html) | Davies-Bouldin Cluster Separation | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
 | [clust.dunn](https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html) | Dunn index | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
-| [clust.hb](https://mlr3proba.mlr-org.com/reference/MeasureSurvCalibrationBeta.html) | Calinski Harabasz Pseudo F-Statistic | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
+| [clust.ch](https://mlr3proba.mlr-org.com/reference/MeasureSurvCalibrationBeta.html) | Calinski Harabasz Pseudo F-Statistic | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
   | [clust.silhouette](https://mlr3cluster.mlr-org.com/reference/MeasureClustInternal.html) | Rousseeuw's Silhouette Quality Index | [clusterCrit](https://CRAN.R-project.org/package=clusterCrit) |
 
 
@@ -111,7 +111,7 @@ As you can see, the biggest difference in clustering tasks and the rest of the
 tasks in mlr3 is the absense of the Target column. 
 
 
-## Setting Hyperparameters
+## Hyperparameters
 
 Setting hyperparameters for clusterers is as easy as setting parameters for 
 any other mlr3 learner: 
@@ -120,40 +120,56 @@ any other mlr3 learner:
 task = mlr_tasks$get("usarrests")
 learner = mlr_learners$get("clust.kmeans")
 learner$param_set
-
 learner$param_set$values = list(centers = 3L, algorithm = "Lloyd", iter.max = 100L)
-learner$train(task)
 ```
 
-## Evaluating Cluster Assignments 
 
-Below is an example how to use built-in measures to access the quality of clustering assignment. 
+## Train and Predict
+The "train" method is simply creating a model with cluster assignments for data, while 
+the "predict" method's functionality varies depending on the clusterer in use. Read the documentation for 
+more information. 
+
+In the case of `kmeans` clusterer, the predict method is using `clue::cl_predict`  
+which performs cluster assignments for new data. 
+
+Following the example from the previous section:
+
+```{r preds}
+train_set = sample(task$nrow, 0.8 * task$nrow)
+test_set = setdiff(seq_len(task$nrow), train_set)
+learner$train(task, row_ids = train_set)
+preds = learner$predict(task, row_ids = test_set)
+```
+
+## Evaluation
+
+Below is an example how to use built-in measures to access the quality of clustering assignment 
 
 ```{r}
-library(mlr3)
-library(mlr3cluster)
-
-task = mlr_tasks$get("usarrests")
-learner = mlr_learners$get("clust.dbscan")
-learner$param_set$values = list(eps = 25)
-learner$train(task)
-preds = learner$predict(task = task)
-
 measure = mlr_measures$get("clust.silhouette")
 preds$score(measure, task)
 ```
 
-
-## Integration with mlr3pipelines
-
-example how to use mlr3pipelines with mlr3cluster
-
+  
 ## Visualization
 
-how to use mlr3viz with cluster
+(might be revised)
+A picture is worth a thousand words. How do you visualize the data and the results? 
+I've added additional plots to mlr3viz which help with this task. Visualizing the results 
+from the previous section:
+
+```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
+library(mlr3viz)
+autoplot(task)
+
+autoplot(preds, task)
+
+#autoplot(preds, task, type = "sil")
+```
+
 
 ## Acknowledgements
-I want to thank the following people for helping me contribute to the package 
-and this blogpost: 
+I would like to thank the following people for their help and guidance that they 
+have provided throughout my work on the package: 
 Michel Lang, Lars Kotthoff, Martin Binder, Patrick Stratz, Bernd Bischl. 
 
