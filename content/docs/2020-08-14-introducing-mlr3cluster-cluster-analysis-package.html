@@ -26,8 +26,8 @@ all things clustering easy?</p>
 <p>mlr3cluster is a cluster analysis extention package within mlr3 library. It is
 a successsor of mlr’s cluster capabilities in spirit and functionality.</p>
 <p>In order to understand the following mini-tutorial you need to be already
-familiar with R6 and basics of mlr3. See the <a href="https://mlr3book.mlr-org.com/">mlr3book (chapters 1-2)</a>
-if you need a refresher.</p>
+familiar with R6 and basics of mlr3.
+See the <a href="https://mlr3book.mlr-org.com/">mlr3book (chapters 1-2)</a> if you need a refresher.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>To install the package, run the following code chunk:</p>
@@ -48,13 +48,13 @@ preds = learner$predict(task = task)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 50 observations:
 ##     row_id partition
-##          1         2
-##          2         2
-##          3         2
+##          1         1
+##          2         1
+##          3         1
 ## ---                 
-##         48         1
-##         49         1
-##         50         1</code></pre>
+##         48         2
+##         49         2
+##         50         2</code></pre>
 </div>
 <div id="integrated-learners" class="section level2">
 <h2>Integrated Learners</h2>
@@ -63,8 +63,8 @@ preds</code></pre>
 <pre><code>## [1] &quot;clust.agnes&quot;       &quot;clust.cmeans&quot;      &quot;clust.dbscan&quot;     
 ## [4] &quot;clust.diana&quot;       &quot;clust.fanny&quot;       &quot;clust.featureless&quot;
 ## [7] &quot;clust.kmeans&quot;      &quot;clust.pam&quot;         &quot;clust.xmeans&quot;</code></pre>
-<p>The package contains all the basic types of clustering: partitional,
-hierarchial, density-based and fuzzy. Below is a detailed list of all the integrated learners.</p>
+<p>The package contains all the basic types of clustering: partitional, hierarchial, density-based and fuzzy.
+Below is a detailed list of all the integrated learners.</p>
 <table>
 <thead>
 <tr class="header">
@@ -172,13 +172,11 @@ look at clust.hb again to make sure name is correct. needs to be ch?</p>
 ## * Features (4):
 ##   - int (2): Assault, UrbanPop
 ##   - dbl (2): Murder, Rape</code></pre>
-<p>As you can see, the biggest difference in clustering tasks and the rest of the
-tasks in mlr3 is the absense of the Target column.</p>
+<p>As you can see, the biggest difference in clustering tasks and the rest of the tasks in mlr3 is the absense of the Target column.</p>
 </div>
 <div id="hyperparameters" class="section level2">
 <h2>Hyperparameters</h2>
-<p>Setting hyperparameters for clusterers is as easy as setting parameters for
-any other mlr3 learner:</p>
+<p>Setting hyperparameters for clusterers is as easy as setting parameters for any other mlr3 learner:</p>
 <pre class="r"><code>task = mlr_tasks$get(&quot;usarrests&quot;)
 learner = mlr_learners$get(&quot;clust.kmeans&quot;)
 learner$param_set</code></pre>
@@ -200,15 +198,24 @@ learner$param_set</code></pre>
 <div id="train-and-predict" class="section level2">
 <h2>Train and Predict</h2>
 <p>The “train” method is simply creating a model with cluster assignments for data, while
-the “predict” method’s functionality varies depending on the clusterer in use. Read the documentation for
-more information.</p>
-<p>In the case of <code>kmeans</code> clusterer, the predict method is using <code>clue::cl_predict</code><br />
-which performs cluster assignments for new data.</p>
+the “predict” method’s functionality varies depending on the clusterer in use.
+Read the documentation for more information.</p>
+<p>In the case of <code>kmeans</code> clusterer, the predict method is using <code>clue::cl_predict</code> which performs cluster assignments for new data.</p>
 <p>Following the example from the previous section:</p>
 <pre class="r"><code>train_set = sample(task$nrow, 0.8 * task$nrow)
 test_set = setdiff(seq_len(task$nrow), train_set)
 learner$train(task, row_ids = train_set)
-preds = learner$predict(task, row_ids = test_set)</code></pre>
+preds = learner$predict(task, row_ids = test_set)
+preds</code></pre>
+<pre><code>## &lt;PredictionClust&gt; for 10 observations:
+##     row_id partition
+##          6         1
+##          8         2
+##         19         3
+## ---                 
+##         42         1
+##         44         3
+##         46         1</code></pre>
 </div>
 <div id="evaluation" class="section level2">
 <h2>Evaluation</h2>
@@ -216,24 +223,48 @@ preds = learner$predict(task, row_ids = test_set)</code></pre>
 <pre class="r"><code>measure = mlr_measures$get(&quot;clust.silhouette&quot;)
 preds$score(measure, task)</code></pre>
 <pre><code>## clust.silhouette 
-##        0.3657931</code></pre>
+##        0.4927351</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
-<p>(might be revised)
-A picture is worth a thousand words. How do you visualize the data and the results?
-I’ve added additional plots to mlr3viz which help with this task. Visualizing the results
-from the previous section:</p>
-<pre class="r"><code>library(mlr3viz)
+<p>How do you visualize the tasks and the results of clustering experiments?
+The <code>mlr3viz</code> package now provides functionality to visualize cluster analysis.</p>
+<p>First, install <a href="https://github.com/damirpolat/mlr3viz/tree/cluster">mlr3viz</a> from a forked repository (still work in progress).</p>
+<pre class="r"><code>devtools::install_github(&quot;https://github.com/damirpolat/mlr3viz/tree/cluster&quot;)</code></pre>
+<pre class="r"><code>library(mlr3cluster)
+library(mlr3viz)
+
+task = mlr_tasks$get(&quot;usarrests&quot;)
+learner = mlr_learners$get(&quot;clust.kmeans&quot;)
+learner$param_set$values = list(centers = 3L)
+learner$train(task)
+preds = learner$predict(task)
+
 autoplot(task)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre class="r"><code>autoplot(preds, task)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
-<pre class="r"><code>#autoplot(preds, task, type = &quot;sil&quot;)</code></pre>
+<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code># Pairs plot with cluster assignments
+autoplot(preds, task)</code></pre>
+<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code># Silhouette plot with mean silhouette value as reference line
+autoplot(preds, task, type = &quot;sil&quot;)</code></pre>
+<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<pre class="r"><code># Performing PCA on task data and showing cluster assignments
+autoplot(preds, task, type = &quot;pca&quot;)</code></pre>
+<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+<p>Keep in mind that <code>mlr3viz::autoplot</code> also provides more options depending on the kind of plots you’re interested in.
+For example, to draw borders around clusters, provide the appropriate parameters from <code>ggfortify::autoplot.kmeans</code>:</p>
+<pre class="r"><code>autoplot(preds, task, type = &quot;pca&quot;, frame = TRUE)</code></pre>
+<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>You can also easily visualize dendrograms:</p>
+<pre class="r"><code>library(mlr3cluster)
+library(mlr3viz)
+
+task = mlr_tasks$get(&quot;usarrests&quot;)
+learner = mlr_learners$get(&quot;clust.agnes&quot;)
+learner$train(task)</code></pre>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2>Acknowledgements</h2>
-<p>I would like to thank the following people for their help and guidance that they
-have provided throughout my work on the package:
+<p>I would like to thank the following people for their help and guidance:
 Michel Lang, Lars Kotthoff, Martin Binder, Patrick Stratz, Bernd Bischl.</p>
 </div>

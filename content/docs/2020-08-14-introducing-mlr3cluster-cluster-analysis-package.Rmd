@@ -29,8 +29,8 @@ mlr3cluster is a cluster analysis extention package within mlr3 library. It is
 a successsor of mlr's cluster capabilities in spirit and functionality. 
 
 In order to understand the following mini-tutorial you need to be already 
-familiar with R6 and basics of mlr3. See the [mlr3book (chapters 1-2)](https://mlr3book.mlr-org.com/)
-if you need a refresher. 
+familiar with R6 and basics of mlr3. 
+See the [mlr3book (chapters 1-2)](https://mlr3book.mlr-org.com/) if you need a refresher. 
 
 ## Installation
 To install the package, run the following code chunk:
@@ -64,8 +64,8 @@ List of integrated learners:
 mlr_learners$keys("clust")
 ```
 
-The package contains all the basic types of clustering: partitional, 
-hierarchial, density-based and fuzzy. Below is a detailed list of all the integrated learners.
+The package contains all the basic types of clustering: partitional, hierarchial, density-based and fuzzy. 
+Below is a detailed list of all the integrated learners.
 
 | ID | Learner | Package |
 | :--| :------ | :------ |
@@ -107,14 +107,12 @@ There is only one built-in Task in the package:
 mlr_tasks$get("usarrests")
 ```
 
-As you can see, the biggest difference in clustering tasks and the rest of the 
-tasks in mlr3 is the absense of the Target column. 
+As you can see, the biggest difference in clustering tasks and the rest of the tasks in mlr3 is the absense of the Target column. 
 
 
 ## Hyperparameters
 
-Setting hyperparameters for clusterers is as easy as setting parameters for 
-any other mlr3 learner: 
+Setting hyperparameters for clusterers is as easy as setting parameters for any other mlr3 learner: 
 
 ```{r hyperparam}
 task = mlr_tasks$get("usarrests")
@@ -126,11 +124,10 @@ learner$param_set$values = list(centers = 3L, algorithm = "Lloyd", iter.max = 10
 
 ## Train and Predict
 The "train" method is simply creating a model with cluster assignments for data, while 
-the "predict" method's functionality varies depending on the clusterer in use. Read the documentation for 
-more information. 
+the "predict" method's functionality varies depending on the clusterer in use. 
+Read the documentation for more information. 
 
-In the case of `kmeans` clusterer, the predict method is using `clue::cl_predict`  
-which performs cluster assignments for new data. 
+In the case of `kmeans` clusterer, the predict method is using `clue::cl_predict` which performs cluster assignments for new data. 
 
 Following the example from the previous section:
 
@@ -139,6 +136,7 @@ train_set = sample(task$nrow, 0.8 * task$nrow)
 test_set = setdiff(seq_len(task$nrow), train_set)
 learner$train(task, row_ids = train_set)
 preds = learner$predict(task, row_ids = test_set)
+preds
 ```
 
 ## Evaluation
@@ -153,23 +151,57 @@ preds$score(measure, task)
   
 ## Visualization
 
-(might be revised)
-A picture is worth a thousand words. How do you visualize the data and the results? 
-I've added additional plots to mlr3viz which help with this task. Visualizing the results 
-from the previous section:
+How do you visualize the tasks and the results of clustering experiments? 
+The `mlr3viz` package now provides functionality to visualize cluster analysis. 
+
+First, install [mlr3viz](https://github.com/damirpolat/mlr3viz/tree/cluster) from a forked repository (still work in progress).
 
 ```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
+devtools::install_github("https://github.com/damirpolat/mlr3viz/tree/cluster")
+```
+
+
+```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
+library(mlr3cluster)
 library(mlr3viz)
+
+task = mlr_tasks$get("usarrests")
+learner = mlr_learners$get("clust.kmeans")
+learner$param_set$values = list(centers = 3L)
+learner$train(task)
+preds = learner$predict(task)
+
 autoplot(task)
 
+# Pairs plot with cluster assignments
 autoplot(preds, task)
 
-#autoplot(preds, task, type = "sil")
+# Silhouette plot with mean silhouette value as reference line
+autoplot(preds, task, type = "sil")
+
+# Performing PCA on task data and showing cluster assignments
+autoplot(preds, task, type = "pca")
+```
+
+Keep in mind that `mlr3viz::autoplot` also provides more options depending on the kind of plots you're interested in. 
+For example, to draw borders around clusters, provide the appropriate parameters from `ggfortify::autoplot.kmeans`: 
+
+```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
+autoplot(preds, task, type = "pca", frame = TRUE)
+```
+
+You can also easily visualize dendrograms: 
+
+```{r}
+library(mlr3cluster)
+library(mlr3viz)
+
+task = mlr_tasks$get("usarrests")
+learner = mlr_learners$get("clust.agnes")
+learner$train(task)
 ```
 
 
 ## Acknowledgements
-I would like to thank the following people for their help and guidance that they 
-have provided throughout my work on the package: 
+I would like to thank the following people for their help and guidance: 
 Michel Lang, Lars Kotthoff, Martin Binder, Patrick Stratz, Bernd Bischl. 
-
