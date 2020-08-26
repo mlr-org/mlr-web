@@ -1,13 +1,14 @@
 ---
 title: 'Introducing mlr3cluster: Cluster Analysis Package'
 author: Damir Pulatov
-date: '2020-08-14'
+date: '2020-08-26'
 slug: mlr3cluster,tutorial,cluster
 categories: 
   - R
 tags:
   - mlr3
   - mlr3cluster
+  - mlr3viz
   - cluster analysis
   - tutorial
 output:
@@ -23,11 +24,10 @@ clusterers?</p>
 <p>It would be great to have just one package that makes interfacing
 all things clustering easy?</p>
 <p><a href="https://github.com/mlr-org/mlr3cluster">mlr3cluster</a> to the rescue!</p>
-<p>mlr3cluster is a cluster analysis extention package within mlr3 library. It is
-a successsor of mlr’s cluster capabilities in spirit and functionality.</p>
-<p>In order to understand the following mini-tutorial you need to be already
-familiar with R6 and basics of mlr3.
-See the <a href="https://mlr3book.mlr-org.com/">mlr3book (chapters 1-2)</a> if you need a refresher.</p>
+<p>mlr3cluster is a cluster analysis extention package within the mlr3 ecosystem.
+It is a successsor of mlr’s cluster capabilities in spirit and functionality.</p>
+<p>In order to understand the following introduction and tutorial you need to be familiar with R6 and mlr3 basics.
+See the chapters 1-2 of the <a href="https://mlr3book.mlr-org.com/">mlr3book</a> if you need a refresher.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>To install the package, run the following code chunk:</p>
@@ -58,13 +58,14 @@ preds</code></pre>
 </div>
 <div id="integrated-learners" class="section level2">
 <h2>Integrated Learners</h2>
-<p>List of integrated learners:</p>
+<p>What built-in clusterers does the package come with?
+Here is a list of integrated learners:</p>
 <pre class="r"><code>mlr_learners$keys(&quot;clust&quot;)</code></pre>
 <pre><code>## [1] &quot;clust.agnes&quot;       &quot;clust.cmeans&quot;      &quot;clust.dbscan&quot;     
 ## [4] &quot;clust.diana&quot;       &quot;clust.fanny&quot;       &quot;clust.featureless&quot;
 ## [7] &quot;clust.kmeans&quot;      &quot;clust.pam&quot;         &quot;clust.xmeans&quot;</code></pre>
-<p>The package contains all the basic types of clustering: partitional, hierarchial, density-based and fuzzy.
-Below is a detailed list of all the integrated learners.</p>
+<p>The library contains all the basic types of clusterers: partitional, hierarchial, density-based and fuzzy.
+Below is a detailed list of all the learners.</p>
 <table>
 <thead>
 <tr class="header">
@@ -128,8 +129,7 @@ Below is a detailed list of all the integrated learners.</p>
 <pre class="r"><code>mlr_measures$keys(&quot;clust&quot;)</code></pre>
 <pre><code>## [1] &quot;clust.ch&quot;         &quot;clust.db&quot;         &quot;clust.dunn&quot;      
 ## [4] &quot;clust.silhouette&quot;</code></pre>
-<p>Below is a detailed list of all the integrated learners.
-look at clust.hb again to make sure name is correct. needs to be ch?</p>
+<p>Below is a detailed list of all the integrated learners.</p>
 <table>
 <thead>
 <tr class="header">
@@ -172,7 +172,7 @@ look at clust.hb again to make sure name is correct. needs to be ch?</p>
 ## * Features (4):
 ##   - int (2): Assault, UrbanPop
 ##   - dbl (2): Murder, Rape</code></pre>
-<p>As you can see, the biggest difference in clustering tasks and the rest of the tasks in mlr3 is the absense of the Target column.</p>
+<p>As you can see, the biggest difference in clustering tasks as compared to the rest of the tasks in mlr3 is the absense of the Target column.</p>
 </div>
 <div id="hyperparameters" class="section level2">
 <h2>Hyperparameters</h2>
@@ -198,41 +198,47 @@ learner$param_set</code></pre>
 <div id="train-and-predict" class="section level2">
 <h2>Train and Predict</h2>
 <p>The “train” method is simply creating a model with cluster assignments for data, while
-the “predict” method’s functionality varies depending on the clusterer in use.
-Read the documentation for more information.</p>
-<p>In the case of <code>kmeans</code> clusterer, the predict method is using <code>clue::cl_predict</code> which performs cluster assignments for new data.</p>
+the “predict” method’s functionality varies depending on the clusterer in question.
+Read the each learner’s documentation for details.</p>
+<p>For example, the <code>kmeans</code> learner’s predict method uses <code>clue::cl_predict</code> which performs cluster assignments for new data
+by looking at the “closest” neighbors of the new observations.</p>
 <p>Following the example from the previous section:</p>
-<pre class="r"><code>train_set = sample(task$nrow, 0.8 * task$nrow)
+<pre class="r"><code>task = mlr_tasks$get(&quot;usarrests&quot;)
+train_set = sample(task$nrow, 0.8 * task$nrow)
 test_set = setdiff(seq_len(task$nrow), train_set)
+
+learner = mlr_learners$get(&quot;clust.kmeans&quot;)
 learner$train(task, row_ids = train_set)
+
 preds = learner$predict(task, row_ids = test_set)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 10 observations:
 ##     row_id partition
-##          8         1
-##          9         3
-##         11         2
+##          6         2
+##          8         2
+##         17         1
 ## ---                 
-##         37         2
-##         41         2
-##         45         2</code></pre>
+##         40         2
+##         41         1
+##         47         1</code></pre>
 </div>
 <div id="evaluation" class="section level2">
 <h2>Evaluation</h2>
-<p>Below is an example how to use built-in measures to access the quality of clustering assignment</p>
+<p>To assess the quality of any machine learning experiment, you need to choose an evaluation metric that
+makes the most sense.
+Below is an example on how to use built-in measures to quantify the cluster “goodness”.</p>
 <pre class="r"><code>measure = mlr_measures$get(&quot;clust.silhouette&quot;)
 preds$score(measure, task)</code></pre>
 <pre><code>## clust.silhouette 
-##              NaN</code></pre>
+##        0.6432285</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
 <p>How do you visualize the tasks and the results of clustering experiments?
-The <code>mlr3viz</code> package now provides functionality to visualize cluster analysis.</p>
+The <code>mlr3viz</code> package now provides that functionality for cluster analysis.</p>
 <p>First, install <a href="https://github.com/damirpolat/mlr3viz/tree/cluster">mlr3viz</a> from a forked repository (still work in progress).</p>
 <pre class="r"><code>devtools::install_github(&quot;https://github.com/damirpolat/mlr3viz/tree/cluster&quot;)</code></pre>
-<pre class="r"><code>library(mlr3cluster)
-library(mlr3viz)
+<pre class="r"><code>library(mlr3viz)
 
 task = mlr_tasks$get(&quot;usarrests&quot;)
 learner = mlr_learners$get(&quot;clust.kmeans&quot;)
@@ -240,34 +246,38 @@ learner$param_set$values = list(centers = 3L)
 learner$train(task)
 preds = learner$predict(task)
 
+# Task visualization
 autoplot(task)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code># Pairs plot with cluster assignments
 autoplot(preds, task)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
 <pre class="r"><code># Silhouette plot with mean silhouette value as reference line
 autoplot(preds, task, type = &quot;sil&quot;)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
 <pre class="r"><code># Performing PCA on task data and showing cluster assignments
 autoplot(preds, task, type = &quot;pca&quot;)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+<p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
 <p>Keep in mind that <code>mlr3viz::autoplot</code> also provides more options depending on the kind of plots you’re interested in.
-For example, to draw borders around clusters, provide the appropriate parameters from <code>ggfortify::autoplot.kmeans</code>:</p>
+For example, to draw borders around clusters, provide appropriate parameters from <code>ggfortify::autoplot.kmeans</code>:</p>
 <pre class="r"><code>autoplot(preds, task, type = &quot;pca&quot;, frame = TRUE)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>You can also easily visualize dendrograms:</p>
-<pre class="r"><code>library(mlr3cluster)
-library(mlr3viz)
-
-task = mlr_tasks$get(&quot;usarrests&quot;)
+<pre class="r"><code>task = mlr_tasks$get(&quot;usarrests&quot;)
 learner = mlr_learners$get(&quot;clust.agnes&quot;)
 learner$train(task)
 
+# Simple dendrogram
 autoplot(learner)</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code># More advanced options from `factoextra::fviz_dend`
 autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE, rect_border = c(&quot;red&quot;, &quot;cyan&quot;))</code></pre>
-<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+</div>
+<div id="further-development" class="section level2">
+<h2>Further Development</h2>
+<p>If you have any issues with the package or would like to request a new feature, feel free to
+open an issue <a href="https://github.com/mlr-org/mlr3cluster/issues">here</a>.</p>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2>Acknowledgements</h2>

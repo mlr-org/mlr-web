@@ -1,13 +1,14 @@
 ---
 title: 'Introducing mlr3cluster: Cluster Analysis Package'
 author: Damir Pulatov
-date: '2020-08-14'
+date: '2020-08-26'
 slug: mlr3cluster,tutorial,cluster
 categories: 
   - R
 tags:
   - mlr3
   - mlr3cluster
+  - mlr3viz
   - cluster analysis
   - tutorial
 output:
@@ -25,12 +26,11 @@ all things clustering easy?
 
 [mlr3cluster](https://github.com/mlr-org/mlr3cluster) to the rescue!
 
-mlr3cluster is a cluster analysis extention package within mlr3 library. It is 
-a successsor of mlr's cluster capabilities in spirit and functionality. 
+mlr3cluster is a cluster analysis extention package within the mlr3 ecosystem.
+It is a successsor of mlr's cluster capabilities in spirit and functionality. 
 
-In order to understand the following mini-tutorial you need to be already 
-familiar with R6 and basics of mlr3. 
-See the [mlr3book (chapters 1-2)](https://mlr3book.mlr-org.com/) if you need a refresher. 
+In order to understand the following introduction and tutorial you need to be familiar with R6 and mlr3 basics. 
+See the chapters 1-2 of the [mlr3book](https://mlr3book.mlr-org.com/) if you need a refresher. 
 
 ## Installation
 To install the package, run the following code chunk:
@@ -58,14 +58,15 @@ preds
 
 ## Integrated Learners
 
-List of integrated learners:
+What built-in clusterers does the package come with?
+Here is a list of integrated learners:
 
 ```{r}
 mlr_learners$keys("clust")
 ```
 
-The package contains all the basic types of clustering: partitional, hierarchial, density-based and fuzzy. 
-Below is a detailed list of all the integrated learners.
+The library contains all the basic types of clusterers: partitional, hierarchial, density-based and fuzzy. 
+Below is a detailed list of all the learners.
 
 | ID | Learner | Package |
 | :--| :------ | :------ |
@@ -89,7 +90,6 @@ mlr_measures$keys("clust")
 ```
 
 Below is a detailed list of all the integrated learners.
-look at clust.hb again to make sure name is correct. needs to be ch?
 
 | ID | Measure | Package |
 | :--| :------ | :------ |
@@ -107,7 +107,7 @@ There is only one built-in Task in the package:
 mlr_tasks$get("usarrests")
 ```
 
-As you can see, the biggest difference in clustering tasks and the rest of the tasks in mlr3 is the absense of the Target column. 
+As you can see, the biggest difference in clustering tasks as compared to the rest of the tasks in mlr3 is the absense of the Target column. 
 
 
 ## Hyperparameters
@@ -124,24 +124,31 @@ learner$param_set$values = list(centers = 3L, algorithm = "Lloyd", iter.max = 10
 
 ## Train and Predict
 The "train" method is simply creating a model with cluster assignments for data, while 
-the "predict" method's functionality varies depending on the clusterer in use. 
-Read the documentation for more information. 
+the "predict" method's functionality varies depending on the clusterer in question. 
+Read the each learner's documentation for details. 
 
-In the case of `kmeans` clusterer, the predict method is using `clue::cl_predict` which performs cluster assignments for new data. 
+For example, the `kmeans` learner's predict method uses `clue::cl_predict` which performs cluster assignments for new data 
+by looking at the "closest" neighbors of the new observations. 
 
 Following the example from the previous section:
 
 ```{r preds}
+task = mlr_tasks$get("usarrests")
 train_set = sample(task$nrow, 0.8 * task$nrow)
 test_set = setdiff(seq_len(task$nrow), train_set)
+
+learner = mlr_learners$get("clust.kmeans")
 learner$train(task, row_ids = train_set)
+
 preds = learner$predict(task, row_ids = test_set)
 preds
 ```
 
 ## Evaluation
 
-Below is an example how to use built-in measures to access the quality of clustering assignment 
+To assess the quality of any machine learning experiment, you need to choose an evaluation metric that 
+makes the most sense. 
+Below is an example on how to use built-in measures to quantify the cluster "goodness".  
 
 ```{r}
 measure = mlr_measures$get("clust.silhouette")
@@ -152,7 +159,7 @@ preds$score(measure, task)
 ## Visualization
 
 How do you visualize the tasks and the results of clustering experiments? 
-The `mlr3viz` package now provides functionality to visualize cluster analysis. 
+The `mlr3viz` package now provides that functionality for cluster analysis.   
 
 First, install [mlr3viz](https://github.com/damirpolat/mlr3viz/tree/cluster) from a forked repository (still work in progress).
 
@@ -162,7 +169,6 @@ devtools::install_github("https://github.com/damirpolat/mlr3viz/tree/cluster")
 
 
 ```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
-library(mlr3cluster)
 library(mlr3viz)
 
 task = mlr_tasks$get("usarrests")
@@ -171,6 +177,7 @@ learner$param_set$values = list(centers = 3L)
 learner$train(task)
 preds = learner$predict(task)
 
+# Task visualization
 autoplot(task)
 
 # Pairs plot with cluster assignments
@@ -184,7 +191,7 @@ autoplot(preds, task, type = "pca")
 ```
 
 Keep in mind that `mlr3viz::autoplot` also provides more options depending on the kind of plots you're interested in. 
-For example, to draw borders around clusters, provide the appropriate parameters from `ggfortify::autoplot.kmeans`: 
+For example, to draw borders around clusters, provide appropriate parameters from `ggfortify::autoplot.kmeans`: 
 
 ```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
 autoplot(preds, task, type = "pca", frame = TRUE)
@@ -193,19 +200,20 @@ autoplot(preds, task, type = "pca", frame = TRUE)
 You can also easily visualize dendrograms: 
 
 ```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
-library(mlr3cluster)
-library(mlr3viz)
-
 task = mlr_tasks$get("usarrests")
 learner = mlr_learners$get("clust.agnes")
 learner$train(task)
 
+# Simple dendrogram
 autoplot(learner)
 
 # More advanced options from `factoextra::fviz_dend`
 autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE, rect_border = c("red", "cyan"))
 ```
 
+## Further Development
+If you have any issues with the package or would like to request a new feature, feel free to 
+open an issue [here](https://github.com/mlr-org/mlr3cluster/issues). 
 
 ## Acknowledgements
 I would like to thank the following people for their help and guidance: 
