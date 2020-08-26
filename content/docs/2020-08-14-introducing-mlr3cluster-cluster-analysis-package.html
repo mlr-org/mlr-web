@@ -209,13 +209,13 @@ preds = learner$predict(task, row_ids = test_set)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 10 observations:
 ##     row_id partition
-##          1         1
-##         10         2
-##         13         1
+##          2         2
+##          7         3
+##         12         3
 ## ---                 
-##         38         2
-##         43         2
-##         48         3</code></pre>
+##         37         1
+##         40         2
+##         49         3</code></pre>
 </div>
 <div id="evaluation" class="section level2">
 <h2>Evaluation</h2>
@@ -223,7 +223,7 @@ preds</code></pre>
 <pre class="r"><code>measure = mlr_measures$get(&quot;clust.silhouette&quot;)
 preds$score(measure, task)</code></pre>
 <pre><code>## clust.silhouette 
-##        0.3478518</code></pre>
+##        0.5745265</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
@@ -266,5 +266,5 @@ learner$train(task)</code></pre>
 <div id="acknowledgements" class="section level2">
 <h2>Acknowledgements</h2>
 <p>I would like to thank the following people for their help and guidance:
-Michel Lang, Lars Kotthoff, Martin Binder, Patrick Stratz, Bernd Bischl.</p>
+Michel Lang, Lars Kotthoff, Martin Binder, Patrick Schratz, Bernd Bischl.</p>
 </div>

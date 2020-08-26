@@ -204,4 +204,4 @@ learner$train(task)
 
 ## Acknowledgements
 I would like to thank the following people for their help and guidance: 
-Michel Lang, Lars Kotthoff, Martin Binder, Patrick Stratz, Bernd Bischl. 
+Michel Lang, Lars Kotthoff, Martin Binder, Patrick Schratz, Bernd Bischl. 
