@@ -192,13 +192,18 @@ autoplot(preds, task, type = "pca", frame = TRUE)
 
 You can also easily visualize dendrograms: 
 
-```{r}
+```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
 library(mlr3cluster)
 library(mlr3viz)
 
 task = mlr_tasks$get("usarrests")
 learner = mlr_learners$get("clust.agnes")
 learner$train(task)
+
+autoplot(learner)
+
+# More advanced options from `factoextra::fviz_dend`
+autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE, rect_border = c("red", "cyan"))
 ```
 
 

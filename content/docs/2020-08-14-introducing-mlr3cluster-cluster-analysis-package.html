@@ -48,13 +48,13 @@ preds = learner$predict(task = task)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 50 observations:
 ##     row_id partition
-##          1         1
-##          2         1
-##          3         1
+##          1         2
+##          2         2
+##          3         2
 ## ---                 
-##         48         2
-##         49         2
-##         50         2</code></pre>
+##         48         1
+##         49         1
+##         50         1</code></pre>
 </div>
 <div id="integrated-learners" class="section level2">
 <h2>Integrated Learners</h2>
@@ -209,13 +209,13 @@ preds = learner$predict(task, row_ids = test_set)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 10 observations:
 ##     row_id partition
-##          2         2
-##          7         3
-##         12         3
+##          8         1
+##          9         3
+##         11         2
 ## ---                 
-##         37         1
-##         40         2
-##         49         3</code></pre>
+##         37         2
+##         41         2
+##         45         2</code></pre>
 </div>
 <div id="evaluation" class="section level2">
 <h2>Evaluation</h2>
@@ -223,7 +223,7 @@ preds</code></pre>
 <pre class="r"><code>measure = mlr_measures$get(&quot;clust.silhouette&quot;)
 preds$score(measure, task)</code></pre>
 <pre><code>## clust.silhouette 
-##        0.5745265</code></pre>
+##              NaN</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
@@ -261,7 +261,13 @@ library(mlr3viz)
 
 task = mlr_tasks$get(&quot;usarrests&quot;)
 learner = mlr_learners$get(&quot;clust.agnes&quot;)
-learner$train(task)</code></pre>
+learner$train(task)
+
+autoplot(learner)</code></pre>
+<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code># More advanced options from `factoextra::fviz_dend`
+autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE, rect_border = c(&quot;red&quot;, &quot;cyan&quot;))</code></pre>
+<p><img src="/docs/2020-08-14-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2>Acknowledgements</h2>
