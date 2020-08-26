@@ -1,8 +1,8 @@
 ---
 title: 'Introducing mlr3cluster: Cluster Analysis Package'
-author: Damir Pulatov
+authors: ["damir-pulatov"]
 date: '2020-08-26'
-slug: mlr3cluster,tutorial,cluster
+slug: introducing mlr3cluster cluster analysis package
 categories: 
   - R
 tags:

@@ -1,8 +1,8 @@
 ---
 title: 'Introducing mlr3cluster: Cluster Analysis Package'
-author: Damir Pulatov
+authors: ["damir-pulatov"]
 date: '2020-08-26'
-slug: mlr3cluster,tutorial,cluster
+slug: introducing mlr3cluster cluster analysis package
 categories: 
   - R
 tags:
@@ -48,13 +48,13 @@ preds = learner$predict(task = task)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 50 observations:
 ##     row_id partition
-##          1         2
-##          2         2
-##          3         2
+##          1         1
+##          2         1
+##          3         1
 ## ---                 
-##         48         1
-##         49         1
-##         50         1</code></pre>
+##         48         2
+##         49         2
+##         50         2</code></pre>
 </div>
 <div id="integrated-learners" class="section level2">
 <h2>Integrated Learners</h2>
@@ -214,13 +214,13 @@ preds = learner$predict(task, row_ids = test_set)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 10 observations:
 ##     row_id partition
-##          6         2
+##          4         2
 ##          8         2
-##         17         1
+##         12         1
 ## ---                 
-##         40         2
-##         41         1
-##         47         1</code></pre>
+##         33         2
+##         34         1
+##         44         1</code></pre>
 </div>
 <div id="evaluation" class="section level2">
 <h2>Evaluation</h2>
@@ -230,7 +230,7 @@ Below is an example on how to use built-in measures to quantify the cluster “g
 <pre class="r"><code>measure = mlr_measures$get(&quot;clust.silhouette&quot;)
 preds$score(measure, task)</code></pre>
 <pre><code>## clust.silhouette 
-##        0.6432285</code></pre>
+##        0.5188726</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
