@@ -5,13 +5,13 @@ date: '2020-08-26'
 slug: introducing mlr3cluster cluster analysis package
 categories: 
   - R
-tags:
+tags: 
   - mlr3
   - mlr3cluster
   - mlr3viz
   - cluster analysis
   - tutorial
-output:
+output: 
 blogdown::html_page:
   toc: true
 ---
@@ -144,15 +144,29 @@ preds = learner$predict(task, row_ids = test_set)
 preds
 ```
 
-## Evaluation
+## Benchmarking and Evaluation
 
 To assess the quality of any machine learning experiment, you need to choose an evaluation metric that 
 makes the most sense. 
-Below is an example on how to use built-in measures to quantify the cluster "goodness".  
+Let's design an experiment that will allow you to compare the performance of three different clusteres on the same task. 
+The mlr3 library provides benchmarking functionality that lets you create such experiments.  
 
 ```{r}
-measure = mlr_measures$get("clust.silhouette")
-preds$score(measure, task)
+# design an experiment by specifying task(s), learner(s), resampling method(s)
+design = benchmark_grid(tasks = tsk("usarrests"),
+                        learners = list(lrn("clust.kmeans", centers = 3L), 
+                                        lrn("clust.pam", k = 3L), 
+                                        lrn("clust.cmeans", centers = 3L)),
+                        resamplings = rsmp("holdout"))
+print(design)
+
+# execute benchmark
+bmr = benchmark(design)
+
+# define measure
+measures = list(msr("clust.silhouette"))
+
+bmr$aggregate(measures)
 ```
 
   

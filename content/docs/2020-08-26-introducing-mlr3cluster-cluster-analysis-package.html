@@ -5,13 +5,13 @@ date: '2020-08-26'
 slug: introducing mlr3cluster cluster analysis package
 categories: 
   - R
-tags:
+tags: 
   - mlr3
   - mlr3cluster
   - mlr3viz
   - cluster analysis
   - tutorial
-output:
+output: 
 blogdown::html_page:
   toc: true
 ---
@@ -214,23 +214,50 @@ preds = learner$predict(task, row_ids = test_set)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 10 observations:
 ##     row_id partition
-##          4         2
-##          8         2
-##         12         1
+##          2         2
+##         10         2
+##         16         1
 ## ---                 
-##         33         2
 ##         34         1
-##         44         1</code></pre>
+##         39         1
+##         42         2</code></pre>
 </div>
-<div id="evaluation" class="section level2">
-<h2>Evaluation</h2>
+<div id="benchmarking-and-evaluation" class="section level2">
+<h2>Benchmarking and Evaluation</h2>
 <p>To assess the quality of any machine learning experiment, you need to choose an evaluation metric that
 makes the most sense.
-Below is an example on how to use built-in measures to quantify the cluster “goodness”.</p>
-<pre class="r"><code>measure = mlr_measures$get(&quot;clust.silhouette&quot;)
-preds$score(measure, task)</code></pre>
-<pre><code>## clust.silhouette 
-##        0.5188726</code></pre>
+Let’s design an experiment that will allow you to compare the performance of three different clusteres on the same task.
+The mlr3 library provides benchmarking functionality that lets you create such experiments.</p>
+<pre class="r"><code># design an experiment by specifying task(s), learner(s), resampling method(s)
+design = benchmark_grid(tasks = tsk(&quot;usarrests&quot;),
+                        learners = list(lrn(&quot;clust.kmeans&quot;, centers = 3L), 
+                                        lrn(&quot;clust.pam&quot;, k = 3L), 
+                                        lrn(&quot;clust.cmeans&quot;, centers = 3L)),
+                        resamplings = rsmp(&quot;holdout&quot;))
+print(design)</code></pre>
+<pre><code>##               task                  learner              resampling
+## 1: &lt;TaskClust[40]&gt; &lt;LearnerClustKMeans[30]&gt; &lt;ResamplingHoldout[19]&gt;
+## 2: &lt;TaskClust[40]&gt;    &lt;LearnerClustPAM[30]&gt; &lt;ResamplingHoldout[19]&gt;
+## 3: &lt;TaskClust[40]&gt; &lt;LearnerClustCMeans[30]&gt; &lt;ResamplingHoldout[19]&gt;</code></pre>
+<pre class="r"><code># execute benchmark
+bmr = benchmark(design)</code></pre>
+<pre><code>## INFO  [18:36:11.906] Benchmark with 3 resampling iterations 
+## INFO  [18:36:11.960] Applying learner &#39;clust.kmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [18:36:11.972] Applying learner &#39;clust.pam&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [18:36:11.979] Applying learner &#39;clust.cmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [18:36:12.061] Finished benchmark</code></pre>
+<pre class="r"><code># define measure
+measures = list(msr(&quot;clust.silhouette&quot;))
+
+bmr$aggregate(measures)</code></pre>
+<pre><code>##    nr      resample_result   task_id   learner_id resampling_id iters
+## 1:  1 &lt;ResampleResult[18]&gt; usarrests clust.kmeans       holdout     1
+## 2:  2 &lt;ResampleResult[18]&gt; usarrests    clust.pam       holdout     1
+## 3:  3 &lt;ResampleResult[18]&gt; usarrests clust.cmeans       holdout     1
+##    clust.silhouette
+## 1:        0.5321890
+## 2:        0.3369116
+## 3:        0.4199677</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
