@@ -19,10 +19,8 @@ blogdown::html_page:
 
 
 <p>Tired of learning to use multiple packages to access clustering algorithms?</p>
-<p>Using different packages makes it difficult to compare the performance of
-clusterers?</p>
-<p>It would be great to have just one package that makes interfacing
-all things clustering easy?</p>
+<p>Using different packages makes it difficult to compare the performance of clusterers?</p>
+<p>It would be great to have just one package that makes interfacing all things clustering easy?</p>
 <p><a href="https://github.com/mlr-org/mlr3cluster">mlr3cluster</a> to the rescue!</p>
 <p>mlr3cluster is a cluster analysis extention package within the mlr3 ecosystem.
 It is a successsor of mlr’s cluster capabilities in spirit and functionality.</p>
@@ -35,8 +33,7 @@ See the chapters 1-2 of the <a href="https://mlr3book.mlr-org.com/">mlr3book</a>
 </div>
 <div id="getting-started" class="section level2">
 <h2>Getting Started</h2>
-<p>Assuming you know all the basics and you’ve installed the package,
-here’s an example on how to perform k-means clustering on a classic <a href="https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/USArrests.html">usarrests</a> data set:</p>
+<p>Assuming you know all the basics and you’ve installed the package, here’s an example on how to perform k-means clustering on a classic <a href="https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/USArrests.html">usarrests</a> data set:</p>
 <pre class="r"><code>library(mlr3)
 library(mlr3cluster)
 
@@ -48,13 +45,13 @@ preds = learner$predict(task = task)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 50 observations:
 ##     row_id partition
-##          1         1
-##          2         1
-##          3         1
+##          1         2
+##          2         2
+##          3         2
 ## ---                 
-##         48         2
-##         49         2
-##         50         2</code></pre>
+##         48         1
+##         49         1
+##         50         1</code></pre>
 </div>
 <div id="integrated-learners" class="section level2">
 <h2>Integrated Learners</h2>
@@ -197,11 +194,9 @@ learner$param_set</code></pre>
 </div>
 <div id="train-and-predict" class="section level2">
 <h2>Train and Predict</h2>
-<p>The “train” method is simply creating a model with cluster assignments for data, while
-the “predict” method’s functionality varies depending on the clusterer in question.
+<p>The “train” method is simply creating a model with cluster assignments for data, while the “predict” method’s functionality varies depending on the clusterer in question.
 Read the each learner’s documentation for details.</p>
-<p>For example, the <code>kmeans</code> learner’s predict method uses <code>clue::cl_predict</code> which performs cluster assignments for new data
-by looking at the “closest” neighbors of the new observations.</p>
+<p>For example, the <code>kmeans</code> learner’s predict method uses <code>clue::cl_predict</code> which performs cluster assignments for new data by looking at the “closest” neighbors of the new observations.</p>
 <p>Following the example from the previous section:</p>
 <pre class="r"><code>task = mlr_tasks$get(&quot;usarrests&quot;)
 train_set = sample(task$nrow, 0.8 * task$nrow)
@@ -215,37 +210,38 @@ preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 10 observations:
 ##     row_id partition
 ##          2         2
-##         10         2
-##         16         1
+##          4         2
+##          9         2
 ## ---                 
-##         34         1
-##         39         1
+##         40         2
+##         41         1
 ##         42         2</code></pre>
 </div>
 <div id="benchmarking-and-evaluation" class="section level2">
 <h2>Benchmarking and Evaluation</h2>
-<p>To assess the quality of any machine learning experiment, you need to choose an evaluation metric that
-makes the most sense.
+<p>To assess the quality of any machine learning experiment, you need to choose an evaluation metric that makes the most sense.
 Let’s design an experiment that will allow you to compare the performance of three different clusteres on the same task.
 The mlr3 library provides benchmarking functionality that lets you create such experiments.</p>
 <pre class="r"><code># design an experiment by specifying task(s), learner(s), resampling method(s)
-design = benchmark_grid(tasks = tsk(&quot;usarrests&quot;),
-                        learners = list(lrn(&quot;clust.kmeans&quot;, centers = 3L), 
-                                        lrn(&quot;clust.pam&quot;, k = 3L), 
-                                        lrn(&quot;clust.cmeans&quot;, centers = 3L)),
-                        resamplings = rsmp(&quot;holdout&quot;))
+design = benchmark_grid(
+  tasks = tsk(&quot;usarrests&quot;),
+  learners = list(
+    lrn(&quot;clust.kmeans&quot;, centers = 3L),
+    lrn(&quot;clust.pam&quot;, k = 3L),
+    lrn(&quot;clust.cmeans&quot;, centers = 3L)),
+  resamplings = rsmp(&quot;holdout&quot;))
 print(design)</code></pre>
 <pre><code>##               task                  learner              resampling
-## 1: &lt;TaskClust[40]&gt; &lt;LearnerClustKMeans[30]&gt; &lt;ResamplingHoldout[19]&gt;
-## 2: &lt;TaskClust[40]&gt;    &lt;LearnerClustPAM[30]&gt; &lt;ResamplingHoldout[19]&gt;
-## 3: &lt;TaskClust[40]&gt; &lt;LearnerClustCMeans[30]&gt; &lt;ResamplingHoldout[19]&gt;</code></pre>
+## 1: &lt;TaskClust[41]&gt; &lt;LearnerClustKMeans[30]&gt; &lt;ResamplingHoldout[19]&gt;
+## 2: &lt;TaskClust[41]&gt;    &lt;LearnerClustPAM[30]&gt; &lt;ResamplingHoldout[19]&gt;
+## 3: &lt;TaskClust[41]&gt; &lt;LearnerClustCMeans[30]&gt; &lt;ResamplingHoldout[19]&gt;</code></pre>
 <pre class="r"><code># execute benchmark
 bmr = benchmark(design)</code></pre>
-<pre><code>## INFO  [18:36:11.906] Benchmark with 3 resampling iterations 
-## INFO  [18:36:11.960] Applying learner &#39;clust.kmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
-## INFO  [18:36:11.972] Applying learner &#39;clust.pam&#39; on task &#39;usarrests&#39; (iter 1/1) 
-## INFO  [18:36:11.979] Applying learner &#39;clust.cmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
-## INFO  [18:36:12.061] Finished benchmark</code></pre>
+<pre><code>## INFO  [10:08:56.426] Benchmark with 3 resampling iterations 
+## INFO  [10:08:56.480] Applying learner &#39;clust.kmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [10:08:56.494] Applying learner &#39;clust.pam&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [10:08:56.502] Applying learner &#39;clust.cmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [10:08:56.583] Finished benchmark</code></pre>
 <pre class="r"><code># define measure
 measures = list(msr(&quot;clust.silhouette&quot;))
 
@@ -255,9 +251,9 @@ bmr$aggregate(measures)</code></pre>
 ## 2:  2 &lt;ResampleResult[18]&gt; usarrests    clust.pam       holdout     1
 ## 3:  3 &lt;ResampleResult[18]&gt; usarrests clust.cmeans       holdout     1
 ##    clust.silhouette
-## 1:        0.5321890
-## 2:        0.3369116
-## 3:        0.4199677</code></pre>
+## 1:        0.5219239
+## 2:        0.5741894
+## 3:        0.4605935</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
@@ -298,16 +294,16 @@ learner$train(task)
 autoplot(learner)</code></pre>
 <p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code># More advanced options from `factoextra::fviz_dend`
-autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE, rect_border = c(&quot;red&quot;, &quot;cyan&quot;))</code></pre>
+autoplot(learner,
+  k = learner$param_set$values$k, rect_fill = TRUE,
+  rect = TRUE, rect_border = c(&quot;red&quot;, &quot;cyan&quot;))</code></pre>
 <p><img src="/docs/2020-08-26-introducing-mlr3cluster-cluster-analysis-package_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 </div>
 <div id="further-development" class="section level2">
 <h2>Further Development</h2>
-<p>If you have any issues with the package or would like to request a new feature, feel free to
-open an issue <a href="https://github.com/mlr-org/mlr3cluster/issues">here</a>.</p>
+<p>If you have any issues with the package or would like to request a new feature, feel free to open an issue <a href="https://github.com/mlr-org/mlr3cluster/issues">here</a>.</p>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2>Acknowledgements</h2>
-<p>I would like to thank the following people for their help and guidance:
-Michel Lang, Lars Kotthoff, Martin Binder, Patrick Schratz, Bernd Bischl.</p>
+<p>I would like to thank the following people for their help and guidance: Michel Lang, Lars Kotthoff, Martin Binder, Patrick Schratz, Bernd Bischl.</p>
 </div>

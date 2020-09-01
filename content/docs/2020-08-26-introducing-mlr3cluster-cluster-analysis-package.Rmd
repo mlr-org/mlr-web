@@ -18,11 +18,9 @@ blogdown::html_page:
 
 Tired of learning to use multiple packages to access clustering algorithms? 
 
-Using different packages makes it difficult to compare the performance of 
-clusterers?
+Using different packages makes it difficult to compare the performance of clusterers?
 
-It would be great to have just one package that makes interfacing 
-all things clustering easy? 
+It would be great to have just one package that makes interfacing all things clustering easy? 
 
 [mlr3cluster](https://github.com/mlr-org/mlr3cluster) to the rescue!
 
@@ -41,8 +39,7 @@ devtools::install_github("https://github.com/mlr-org/mlr3cluster")
 
 ## Getting Started
 
-Assuming you know all the basics and you've installed the package, 
-here's an example on how to perform k-means clustering on a classic [usarrests](https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/USArrests.html) data set:
+Assuming you know all the basics and you've installed the package, here's an example on how to perform k-means clustering on a classic [usarrests](https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/USArrests.html) data set:
 
 ```{r intro}
 library(mlr3)
@@ -123,12 +120,10 @@ learner$param_set$values = list(centers = 3L, algorithm = "Lloyd", iter.max = 10
 
 
 ## Train and Predict
-The "train" method is simply creating a model with cluster assignments for data, while 
-the "predict" method's functionality varies depending on the clusterer in question. 
+The "train" method is simply creating a model with cluster assignments for data, while the "predict" method's functionality varies depending on the clusterer in question. 
 Read the each learner's documentation for details. 
 
-For example, the `kmeans` learner's predict method uses `clue::cl_predict` which performs cluster assignments for new data 
-by looking at the "closest" neighbors of the new observations. 
+For example, the `kmeans` learner's predict method uses `clue::cl_predict` which performs cluster assignments for new data by looking at the "closest" neighbors of the new observations. 
 
 Following the example from the previous section:
 
@@ -146,18 +141,19 @@ preds
 
 ## Benchmarking and Evaluation
 
-To assess the quality of any machine learning experiment, you need to choose an evaluation metric that 
-makes the most sense. 
+To assess the quality of any machine learning experiment, you need to choose an evaluation metric that makes the most sense. 
 Let's design an experiment that will allow you to compare the performance of three different clusteres on the same task. 
 The mlr3 library provides benchmarking functionality that lets you create such experiments.  
 
 ```{r}
 # design an experiment by specifying task(s), learner(s), resampling method(s)
-design = benchmark_grid(tasks = tsk("usarrests"),
-                        learners = list(lrn("clust.kmeans", centers = 3L), 
-                                        lrn("clust.pam", k = 3L), 
-                                        lrn("clust.cmeans", centers = 3L)),
-                        resamplings = rsmp("holdout"))
+design = benchmark_grid(
+  tasks = tsk("usarrests"),
+  learners = list(
+    lrn("clust.kmeans", centers = 3L),
+    lrn("clust.pam", k = 3L),
+    lrn("clust.cmeans", centers = 3L)),
+  resamplings = rsmp("holdout"))
 print(design)
 
 # execute benchmark
@@ -222,13 +218,13 @@ learner$train(task)
 autoplot(learner)
 
 # More advanced options from `factoextra::fviz_dend`
-autoplot(learner, k = learner$param_set$values$k, rect_fill = TRUE, rect = TRUE, rect_border = c("red", "cyan"))
+autoplot(learner,
+  k = learner$param_set$values$k, rect_fill = TRUE,
+  rect = TRUE, rect_border = c("red", "cyan"))
 ```
 
 ## Further Development
-If you have any issues with the package or would like to request a new feature, feel free to 
-open an issue [here](https://github.com/mlr-org/mlr3cluster/issues). 
+If you have any issues with the package or would like to request a new feature, feel free to open an issue [here](https://github.com/mlr-org/mlr3cluster/issues). 
 
 ## Acknowledgements
-I would like to thank the following people for their help and guidance: 
-Michel Lang, Lars Kotthoff, Martin Binder, Patrick Schratz, Bernd Bischl. 
+I would like to thank the following people for their help and guidance: Michel Lang, Lars Kotthoff, Martin Binder, Patrick Schratz, Bernd Bischl. 
