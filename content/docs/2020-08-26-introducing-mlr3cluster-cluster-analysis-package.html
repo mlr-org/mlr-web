@@ -1,7 +1,7 @@
 ---
 title: 'Introducing mlr3cluster: Cluster Analysis Package'
 authors: ["damir-pulatov"]
-date: '2020-08-26'
+date: '2020-10-05'
 slug: introducing mlr3cluster cluster analysis package
 categories: 
   - R
@@ -209,13 +209,13 @@ preds = learner$predict(task, row_ids = test_set)
 preds</code></pre>
 <pre><code>## &lt;PredictionClust&gt; for 10 observations:
 ##     row_id partition
-##         11         2
-##         12         2
-##         13         1
+##          1         1
+##          3         1
+##          4         1
 ## ---                 
-##         34         2
-##         42         1
-##         46         2</code></pre>
+##         31         1
+##         32         1
+##         44         2</code></pre>
 </div>
 <div id="benchmarking-and-evaluation" class="section level2">
 <h2>Benchmarking and Evaluation</h2>
@@ -237,11 +237,11 @@ print(design)</code></pre>
 ## 3: &lt;TaskClust[41]&gt; &lt;LearnerClustCMeans[30]&gt; &lt;ResamplingHoldout[19]&gt;</code></pre>
 <pre class="r"><code># execute benchmark
 bmr = benchmark(design)</code></pre>
-<pre><code>## INFO  [18:05:36.250] Benchmark with 3 resampling iterations 
-## INFO  [18:05:36.295] Applying learner &#39;clust.kmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
-## INFO  [18:05:36.329] Applying learner &#39;clust.pam&#39; on task &#39;usarrests&#39; (iter 1/1) 
-## INFO  [18:05:36.356] Applying learner &#39;clust.cmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
-## INFO  [18:05:36.395] Finished benchmark</code></pre>
+<pre><code>## INFO  [18:11:46.839] Benchmark with 3 resampling iterations 
+## INFO  [18:11:46.883] Applying learner &#39;clust.kmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [18:11:46.894] Applying learner &#39;clust.pam&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [18:11:46.907] Applying learner &#39;clust.cmeans&#39; on task &#39;usarrests&#39; (iter 1/1) 
+## INFO  [18:11:46.923] Finished benchmark</code></pre>
 <pre class="r"><code># define measure
 measures = list(msr(&quot;clust.silhouette&quot;))
 
@@ -251,9 +251,9 @@ bmr$aggregate(measures)</code></pre>
 ## 2: &lt;ResampleResult[19]&gt;  2 usarrests    clust.pam       holdout     1
 ## 3: &lt;ResampleResult[19]&gt;  3 usarrests clust.cmeans       holdout     1
 ##    clust.silhouette
-## 1:        0.4544007
-## 2:        0.4463632
-## 3:        0.4516394</code></pre>
+## 1:        0.4263124
+## 2:        0.4986824
+## 3:        0.5038553</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
