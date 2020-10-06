@@ -28,7 +28,7 @@ mlr3cluster is a cluster analysis extention package within the mlr3 ecosystem.
 It is a successsor of mlr's cluster capabilities in spirit and functionality. 
 
 In order to understand the following introduction and tutorial you need to be familiar with R6 and mlr3 basics. 
-See the chapters 1-2 of the [mlr3book](https://mlr3book.mlr-org.com/) if you need a refresher. 
+See chapters 1-2 of the [mlr3book](https://mlr3book.mlr-org.com/) if you need a refresher. 
 
 ## Installation
 To install the package, run the following code chunk:
@@ -168,13 +168,11 @@ bmr$aggregate(measures)
   
 ## Visualization
 
-How do you visualize the tasks and the results of clustering experiments? 
-The `mlr3viz` package now provides that functionality for cluster analysis.   
-
-First, install [mlr3viz](https://github.com/damirpolat/mlr3viz/tree/cluster) from a forked repository (still work in progress).
+How do you visualize clustering tasks and results? 
+The `mlr3viz` package (version >= 0.40) now provides that functionality.   
 
 ```{r echo = TRUE, results = FALSE, message = FALSE, warning = FALSE}
-devtools::install_github("https://github.com/damirpolat/mlr3viz/tree/cluster")
+install.packages("mlr3viz")
 ```
 
 
