@@ -9,7 +9,7 @@ theme = "minimo"
 disqusShortname = ""
 googleAnalytics = ""
 
-relativeurls = true
+relativeurls = false
 canonifyurls = true
 
 Paginate = 10
@@ -261,3 +261,4 @@ hrefTargetBlank = true
 lang = "en"
 languageName = "English"
 weight = 1
+
