@@ -12,7 +12,7 @@
     {{ with .OutputFormats.Get "RSS" }}
         {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}
-    {{ range .Pages where "Params.hidden" "ne" "true" }}
+    {{ range .Pages where not Params.hidden }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
