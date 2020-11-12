@@ -9,4 +9,5 @@ menu:
 weight: -230
 ---
 
-- https://www.r-bloggers.com
+- https://www.r-bloggers.com/
+- https://rweekly.org/
