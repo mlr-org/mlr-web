@@ -15,20 +15,20 @@ output:
 blogdown::html_page:
   toc: true
 ---
-We are happy to announce that a new extension package has joined the CRAN family of mlr3 packages.
+We are happy to announce that a new extension package has joined the CRAN family of [mlr3](https://mlr3.mlr-org.com/) packages.
 [mlr3spatiotempcv](https://mlr3spatiotempcv.mlr-org.com/) was in the works for more than a year and adds spatiotemporal resampling methods to the mlr3 ecosystem.
 
-Such dedicated resampling methods make it possible to retrieve biased-reduced performance estimates in cross-validation scenarios when working with spatial, temporal or spatiotemporal datasets.
+Such dedicated resampling methods make it possible to retrieve biased-reduced performance estimates in cross-validation scenarios when working with spatial, temporal, or spatiotemporal datasets.
 [mlr3spatiotempcv](https://mlr3spatiotempcv.mlr-org.com/) does not implement new methods but rather attempts to collect existing methods.
 
-So far, applying such methods in both R and the mlr ecosystem was not particular easy since they were spread across various R packages.
-Usually every R package uses a slightly different syntax for the required objects and the returned results.
-This not only leads to an inconvenient single use experience but is also unpractical when working in an overarching ecosystem such as mlr3.
+So far, applying such methods in both R and the mlr ecosystem was not particularly easy since they were spread across various R packages.
+Usually, every R package uses a slightly different syntax for the required objects and the returned results.
+This not only leads to an inconvenient single-use experience but is also unpractical when working in an overarching ecosystem such as mlr3.
 
 We hope that with the release of this package users are now able to seamlessly work with spatiotemporal data in mlr3.
 Please file issues and suggestions in the [issues pane](https://github.com/mlr-org/mlr3spatiotempcv/issues) of the package.
 
-For a quick and rather technial introduction please see the ["Get Started"](https://mlr3spatiotempcv.mlr-org.com/articles/mlr3spatiotempcv.html) vignette.
+For a quick and rather technical introduction please see the ["Get Started"](https://mlr3spatiotempcv.mlr-org.com/articles/mlr3spatiotempcv.html) vignette.
 For more detailed information and a detailed walk-through, see the ["Spatiotemporal Analysis"](https://mlr3book.mlr-org.com/spatiotemporal.html#spatiotemporal) section in the mlr3book.
 
 To finish with something visual, a simple example which showcases the visualization capabilities of [mlr3spatiotempcv](https://mlr3spatiotempcv.mlr-org.com/) for different partitioning methods (random (non-spatial) partitioning (Fig.1) vs. k-means based partitioning (spatial) (Fig. 2)):
