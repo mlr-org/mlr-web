@@ -2,7 +2,13 @@ baseURL = "https://mlr-org.com/"
 title = "Machine Learning in R"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = [
+    "\\.Rmd$",
+    "\\.Rmarkdown$",
+    "_cache$",
+    "\\.knit\\.md$",
+    "\\.utf8\\.md$",
+]
 
 theme = "minimo"
 
@@ -26,6 +32,11 @@ enableEmoji = true
 
 # Missing translations will default to this content language
 defaultContentLanguage = "en"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params.info]
 description = ""
@@ -60,10 +71,12 @@ enable = true
 
 [params.widgets]
 homepage = ["recent_posts"]
-sidebar = ["about",
-           #"search",
-           "sidebar_menu",
-           "taxonomy_cloud"]
+sidebar = [
+    "about",
+    #"search",
+    "sidebar_menu",
+    "taxonomy_cloud",
+]
 footer = ["social_menu"]
 
 [params.opengraph.facebook]
@@ -261,4 +274,3 @@ hrefTargetBlank = true
 lang = "en"
 languageName = "English"
 weight = 1
-
