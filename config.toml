@@ -50,7 +50,7 @@ gopher = "" # used in 404 template ( Generator: https://gopherize.me )
 
 [params.copyright]
 prefix = ""
-holder = "Bernd Bischl"
+holder = "mlr-org team"
 startYear = "2013"
 suffix = ""
 
