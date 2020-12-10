@@ -50,7 +50,7 @@ gopher = "" # used in 404 template ( Generator: https://gopherize.me )
 
 [params.copyright]
 prefix = ""
-holder = "mlr-org team"
+holder = 'mlr-org team'
 startYear = "2013"
 suffix = ""
 
@@ -156,6 +156,12 @@ name = "RSS"
 weight = -10
 #identifier = "repository"
 url = "/index.xml"
+
+[[menu.main]]
+name = "Sponsor 'mlr-org' (GitHub)"
+weight = -10
+#identifier = "repository"
+url = 'https://github.com/sponsors/mlr-org'
 
 [[menu.main]]
 name = "Packages"
