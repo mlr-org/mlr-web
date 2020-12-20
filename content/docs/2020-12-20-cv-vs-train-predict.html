@@ -1,0 +1,92 @@
+---
+title: 'The Cross-Validation - Train/Predict misunderstanding'
+authors: ["patrick-schratz"]
+date: '2020-12-20'
+slug: cv-vs-predict
+toc: true
+categories:
+  - R
+tags:
+  - mlr3
+  - cross-validation
+  - train
+  - predict
+output:
+  html_document:
+    toc: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Over the past years I’ve seen multiple posts on Stackoverflow and our GitHub issues which suffer from a conceptual misunderstanding: cross-validation (CV) vs. train/predict.</p>
+<p>Because train/predict is an essential part of cross-validation, the point might not be so obvious.
+I’ll try to make it more clear by providing some exemplary questions:</p>
+<ul>
+<li><p>“I’ve done cross-validation. How do I decided which model to use for prediction?”</p></li>
+<li><p>“I’ve used the <code>resample()</code> function. How do I decided which hyperparameters are best?”</p></li>
+<li><p>“I’ve benchmarked some algorithms. How do I find the most important features?”</p></li>
+</ul>
+<p>All of these questions have a common problem: users trying to extract something out of the CV to work with it afterwards.
+They want to use the “best model” or find the “most important features” or similar.
+The thoughtful reader might already infer by now that doing so is probably problematic.</p>
+<p>And yes, it is.
+One should not try to extract a single component (be it a model, a set of hyperparameters or a set of predictors) out of a CV.</p>
+<div id="what-happens-in-a-cv-stays-in-a-cv" class="section level2">
+<h2>What happens in a CV, stays in a CV</h2>
+<p>Here’s why:</p>
+<p>Every model fit and evaluation in a CV happens on a subset of the main dataset.</p>
+<ol style="list-style-type: decimal">
+<li>The dataset is split by a specific method (e.g. randomly) into pre-selected partitions (e.g. 5).</li>
+<li>(Optional) Optimal hyperparameters are searched and feature selection is performed (in another inner CV cycle)</li>
+<li>The model is fit on the training set and predicts on the test set</li>
+<li>The performance of this prediction is evaluated (because “truth” (= test set) is known)</li>
+</ol>
+<p>This is done multiple times.
+Every time, the dataset is different.
+Every time, different hyperparameters are found.
+Every time - ok you got it by now.</p>
+<p>None of these training/test set combinations represent overall “the best” choice - they only operate in their specific data split setting.
+There is also no way to find a model (or similar) within a CV with respect to these criteria.</p>
+<p>The <strong>main reason</strong> for this is that in all cases the fitted model was trained on only a subset of the data available.
+This was done to evaluate the performance on a subset of the data - because “truth” is known for the hold back data.
+Otherwise there would be no need to hide precious data from model fitting.</p>
+</div>
+<div id="train-predict" class="section level2">
+<h2>Train &amp; Predict</h2>
+<p>The main purpose of fitting a model is make predictions with it.
+For this, you want to use all available data to fit the most robust model possible.
+And this is exactly what you should do: take all your data, optimize your hyperparameters, eventually conduct feature selection, and then fit the model.</p>
+<p>Yes, do it again - by using the <code>train()</code> and <code>predict()</code> functions (and their tuning wrappers/pipelines) directly.
+Do not use <code>resample()</code> or <code>benchmark()</code> - these are for CV purposes!</p>
+<p>Then, take this one model and predict into <strong>unknown space</strong>.
+In this scenario, you cannot know how good your predictions will be because there is no “truth” to evaluate against.
+But this is perfectly fine.
+This is why a CV was done (beforehand): to have a somewhat unbiased estimate of how your model will perform under different conditions.
+You can also analyse the hyperparameters or evaluate the results of a feature selection from this model<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Be careful though: your final model which you fit and predicted into unknown space might exactly have this performance - but it might also be completely off.
+You will never find out unless you eventually collect data at some point which you can compare against the predictions made by your model.
+You can only state that, with a given uncertainty, your model will have a performance of X when predicting.</p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>To make if fully clear again: CV and train/predict are two separate things.
+Think of them as two different buckets with no relation to each other.</p>
+<ul>
+<li>CV is done to get an estimate of a model’s performance.</li>
+<li>Train/predict is done to create the final predictions (which your boss might use to make some decisions on).</li>
+</ul>
+<p>CV is used to explain the performance of your fitted model (which is a single fit of the chosen algorithm on all of your data points).</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>While it might be ok to look at feature selections of single model fits, it is usually recommended to fit multiple models and look at the average variable important outcomes - e.g. by doing a permutation-based features selection.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
