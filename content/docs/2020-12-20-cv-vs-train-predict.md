@@ -11,9 +11,6 @@ tags:
   - cross-validation
   - train
   - predict
-# output:
-#   html_document:
-#     toc: true
 ---
 
 ## Introduction
