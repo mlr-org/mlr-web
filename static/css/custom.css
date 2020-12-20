@@ -17,46 +17,52 @@
 
 /* code block settings */
 
-code, kbd, pre, samp, var {
-    font-family: Menlo,Consolas,Monaco,Ubuntu Mono,Liberation Mono,Lucida Console,monospace;
-    color: black;
-    background: #e1e4e8c7;
-    border: 0px solid #dcdcdc;
-    padding: 0.2em .4em;
-    font-size: .85em;
+code,
+kbd,
+pre,
+samp,
+var {
+  font-family: Menlo, Consolas, Monaco, Ubuntu Mono, Liberation Mono,
+    Lucida Console, monospace;
+  color: black;
+  background: #e1e4e8c7;
+  border: 0px solid #dcdcdc;
+  padding: 0.2em 0.4em;
+  font-size: 0.85em;
 }
 
 .hljs {
-    display: block;
-    overflow-x: auto;
-    padding: 0.5em;
-    background: #e1e4e8c7 !important;
-    color: black;
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #e1e4e8c7 !important;
+  color: black;
 }
 
 body {
-     font-size: 1.0em;
+  font-size: 1em;
 }
 
 /* move hamburg button to left side */
 .main .sidebar-toggler {
-    padding: 0;
-    position: absolute;
-    left: 15px;
-	top: 15px;
+  padding: 0;
+  position: absolute;
+  left: 15px;
+  top: 15px;
 }
 
 /* increase top margins in articles */
 .header-info {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 /* space between top and right blue separation line */
-.sep-after:after, .sep-before:before {
-    content: "";
-    display: block;
-    width: 4em;
-    margin-top: 1.35em;
+.sep-after:after,
+.sep-before:before {
+  content: "";
+  display: block;
+  width: 4em;
+  margin-top: 1.35em;
 }
 
 /* makes the whole sub-menu clickable, not just the "+" button */
@@ -74,17 +80,27 @@ body {
   top: 3px;
 }
 
-.comment-content a, .entry-content a {
-    border-bottom: none;
-    color: #03638E;
+.comment-content a,
+.entry-content a {
+  border-bottom: none;
+  color: #03638e;
 }
 
 /* no uppercase only menu */
 .menu li {
-    text-transform: none;
+  text-transform: none;
 }
 
-.comment-content a, .entry-content a {
-    border-bottom: none;
-    color: #03638E;
+.comment-content a,
+.entry-content a {
+  border-bottom: none;
+  color: #03638e;
+}
+
+h2 {
+  margin-top: 15px;
+}
+
+.entry-content h2:first-child {
+  margin-top: 15px;
 }
