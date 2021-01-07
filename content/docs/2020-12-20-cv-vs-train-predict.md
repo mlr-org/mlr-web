@@ -1,5 +1,5 @@
 ---
-title: 'The Cross-Validation - Train/Predict misunderstanding'
+title: 'The "Cross-Validation - Train/Predict" misunderstanding'
 authors: ["patrick-schratz"]
 date: '2020-12-20'
 slug: cv-vs-predict
