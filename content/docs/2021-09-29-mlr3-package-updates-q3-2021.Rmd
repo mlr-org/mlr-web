@@ -7,6 +7,9 @@ categories:
 tags:
   - mlr3-package-updates
 authors: ["patrick-schratz"]
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 Due to the high amount of packages in the mlr3 ecosystem, it is hard to keep up with the latest changes across all packages.
