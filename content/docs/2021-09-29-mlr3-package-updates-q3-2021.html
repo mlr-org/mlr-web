@@ -1,0 +1,165 @@
+---
+title: mlr3 package updates - Q3/2021
+date: '2021-10-01'
+slug: mlr3-package-updates-q3-2021
+categories:
+  - R
+tags:
+  - mlr3-package-updates
+authors: ["patrick-schratz"]
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Due to the high amount of packages in the mlr3 ecosystem, it is hard to keep up with the latest changes across all packages.
+This post tries to tackle this issue by listing all release notes of the packages most recent releases <strong>in the last quarter</strong>.
+Note that only CRAN packages are listed here and the sort order is alphabetically.</p>
+<p>Interval: 2021-07-01 - 2021-10-01</p>
+<div id="bbotk-0.4.0---httpsgithub.commlr-orgbbotk" class="section level1">
+<h1>bbotk 0.4.0 - <a href="https://github.com/mlr-org/bbotk" class="uri">https://github.com/mlr-org/bbotk</a></h1>
+<p><strong>Description: Black-Box Optimization Toolkit</strong></p>
+<ul>
+<li>Adds non dominated sorting with hypervolume contribution to <code>Archive</code>.</li>
+<li>Allows empty search space and domain.</li>
+<li>Extended <code>TerminatorEvals</code> with an additional hyperparameter <code>k</code> to define the
+budget depending on the dimension of the search space.</li>
+<li>Adds <code>bb_optimize()</code> function for quick optimization.</li>
+<li>Adds <code>OptimizerIrace</code> from irace package.</li>
+</ul>
+</div>
+<div id="mlr3-0.12.0---httpsgithub.commlr-orgmlr3" class="section level1">
+<h1>mlr3 0.12.0 - <a href="https://github.com/mlr-org/mlr3" class="uri">https://github.com/mlr-org/mlr3</a></h1>
+<p><strong>Description: Machine Learning in R - Next Generation</strong></p>
+<ul>
+<li>New method to assign labels to columns in tasks: <code>Task$label()</code>.
+These will be used in visualizations in the future.</li>
+<li>New method to add stratification variables: <code>Task$add_strata()</code>.</li>
+<li>New helper function <code>partition()</code> to split a task into a training and test
+set.</li>
+<li>New standardized getter <code>loglik()</code> for class <code>Learner</code>.</li>
+<li>New measures <code>"aic"</code> and <code>"bic"</code> to compute the Akaike Information Criterion
+or the Bayesian Information Criterion, respectively.</li>
+<li>New Resampling method: <code>ResamplingCustomCV</code>. Creates a custom resampling split
+based on the levels of a user-provided factor variable.</li>
+<li>New argument <code>encapsulate</code> for <code>resample()</code> and <code>benchmark()</code> to conveniently
+enable encapsulation and also set the fallback learner to the
+featureless learner. This is simply for convenience, configuring each learner
+individually is still possible and allows a more fine-grained control (#634,
+#642).</li>
+<li>New field <code>parallel_predict</code> for <code>Learner</code> to enable parallel predictions via
+the future backend. This currently is only enabled while calling the
+<code>$predict()</code> or <code>$predict_newdata</code> methods and is disabled during <code>resample()</code>
+and <code>benchmark()</code> where you have other means to parallelize.</li>
+<li>Deprecated public (and already documented as internal) field <code>$data</code> in
+<code>ResampleResult</code> and <code>BenchmarkResult</code> to simplify the API and avoid
+confusion. The converter <code>as.data.table()</code> can be used instead to access the
+internal data.</li>
+<li>Measures now have formal hyperparameters. A popular example where this is
+required is the F1 score, now implemented with customizable <code>beta</code>.</li>
+<li>Changed default of argument <code>ordered</code> in <code>Task$data()</code> from <code>TRUE</code> to <code>FALSE</code>.</li>
+</ul>
+</div>
+<div id="mlr3cluster-0.1.2---httpsgithub.commlr-orgmlr3cluster" class="section level1">
+<h1>mlr3cluster 0.1.2 - <a href="https://github.com/mlr-org/mlr3cluster" class="uri">https://github.com/mlr-org/mlr3cluster</a></h1>
+<p><strong>Description: Cluster Extension for ‘mlr3’</strong></p>
+<ul>
+<li>Add Hclust</li>
+<li>test and doc hclust</li>
+<li>Add within sum of squares measure</li>
+<li>add doc wss</li>
+<li>code factor adaptions</li>
+</ul>
+</div>
+<div id="mlr3filters-0.4.2---httpsgithub.commlr-orgmlr3filters" class="section level1">
+<h1>mlr3filters 0.4.2 - <a href="https://github.com/mlr-org/mlr3filters" class="uri">https://github.com/mlr-org/mlr3filters</a></h1>
+<p><strong>Description: Filter Based Feature Selection for ‘mlr3’</strong></p>
+<ul>
+<li>Fixes an issue where argument <code>nfeat</code> was not passed down to {praznik} filters (#97)</li>
+</ul>
+</div>
+<div id="mlr3learners-0.5.1---httpsgithub.commlr-orgmlr3learners" class="section level1">
+<h1>mlr3learners 0.5.1 - <a href="https://github.com/mlr-org/mlr3learners" class="uri">https://github.com/mlr-org/mlr3learners</a></h1>
+<p><strong>Description: Recommended Learners for ‘mlr3’</strong></p>
+<ul>
+<li>Improved how the added hyperparameter <code>mtry.ratio</code> is converted to <code>mtry</code> to
+simplify tuning.</li>
+</ul>
+</div>
+<div id="mlr3pipelines-0.3.4---httpsgithub.commlr-orgmlr3pipelines" class="section level1">
+<h1>mlr3pipelines 0.3.4 - <a href="https://github.com/mlr-org/mlr3pipelines" class="uri">https://github.com/mlr-org/mlr3pipelines</a></h1>
+<p><strong>Description: Preprocessing Operators and Pipelines for ‘mlr3’</strong></p>
+<ul>
+<li>Stability: PipeOps don’t crash when they have python/reticulate hyperparameter values.</li>
+<li>Documentation: Titles of PipeOp documentation articles reworked.</li>
+</ul>
+</div>
+<div id="mlr3spatiotempcv-1.0.0---httpsgithub.commlr-orgmlr3spatiotempcv" class="section level1">
+<h1>mlr3spatiotempcv 1.0.0 - <a href="https://github.com/mlr-org/mlr3spatiotempcv" class="uri">https://github.com/mlr-org/mlr3spatiotempcv</a></h1>
+<p><strong>Description: Spatiotemporal Resampling Methods for ‘mlr3’</strong></p>
+<div id="breaking" class="section level2">
+<h2>Breaking</h2>
+<ul>
+<li><code>autoplot()</code>: removed argument <code>crs</code>.
+The CRS is now inferred from the supplied Task.
+Setting a different CRS than the task might lead to spurious issues and the initial idea of changing the CRS for plotting to have proper axes labeling does not apply (anymore) (#144)</li>
+</ul>
+</div>
+<div id="features" class="section level2">
+<h2>Features</h2>
+<ul>
+<li>Added <code>autoplot()</code> support for <code>ResamplingCustomCV</code> (#140)</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2>Bug fixes</h2>
+<ul>
+<li><code>"spcv_block"</code>: Assert error if folds &gt; 2 when <code>selection = "checkerboard"</code> (#150)</li>
+<li>Fixed row duplication when creating <code>TaskRegrST</code> tasks from <code>sf</code> objects (#152)</li>
+</ul>
+</div>
+<div id="miscellaneous" class="section level2">
+<h2>Miscellaneous</h2>
+<ul>
+<li>Upgrade tests to {vdiffr} 1.0.0</li>
+<li>Add {rgdal} to suggests and required it in <code>"spcv_block"</code> since it is required in {blockCV} &gt;= 2.1.4 and {sf} &gt;= 1.0</li>
+</ul>
+</div>
+</div>
+<div id="mlr3tuning-0.9.0---httpsgithub.commlr-orgmlr3tuning" class="section level1">
+<h1>mlr3tuning 0.9.0 - <a href="https://github.com/mlr-org/mlr3tuning" class="uri">https://github.com/mlr-org/mlr3tuning</a></h1>
+<p><strong>Description: Tuning for ‘mlr3’</strong></p>
+<ul>
+<li>Adds <code>AutoTuner$base_learner()</code> method to extract the base learner from
+nested learner objects.</li>
+<li><code>tune()</code> supports multi-criteria tuning.</li>
+<li>Allows empty search space.</li>
+<li>Adds <code>TunerIrace</code> from <code>irace</code> package.</li>
+<li><code>extract_inner_tuning_archives()</code> helper function to extract inner tuning
+archives.</li>
+<li>Removes <code>ArchiveTuning$extended_archive()</code> method. The <code>mlr3::ResampleResults</code> are
+joined automatically by <code>as.data.table.TuningArchive()</code> and
+<code>extract_inner_tuning_archives()</code>.</li>
+</ul>
+</div>
+<div id="mlr3verse-0.2.3---httpsgithub.commlr-orgmlr3verse" class="section level1">
+<h1>mlr3verse 0.2.3 - <a href="https://github.com/mlr-org/mlr3verse" class="uri">https://github.com/mlr-org/mlr3verse</a></h1>
+<p><strong>Description: Easily Install and Load the ‘mlr3’ Package Family</strong></p>
+<ul>
+<li>Updated reexports.</li>
+</ul>
+</div>
+<div id="mlr3viz-0.5.6---httpsgithub.commlr-orgmlr3viz" class="section level1">
+<h1>mlr3viz 0.5.6 - <a href="https://github.com/mlr-org/mlr3viz" class="uri">https://github.com/mlr-org/mlr3viz</a></h1>
+<p><strong>Description: Visualizations for ‘mlr3’</strong></p>
+<ul>
+<li>Compatibility fix for mlr3tuning.</li>
+<li>Fixed position of labels in barplot for <code>PredictionClassif</code>.</li>
+</ul>
+</div>
+<div id="mlr3viz-0.5.5" class="section level1">
+<h1>mlr3viz 0.5.5</h1>
+<ul>
+<li>Fixed another bug for ROC- and Precision-recall-curves (#79).</li>
+</ul>
+</div>

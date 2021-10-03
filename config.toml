@@ -1,4 +1,5 @@
-baseURL = "https://mlr-org.com/"
+#baseURL = "https://mlr-org.com/"
+baseURL = "/"
 title = "Machine Learning in R"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
