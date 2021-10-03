@@ -1,6 +1,6 @@
 ---
 title: mlr3 package updates - Q3/2021
-date: '2021-09-29'
+date: '2021-10-01'
 slug: mlr3-package-updates-q3-2021
 categories:
   - R
@@ -17,32 +17,38 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#bbotk-0.4.0">bbotk 0.4.0</a></li>
-<li><a href="#mlr3-0.12.0">mlr3 0.12.0</a></li>
-<li><a href="#mlr3cluster-0.1.2">mlr3cluster 0.1.2</a></li>
-<li><a href="#mlr3filters-0.4.2">mlr3filters 0.4.2</a></li>
-<li><a href="#mlr3learners-0.5.1">mlr3learners 0.5.1</a></li>
-<li><a href="#mlr3misc-0.9.5">mlr3misc 0.9.5</a></li>
-<li><a href="#mlr3pipelines-0.3.4">mlr3pipelines 0.3.4</a></li>
-<li><a href="#mlr3spatiotempcv-1.0.0">mlr3spatiotempcv 1.0.0</a>
+<li><a href="#mlr3-0.12.0---httpsgithub.commlr-orgmlr3">mlr3 0.12.0 - <span>https://github.com/mlr-org/mlr3</span></a>
+<ul>
+<li><a href="#mlr3cluster-0.1.2---httpsgithub.commlr-orgmlr3cluster">mlr3cluster 0.1.2 - <span>https://github.com/mlr-org/mlr3cluster</span></a></li>
+</ul></li>
+<li><a href="#mlr3filters-0.4.2---httpsgithub.commlr-orgmlr3filters">mlr3filters 0.4.2 - <span>https://github.com/mlr-org/mlr3filters</span></a></li>
+<li><a href="#mlr3learners-0.5.1---httpsgithub.commlr-orgmlr3learners">mlr3learners 0.5.1 - <span>https://github.com/mlr-org/mlr3learners</span></a></li>
+<li><a href="#mlr3misc-0.9.4---httpsgithub.commlr-orgmlr3misc">mlr3misc 0.9.4 - <span>https://github.com/mlr-org/mlr3misc</span></a></li>
+<li><a href="#mlr3misc-0.9.3">mlr3misc 0.9.3</a></li>
+<li><a href="#mlr3pipelines-0.3.4---httpsgithub.commlr-orgmlr3pipelines">mlr3pipelines 0.3.4 - <span>https://github.com/mlr-org/mlr3pipelines</span></a></li>
+<li><a href="#mlr3spatiotempcv-1.0.0---httpsgithub.commlr-orgmlr3spatiotempcv">mlr3spatiotempcv 1.0.0 - <span>https://github.com/mlr-org/mlr3spatiotempcv</span></a>
 <ul>
 <li><a href="#breaking">Breaking</a></li>
 <li><a href="#features">Features</a></li>
 <li><a href="#bug-fixes">Bug fixes</a></li>
 <li><a href="#miscellaneous">Miscellaneous</a></li>
 </ul></li>
-<li><a href="#mlr3tuning-0.9.0">mlr3tuning 0.9.0</a></li>
-<li><a href="#mlr3verse-0.2.3">mlr3verse 0.2.3</a></li>
-<li><a href="#mlr3viz-0.5.6">mlr3viz 0.5.6</a></li>
+<li><a href="#mlr3tuning-0.9.0---httpsgithub.commlr-orgmlr3tuning">mlr3tuning 0.9.0 - <span>https://github.com/mlr-org/mlr3tuning</span></a></li>
+<li><a href="#mlr3verse-0.2.3---httpsgithub.commlr-orgmlr3verse">mlr3verse 0.2.3 - <span>https://github.com/mlr-org/mlr3verse</span></a></li>
+<li><a href="#mlr3viz-0.5.6---httpsgithub.commlr-orgmlr3viz">mlr3viz 0.5.6 - <span>https://github.com/mlr-org/mlr3viz</span></a></li>
+<li><a href="#mlr3viz-0.5.5">mlr3viz 0.5.5</a></li>
 </ul>
 </div>
 
 <p>Due to the high amount of packages in the mlr3 ecosystem, it is hard to keep up with the latest changes across all packages.
 This post tries to tackle this issue by listing all release notes of the packages most recent releases <strong>in the last quarter</strong>.
 Note that only CRAN packages are listed here and the sort order is alphabetically.</p>
-<p>Interval: 2021-06-29 - 2021-09-29</p>
+<p>Interval: 2021-07-01 - 2021-10-01</p>
 <div id="bbotk-0.4.0" class="section level1">
 <h1>bbotk 0.4.0</h1>
+<p><strong>Description: Black-Box Optimization Toolkit</strong></p>
 <ul>
+<li>Adds non dominated sorting with hypervolume contribution to <code>Archive</code>.</li>
 <li>Allows empty search space and domain.</li>
 <li>Extended <code>TerminatorEvals</code> with an additional hyperparameter <code>k</code> to define the
 budget depending on the dimension of the search space.</li>
@@ -50,8 +56,9 @@ budget depending on the dimension of the search space.</li>
 <li>Adds <code>OptimizerIrace</code> from irace package.</li>
 </ul>
 </div>
-<div id="mlr3-0.12.0" class="section level1">
-<h1>mlr3 0.12.0</h1>
+<div id="mlr3-0.12.0---httpsgithub.commlr-orgmlr3" class="section level1">
+<h1>mlr3 0.12.0 - <a href="https://github.com/mlr-org/mlr3" class="uri">https://github.com/mlr-org/mlr3</a></h1>
+<p><strong>Description: Machine Learning in R - Next Generation</strong></p>
 <ul>
 <li>New method to assign labels to columns in tasks: <code>Task$label()</code>.
 These will be used in visualizations in the future.</li>
@@ -80,9 +87,9 @@ internal data.</li>
 required is the F1 score, now implemented with customizable <code>beta</code>.</li>
 <li>Changed default of argument <code>ordered</code> in <code>Task$data()</code> from <code>TRUE</code> to <code>FALSE</code>.</li>
 </ul>
-</div>
-<div id="mlr3cluster-0.1.2" class="section level1">
-<h1>mlr3cluster 0.1.2</h1>
+<div id="mlr3cluster-0.1.2---httpsgithub.commlr-orgmlr3cluster" class="section level2">
+<h2>mlr3cluster 0.1.2 - <a href="https://github.com/mlr-org/mlr3cluster" class="uri">https://github.com/mlr-org/mlr3cluster</a></h2>
+<p><strong>Description: Cluster Extension for ‘mlr3’</strong></p>
 <ul>
 <li>Add Hclust</li>
 <li>test and doc hclust</li>
@@ -91,34 +98,48 @@ required is the F1 score, now implemented with customizable <code>beta</code>.</
 <li>code factor adaptions</li>
 </ul>
 </div>
-<div id="mlr3filters-0.4.2" class="section level1">
-<h1>mlr3filters 0.4.2</h1>
+</div>
+<div id="mlr3filters-0.4.2---httpsgithub.commlr-orgmlr3filters" class="section level1">
+<h1>mlr3filters 0.4.2 - <a href="https://github.com/mlr-org/mlr3filters" class="uri">https://github.com/mlr-org/mlr3filters</a></h1>
+<p><strong>Description: Filter Based Feature Selection for ‘mlr3’</strong></p>
 <ul>
 <li>Fixes an issue where argument <code>nfeat</code> was not passed down to {praznik} filters (#97)</li>
 </ul>
 </div>
-<div id="mlr3learners-0.5.1" class="section level1">
-<h1>mlr3learners 0.5.1</h1>
+<div id="mlr3learners-0.5.1---httpsgithub.commlr-orgmlr3learners" class="section level1">
+<h1>mlr3learners 0.5.1 - <a href="https://github.com/mlr-org/mlr3learners" class="uri">https://github.com/mlr-org/mlr3learners</a></h1>
+<p><strong>Description: Recommended Learners for ‘mlr3’</strong></p>
 <ul>
 <li>Improved how the added hyperparameter <code>mtry.ratio</code> is converted to <code>mtry</code> to
 simplify tuning.</li>
 </ul>
 </div>
-<div id="mlr3misc-0.9.5" class="section level1">
-<h1>mlr3misc 0.9.5</h1>
+<div id="mlr3misc-0.9.4---httpsgithub.commlr-orgmlr3misc" class="section level1">
+<h1>mlr3misc 0.9.4 - <a href="https://github.com/mlr-org/mlr3misc" class="uri">https://github.com/mlr-org/mlr3misc</a></h1>
+<p><strong>Description: Helper Functions for ‘mlr3’</strong></p>
 <ul>
-<li>Added helper <code>deframe()</code>.</li>
+<li>Added helper <code>capitalize()</code>.</li>
+<li>Added helper <code>to_decimal()</code>.</li>
+<li>Fixed cleanup in <code>register_namespace_callback()</code>.</li>
 </ul>
 </div>
-<div id="mlr3pipelines-0.3.4" class="section level1">
-<h1>mlr3pipelines 0.3.4</h1>
+<div id="mlr3misc-0.9.3" class="section level1">
+<h1>mlr3misc 0.9.3</h1>
+<ul>
+<li>New (internal) helper functions: <code>calculate_hash()</code> and <code>assert_ro_binding()</code></li>
+</ul>
+</div>
+<div id="mlr3pipelines-0.3.4---httpsgithub.commlr-orgmlr3pipelines" class="section level1">
+<h1>mlr3pipelines 0.3.4 - <a href="https://github.com/mlr-org/mlr3pipelines" class="uri">https://github.com/mlr-org/mlr3pipelines</a></h1>
+<p><strong>Description: Preprocessing Operators and Pipelines for ‘mlr3’</strong></p>
 <ul>
 <li>Stability: PipeOps don’t crash when they have python/reticulate hyperparameter values.</li>
 <li>Documentation: Titles of PipeOp documentation articles reworked.</li>
 </ul>
 </div>
-<div id="mlr3spatiotempcv-1.0.0" class="section level1">
-<h1>mlr3spatiotempcv 1.0.0</h1>
+<div id="mlr3spatiotempcv-1.0.0---httpsgithub.commlr-orgmlr3spatiotempcv" class="section level1">
+<h1>mlr3spatiotempcv 1.0.0 - <a href="https://github.com/mlr-org/mlr3spatiotempcv" class="uri">https://github.com/mlr-org/mlr3spatiotempcv</a></h1>
+<p><strong>Description: Spatiotemporal Resampling Methods for ‘mlr3’</strong></p>
 <div id="breaking" class="section level2">
 <h2>Breaking</h2>
 <ul>
@@ -148,8 +169,9 @@ Setting a different CRS than the task might lead to spurious issues and the init
 </ul>
 </div>
 </div>
-<div id="mlr3tuning-0.9.0" class="section level1">
-<h1>mlr3tuning 0.9.0</h1>
+<div id="mlr3tuning-0.9.0---httpsgithub.commlr-orgmlr3tuning" class="section level1">
+<h1>mlr3tuning 0.9.0 - <a href="https://github.com/mlr-org/mlr3tuning" class="uri">https://github.com/mlr-org/mlr3tuning</a></h1>
+<p><strong>Description: Tuning for ‘mlr3’</strong></p>
 <ul>
 <li>Adds <code>AutoTuner$base_learner()</code> method to extract the base learner from
 nested learner objects.</li>
@@ -163,16 +185,24 @@ joined automatically by <code>as.data.table.TuningArchive()</code> and
 <code>extract_inner_tuning_archives()</code>.</li>
 </ul>
 </div>
-<div id="mlr3verse-0.2.3" class="section level1">
-<h1>mlr3verse 0.2.3</h1>
+<div id="mlr3verse-0.2.3---httpsgithub.commlr-orgmlr3verse" class="section level1">
+<h1>mlr3verse 0.2.3 - <a href="https://github.com/mlr-org/mlr3verse" class="uri">https://github.com/mlr-org/mlr3verse</a></h1>
+<p><strong>Description: Easily Install and Load the ‘mlr3’ Package Family</strong></p>
 <ul>
 <li>Updated reexports.</li>
 </ul>
 </div>
-<div id="mlr3viz-0.5.6" class="section level1">
-<h1>mlr3viz 0.5.6</h1>
+<div id="mlr3viz-0.5.6---httpsgithub.commlr-orgmlr3viz" class="section level1">
+<h1>mlr3viz 0.5.6 - <a href="https://github.com/mlr-org/mlr3viz" class="uri">https://github.com/mlr-org/mlr3viz</a></h1>
+<p><strong>Description: Visualizations for ‘mlr3’</strong></p>
 <ul>
 <li>Compatibility fix for mlr3tuning.</li>
 <li>Fixed position of labels in barplot for <code>PredictionClassif</code>.</li>
+</ul>
+</div>
+<div id="mlr3viz-0.5.5" class="section level1">
+<h1>mlr3viz 0.5.5</h1>
+<ul>
+<li>Fixed another bug for ROC- and Precision-recall-curves (#79).</li>
 </ul>
 </div>
