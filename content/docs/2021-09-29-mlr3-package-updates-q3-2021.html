@@ -7,38 +7,10 @@ categories:
 tags:
   - mlr3-package-updates
 authors: ["patrick-schratz"]
-output:
-  blogdown::html_page:
-    toc: true
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
-<div id="TOC">
-<ul>
-<li><a href="#bbotk-0.4.0---httpsgithub.commlr-orgbbotk">bbotk 0.4.0 - <span>https://github.com/mlr-org/bbotk</span></a></li>
-<li><a href="#mlr3-0.12.0---httpsgithub.commlr-orgmlr3">mlr3 0.12.0 - <span>https://github.com/mlr-org/mlr3</span></a>
-<ul>
-<li><a href="#mlr3cluster-0.1.2---httpsgithub.commlr-orgmlr3cluster">mlr3cluster 0.1.2 - <span>https://github.com/mlr-org/mlr3cluster</span></a></li>
-</ul></li>
-<li><a href="#mlr3filters-0.4.2---httpsgithub.commlr-orgmlr3filters">mlr3filters 0.4.2 - <span>https://github.com/mlr-org/mlr3filters</span></a></li>
-<li><a href="#mlr3learners-0.5.1---httpsgithub.commlr-orgmlr3learners">mlr3learners 0.5.1 - <span>https://github.com/mlr-org/mlr3learners</span></a></li>
-<li><a href="#mlr3misc-0.9.4---httpsgithub.commlr-orgmlr3misc">mlr3misc 0.9.4 - <span>https://github.com/mlr-org/mlr3misc</span></a></li>
-<li><a href="#mlr3misc-0.9.3">mlr3misc 0.9.3</a></li>
-<li><a href="#mlr3pipelines-0.3.4---httpsgithub.commlr-orgmlr3pipelines">mlr3pipelines 0.3.4 - <span>https://github.com/mlr-org/mlr3pipelines</span></a></li>
-<li><a href="#mlr3spatiotempcv-1.0.0---httpsgithub.commlr-orgmlr3spatiotempcv">mlr3spatiotempcv 1.0.0 - <span>https://github.com/mlr-org/mlr3spatiotempcv</span></a>
-<ul>
-<li><a href="#breaking">Breaking</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#bug-fixes">Bug fixes</a></li>
-<li><a href="#miscellaneous">Miscellaneous</a></li>
-</ul></li>
-<li><a href="#mlr3tuning-0.9.0---httpsgithub.commlr-orgmlr3tuning">mlr3tuning 0.9.0 - <span>https://github.com/mlr-org/mlr3tuning</span></a></li>
-<li><a href="#mlr3verse-0.2.3---httpsgithub.commlr-orgmlr3verse">mlr3verse 0.2.3 - <span>https://github.com/mlr-org/mlr3verse</span></a></li>
-<li><a href="#mlr3viz-0.5.6---httpsgithub.commlr-orgmlr3viz">mlr3viz 0.5.6 - <span>https://github.com/mlr-org/mlr3viz</span></a></li>
-<li><a href="#mlr3viz-0.5.5">mlr3viz 0.5.5</a></li>
-</ul>
-</div>
 
 <p>Due to the high amount of packages in the mlr3 ecosystem, it is hard to keep up with the latest changes across all packages.
 This post tries to tackle this issue by listing all release notes of the packages most recent releases <strong>in the last quarter</strong>.
@@ -87,8 +59,9 @@ internal data.</li>
 required is the F1 score, now implemented with customizable <code>beta</code>.</li>
 <li>Changed default of argument <code>ordered</code> in <code>Task$data()</code> from <code>TRUE</code> to <code>FALSE</code>.</li>
 </ul>
-<div id="mlr3cluster-0.1.2---httpsgithub.commlr-orgmlr3cluster" class="section level2">
-<h2>mlr3cluster 0.1.2 - <a href="https://github.com/mlr-org/mlr3cluster" class="uri">https://github.com/mlr-org/mlr3cluster</a></h2>
+</div>
+<div id="mlr3cluster-0.1.2---httpsgithub.commlr-orgmlr3cluster" class="section level1">
+<h1>mlr3cluster 0.1.2 - <a href="https://github.com/mlr-org/mlr3cluster" class="uri">https://github.com/mlr-org/mlr3cluster</a></h1>
 <p><strong>Description: Cluster Extension for ‘mlr3’</strong></p>
 <ul>
 <li>Add Hclust</li>
@@ -97,7 +70,6 @@ required is the F1 score, now implemented with customizable <code>beta</code>.</
 <li>add doc wss</li>
 <li>code factor adaptions</li>
 </ul>
-</div>
 </div>
 <div id="mlr3filters-0.4.2---httpsgithub.commlr-orgmlr3filters" class="section level1">
 <h1>mlr3filters 0.4.2 - <a href="https://github.com/mlr-org/mlr3filters" class="uri">https://github.com/mlr-org/mlr3filters</a></h1>
@@ -112,21 +84,6 @@ required is the F1 score, now implemented with customizable <code>beta</code>.</
 <ul>
 <li>Improved how the added hyperparameter <code>mtry.ratio</code> is converted to <code>mtry</code> to
 simplify tuning.</li>
-</ul>
-</div>
-<div id="mlr3misc-0.9.4---httpsgithub.commlr-orgmlr3misc" class="section level1">
-<h1>mlr3misc 0.9.4 - <a href="https://github.com/mlr-org/mlr3misc" class="uri">https://github.com/mlr-org/mlr3misc</a></h1>
-<p><strong>Description: Helper Functions for ‘mlr3’</strong></p>
-<ul>
-<li>Added helper <code>capitalize()</code>.</li>
-<li>Added helper <code>to_decimal()</code>.</li>
-<li>Fixed cleanup in <code>register_namespace_callback()</code>.</li>
-</ul>
-</div>
-<div id="mlr3misc-0.9.3" class="section level1">
-<h1>mlr3misc 0.9.3</h1>
-<ul>
-<li>New (internal) helper functions: <code>calculate_hash()</code> and <code>assert_ro_binding()</code></li>
 </ul>
 </div>
 <div id="mlr3pipelines-0.3.4---httpsgithub.commlr-orgmlr3pipelines" class="section level1">

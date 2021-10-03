@@ -7,9 +7,6 @@ categories:
 tags:
   - mlr3-package-updates
 authors: ["patrick-schratz"]
-output:
-  blogdown::html_page:
-    toc: true
 ---
 
 Due to the high amount of packages in the mlr3 ecosystem, it is hard to keep up with the latest changes across all packages.
@@ -83,19 +80,6 @@ Interval: 2021-07-01 - 2021-10-01
 
 - Improved how the added hyperparameter `mtry.ratio` is converted to `mtry` to
   simplify tuning.
-
-
-# mlr3misc 0.9.4 - https://github.com/mlr-org/mlr3misc
-
-**Description: Helper Functions for 'mlr3'**
-
-* Added helper `capitalize()`.
-* Added helper `to_decimal()`.
-* Fixed cleanup in `register_namespace_callback()`.
-
-# mlr3misc 0.9.3
-
-* New (internal) helper functions: `calculate_hash()` and `assert_ro_binding()`
 
 
 # mlr3pipelines 0.3.4 - https://github.com/mlr-org/mlr3pipelines
