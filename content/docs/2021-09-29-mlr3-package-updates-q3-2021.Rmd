@@ -1,6 +1,6 @@
 ---
 title: mlr3 package updates - Q3/2021
-date: '2021-09-29'
+date: '2021-10-01'
 slug: mlr3-package-updates-q3-2021
 categories:
   - R
@@ -16,17 +16,22 @@ Due to the high amount of packages in the mlr3 ecosystem, it is hard to keep up 
 This post tries to tackle this issue by listing all release notes of the packages most recent releases **in the last quarter**.
 Note that only CRAN packages are listed here and the sort order is alphabetically.
 
-Interval: 2021-06-29 - 2021-09-29
+Interval: 2021-07-01 - 2021-10-01
 
 # bbotk 0.4.0
 
+**Description: Black-Box Optimization Toolkit**
+
+* Adds non dominated sorting with hypervolume contribution to `Archive`.
 * Allows empty search space and domain.
 * Extended `TerminatorEvals` with an additional hyperparameter `k` to define the
   budget depending on the dimension of the search space.
 * Adds `bb_optimize()` function for quick optimization.
 * Adds `OptimizerIrace` from irace package.
 
-# mlr3 0.12.0
+# mlr3 0.12.0 - https://github.com/mlr-org/mlr3
+
+**Description: Machine Learning in R - Next Generation**
 
 * New method to assign labels to columns in tasks: `Task$label()`.
   These will be used in visualizations in the future.
@@ -55,8 +60,9 @@ Interval: 2021-06-29 - 2021-09-29
   required is the F1 score, now implemented with customizable `beta`.
 * Changed default of argument `ordered` in `Task$data()` from `TRUE` to `FALSE`.
 
+## mlr3cluster 0.1.2 - https://github.com/mlr-org/mlr3cluster
 
-# mlr3cluster 0.1.2
+**Description: Cluster Extension for 'mlr3'**
 
 * Add Hclust
 * test and doc hclust
@@ -64,29 +70,45 @@ Interval: 2021-06-29 - 2021-09-29
 * add doc wss
 * code factor adaptions
 
+# mlr3filters 0.4.2 - https://github.com/mlr-org/mlr3filters
 
-# mlr3filters 0.4.2
+**Description: Filter Based Feature Selection for 'mlr3'**
 
 - Fixes an issue where argument `nfeat` was not passed down to {praznik} filters (#97)
 
 
-# mlr3learners 0.5.1
+# mlr3learners 0.5.1 - https://github.com/mlr-org/mlr3learners
+
+**Description: Recommended Learners for 'mlr3'**
 
 - Improved how the added hyperparameter `mtry.ratio` is converted to `mtry` to
   simplify tuning.
 
 
-# mlr3misc 0.9.5
+# mlr3misc 0.9.4 - https://github.com/mlr-org/mlr3misc
 
-* Added helper `deframe()`.
+**Description: Helper Functions for 'mlr3'**
+
+* Added helper `capitalize()`.
+* Added helper `to_decimal()`.
+* Fixed cleanup in `register_namespace_callback()`.
+
+# mlr3misc 0.9.3
+
+* New (internal) helper functions: `calculate_hash()` and `assert_ro_binding()`
 
 
-# mlr3pipelines 0.3.4
+# mlr3pipelines 0.3.4 - https://github.com/mlr-org/mlr3pipelines
+
+**Description: Preprocessing Operators and Pipelines for 'mlr3'**
 
 * Stability: PipeOps don't crash when they have python/reticulate hyperparameter values.
 * Documentation: Titles of PipeOp documentation articles reworked.
 
-# mlr3spatiotempcv 1.0.0
+
+# mlr3spatiotempcv 1.0.0 - https://github.com/mlr-org/mlr3spatiotempcv
+
+**Description: Spatiotemporal Resampling Methods for 'mlr3'**
 
 ## Breaking
 
@@ -109,7 +131,9 @@ Interval: 2021-06-29 - 2021-09-29
 - Add {rgdal} to suggests and required it in `"spcv_block"` since it is required in {blockCV} >= 2.1.4 and {sf} >= 1.0
 
 
-# mlr3tuning 0.9.0
+# mlr3tuning 0.9.0 - https://github.com/mlr-org/mlr3tuning
+
+**Description: Tuning for 'mlr3'**
 
 - Adds `AutoTuner$base_learner()` method to extract the base learner from 
   nested learner objects.
@@ -123,12 +147,21 @@ Interval: 2021-06-29 - 2021-09-29
   `extract_inner_tuning_archives()`.
 
 
-# mlr3verse 0.2.3
+# mlr3verse 0.2.3 - https://github.com/mlr-org/mlr3verse
+
+**Description: Easily Install and Load the 'mlr3' Package Family**
 
 - Updated reexports.
 
 
-# mlr3viz 0.5.6
+# mlr3viz 0.5.6 - https://github.com/mlr-org/mlr3viz
+
+**Description: Visualizations for 'mlr3'**
 
 - Compatibility fix for mlr3tuning.
 - Fixed position of labels in barplot for `PredictionClassif`.
+
+# mlr3viz 0.5.5
+
+- Fixed another bug for ROC- and Precision-recall-curves (#79).
+
