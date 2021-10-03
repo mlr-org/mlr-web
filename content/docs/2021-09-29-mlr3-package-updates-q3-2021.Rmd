@@ -18,7 +18,7 @@ Note that only CRAN packages are listed here and the sort order is alphabeticall
 
 Interval: 2021-07-01 - 2021-10-01
 
-# bbotk 0.4.0
+# bbotk 0.4.0 - https://github.com/mlr-org/bbotk
 
 **Description: Black-Box Optimization Toolkit**
 
@@ -60,7 +60,7 @@ Interval: 2021-07-01 - 2021-10-01
   required is the F1 score, now implemented with customizable `beta`.
 * Changed default of argument `ordered` in `Task$data()` from `TRUE` to `FALSE`.
 
-## mlr3cluster 0.1.2 - https://github.com/mlr-org/mlr3cluster
+# mlr3cluster 0.1.2 - https://github.com/mlr-org/mlr3cluster
 
 **Description: Cluster Extension for 'mlr3'**
 
