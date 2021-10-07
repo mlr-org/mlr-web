@@ -4,7 +4,7 @@ Sources of the main [mlr website](https://mlr-web.netlify.com/) including the bl
 
 `blogdown` and Hugo are used to render the site. Deployment is done via Netlify.
 
-It is highly recommended to use **RStudio** for tasks in this repo. 
+It is highly recommended to use **RStudio** for tasks in this repo.
 It integrates very well with the live preview of `blogdown`.
 
 # How to add a new blog post
@@ -24,3 +24,13 @@ It integrates very well with the live preview of `blogdown`.
 1. Open a Pull Request. You can preview the changes you made by clicking on "Details" of your opened PR on Github:
 
 ![](static/images/readme01.png)
+
+## RSS
+
+Hugo automatically creates RSS feeds (index.xml) for tags and categories.
+
+For R-Bloggers the feed should return the full content, not just a summary.
+To accomplish this, a custom `layouts/_default/rss.xml` file exists where `.Summary` was replaced by `.Content`.
+
+The RSS feed used for R-Weekly and R-Bloggers is https://mlr-org.com/categories/r/index.xml.
+Hence, every post tagged with `categories: r` will also forward the post to these two sites.
