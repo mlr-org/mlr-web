@@ -1,5 +1,5 @@
 #baseURL = "https://mlr-org.com/"
-baseURL = "/"
+baseURL = "https://mlr-org.com/"
 title = "Machine Learning in R"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
@@ -16,11 +16,13 @@ theme = "minimo"
 disqusShortname = ""
 googleAnalytics = ""
 
-relativeurls = false
-canonifyurls = true
+# relativeurls = false
+# canonifyurls = true
 
 Paginate = 10
 preserveTaxonomyNames = true
+
+rssLimit = 20
 
 enableRobotsTXT = true # generate robots.txt
 
