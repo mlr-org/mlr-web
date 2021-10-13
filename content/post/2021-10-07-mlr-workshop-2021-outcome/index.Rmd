@@ -63,8 +63,16 @@ For our curated set of learners we updated some ParamSet to the most recent vers
 
 ## [mlr3fairness](https://github.com/mlr-org/mlr3fairness)
 
-We've done substantial work on {mlr3fairness} and plan to release it within the workshop or soon after.
-The package will include bias-auditing metrics, visualizations and debiasing techniques for arbitrary learners.
+**mlr3** now allows for bias auditing and debiasing through [mlr3fairness](https://github.com/mlr-org/mlr3fairness/).
+The package contains **Fairness Metrics**, **Debiasing Strategies** and **Visualizations** for 
+arbitrary models trained through **mlr3**.
+We plan a to realease on CRAN soon, but the package is already usable. 
+If you wanna learn more, check out the tutorials for the individual components:
+- [Fairness Metrics](https://mlr3fairness.mlr-org.com/articles/measures-vignette.html)
+- [Debiasing Methods](https://mlr3fairness.mlr-org.com/articles/debiasing-vignette.html)
+- [Fairness Visualizations](https://mlr3fairness.mlr-org.com/articles/visualization-vignette.html)
+
+zations and debiasing techniques for arbitrary learners.
 
 ![mlr3fairness example plots](mlr3fairness-example.png)
 
