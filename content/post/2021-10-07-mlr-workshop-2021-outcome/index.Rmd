@@ -63,8 +63,9 @@ FIXME: @be-marc: can we link the paper you showed me for this?
 
 ### [mlr3mbo](https://github.com/mlr-org/mlr3mbo)
 
-We finally found the time to port {mlrMBO} from the old {mlr} over to {mlr3} - welcome {mlr3MBO}!
-It is not yet on CRAN as we still need to apply some final touches - but you are welcome to try it by installing the package from GitHub.
+We made great progress in finalizing {mlr3mbo}.
+{mlr3mbo} is a flexible Bayesian optimization toolkit and much more modular than its predecessor {mlrMBO}.
+Most of the functionality {mlrMBO} offers is already integrated, and we are looking forward to a CRAN release in the near future - in the meantime make sure to check out the package on GitHub.
 
 ## [mlr3learners](https://github.com/mlr-org/mlr3learners)
 
