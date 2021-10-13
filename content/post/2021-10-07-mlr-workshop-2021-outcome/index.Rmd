@@ -52,14 +52,14 @@ This means that learners can save their tuning state at an arbitrary point and c
 This means that tuning can be done in decoupled chunks instead of one big task.
 This is especially helpful for certain tuning methods like "hyperband", which is why we have listed this feature in this section.
 
-FIXME: @be-marc - need a link/reference here :)
+[Proposal](https://github.com/mlr-org/mlr3/issues/716)
 
-Another improvement for {mlr3hyperband} was the support for asynchronous evaluations of hyperparameter configurations.
+### [bbotk](https://github.com/mlr-org/bbotk)
+
+Another improvement for {bbotk} and all tuning packages was the support for asynchronous evaluations of hyperparameter configurations.
 Before, one had to wait until all hyperband configurations were evaluated to propose a new point.
 Now, new points can be evaluated at any time, making more efficient use of parallelization.
 This also avoids the issue of waiting on a few slow workers with an ineffecient configuriation that takes a long time to finish.
-
-FIXME: @be-marc: can we link the paper you showed me for this?
 
 ### [mlr3mbo](https://github.com/mlr-org/mlr3mbo)
 
