@@ -15,20 +15,29 @@ authors: []
 
 This blog post is a recap of the mlr-org workshop 2021 which took place from the 28th of September until the 10th of October.
 
+First of all, we would like to thank all people and organizations which made this workshop possible:
+
+- our (19) [GitHub sponsors](https://github.com/sponsors/mlr-org) ⭐️
+- the [Statistical Learning and Data Science](https://www.slds.stat.uni-muenchen.de/) group of LMU Munich
+- [cynkra](https://cynkra.com/)
+- [Essential Data Science](https://www.essentialds.de/)
+
+If you like our work and want to see more of such workshops where we are able to devot our full time to mlr3, consider becoming a GitHub sponsor ❤️
+
 ## [mlr3](https://github.com/mlr-org/mlr3)
 
-For our core package `mlr3` we mainly focused on maintenance and issue curation.
+For our core package {mlr3} we mainly focused on maintenance and issue curation.
 A little new goodie relates to scoring and aggregating: one can now conduct more complex benchmarks using different evaluation metics.
 
 ## [mlr3pipelines](https://github.com/mlr-org/mlr3pipelines)
 
-`mlr3pipelines` has also seen a lot of maintenance in the first place.
+{mlr3pipelines} has also seen a lot of maintenance in the first place.
 In addition, we did some code profiling and were able to improve the performance a bit by [reducing the overhead when cloning](https://github.com/mlr-org/mlr3pipelines/pull/622) Paramsets and learners.
 This comes with the new `%>>>%` operator which concatenetes partial `Graphs` in place and is essentially carrying the memory and speed improvements from above.
 
 A new sugar function [`pos()`](https://mlr3pipelines.mlr-org.com/dev/reference/po.html) now exists, making it possible to initialize multiple pipe operators more easily.
 
-We also started working on adding more sugar to `paradox` (e.g. trafos) which should make life easier in `mlr3pipelines` in the long run.
+We also started working on adding more sugar to {paradox} (e.g. trafos) which should make life easier in {mlr3pipelines} in the long run.
 
 Last, we overwhauled some error messages internally to make them more descriptive for users.
 
@@ -92,18 +101,19 @@ Together with the {mlr3spatiotempcv} package it extends the support for spatial 
 
 ## mlr-org meta
 
-### [Roadmap](https://github.com/orgs/mlr-org/projects/6)
+## [Roadmap](https://github.com/orgs/mlr-org/projects/6)
 
 We have createad a Roadmap of upcoming packages and planned features across the whole mlr3 ecosystem.
 This roadmap aims both for internal organization and giving external people an idea of what is upcoming.
 The roadmap is quite new and not yet fully operational at the time this blog post got released - however, we encourage to look at it from time to time as we try to keep it up-to-date.
 
-### [mlr3 wiki](https://github.com/mlr-org/mlr3/wiki)
+
+## [mlr3 wiki](https://github.com/mlr-org/mlr3/wiki)
 
 We have updated and reorganized our [mlr3 wiki](https://github.com/mlr-org/mlr3/wiki).
 It now has a better sidebar appearance for easier navigation and we have updated the sections with respect to their content.
 
-### [mlr3book](https://mlr3book.mlr-org.com)
+## [mlr3book](https://mlr3book.mlr-org.com)
 
 - Text and structure improvements (mainly for the basics chapter)
 - New introduction
