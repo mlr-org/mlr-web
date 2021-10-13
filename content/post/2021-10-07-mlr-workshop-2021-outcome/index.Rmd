@@ -1,0 +1,102 @@
+---
+title: mlr workshop 2021 recap
+author: Patrick Schratz
+date: '2021-10-13'
+slug: mlr-workshop-2021-recap
+categories:
+  - R
+tags:
+  - workshop
+  - mlr3
+  - roadmap
+  - updates
+authors: []
+---
+
+This blog post is a recap of the mlr-org workshop 2021 which took place from the 28th of September until the 10th of October.
+
+## [mlr3](https://github.com/mlr-org/mlr3)
+
+For our core package `mlr3` we mainly focused on maintenance and issue curation.
+A little new goodie relates to scoring and aggregating: one can now conduct more complex benchmarks using different evaluation metics.
+
+## [mlr3pipelines](https://github.com/mlr-org/mlr3pipelines)
+
+`mlr3pipelines` has also seen a lot of maintenance in the first place.
+In addition, we did some code profiling and were able to improve the performance a bit by [reducing the overhead when cloning](https://github.com/mlr-org/mlr3pipelines/pull/622) Paramsets and learners.
+This comes with the new `%>>>%` operator which concatenetes partial `Graphs` in place and is essentially carrying the memory and speed improvements from above.
+
+A new sugar function [`pos()`](https://mlr3pipelines.mlr-org.com/dev/reference/po.html) now exists, making it possible to initialize multiple pipe operators more easily.
+
+We also started working on adding more sugar to `paradox` (e.g. trafos) which should make life easier in `mlr3pipelines` in the long run.
+
+Last, we overwhauled some error messages internally to make them more descriptive for users.
+
+## Tuning
+
+**mlr3tuning / bbotk / mlr3mbo / mlr3hyperband**
+
+### [mlr3hyperband](https://github.com/mlr-org/mlr3hyperband)
+
+One focus with respect to tuning was on "hot starting" learners.
+This means that learners can save their tuning state at an arbitrary point and can be retrained later on starting from this point.
+This means that tuning can be done in decoupled chunks instead of one big task.
+This is especially helpful for certain tuning methods like "hyperband", which is why we have listed this feature in this section.
+
+FIXME: @be-marc - need a link/reference here :)
+
+Another improvement for {mlr3hyperband} was the support for asynchronous evaluations of hyperparameter configurations.
+Before, one had to wait until all hyperband configurations were evaluated to propose a new point.
+Now, new points can be evaluated at any time, making more efficient use of parallelization.
+This also avoids the issue of waiting on a few slow workers with an ineffecient configuriation that takes a long time to finish.
+
+FIXME: @be-marc: can we link the paper you showed me for this?
+
+### [mlr3mbo](https://github.com/mlr-org/mlr3mbo)
+
+We finally found the time to port {mlrMBO} from the old {mlr} over to {mlr3} - welcome {mlr3MBO}!
+It is not yet on CRAN as we still need to apply some final touches - but you are welcome to try it by installing the package from GitHub.
+
+## [mlr3learners](https://github.com/mlr-org/mlr3learners)
+
+For our curated set of learners we updated some ParamSet to the most recent versions and ensured that our custom "Paramtest", i.e. the heuristic how we validate the ParamSets of mlr3learners against their upstream packages, works again smoothly.
+
+## [mlr3fairness](https://github.com/mlr-org/mlr3fairness)
+
+We've done substantial work on {mlr3fairness} and plan to release it within the workshop or soon after.
+The package will include bias-auditing metrics, visualizations and debiasing techniques for arbitrary learners.
+
+![mlr3fairness example plots](mlr3fairness-example.png)
+
+## [mlr3viz](https://github.com/mlr-org/mlr3viz)
+
+We created a new ggplot2 theme `theme_mlr3()` which is being applied by default to all plots created with {mlr3viz}, i.e. all `autoplot()` methods in mlr3.
+This theme is heavily inspired by `ggpubr::theme_pubr()`.
+In addition to the theme, all mlr3viz plots now use the viridis color palette by default.
+Last, we have added some information how users can easily apply theming changes to the plots returned by `autoplot()`.
+
+![`theme_mlr3()` example plot](theme-mlr3-example.png)
+
+## [mlr3spatial](https://github.com/mlr-org/mlr3spatial)
+
+mlr3spatial is a new package for spatial backends able to handle {sf}, {stars} and {terra} objects.
+It is capable of performing predictions on spatial raster objects in parallel using the internal mlr3 parallelization heuristic (which uses the {future} framework under the hood).
+Together with the {mlr3spatiotempcv} package it extends the support for spatial machine learning in mlr3.
+
+## mlr-org meta
+
+#### [Roadmap](https://github.com/orgs/mlr-org/projects/6)
+
+We have createad a Roadmap of upcoming packages and planned features across the whole mlr3 ecosystem.
+This roadmap aims both for internal organization and giving external people an idea of what is upcoming.
+The roadmap is quite new and not yet fully operational at the time this blog post got released - however, we encourage to look at it from time to time as we try to keep it up-to-date.
+
+#### [mlr3 wiki](https://github.com/mlr-org/mlr3/wiki)
+
+We have updated and reorganized our [mlr3 wiki](https://github.com/mlr-org/mlr3/wiki).
+It now has a better sidebar appearance for easier navigation and we have updated the sections with respect to their content.
+
+#### [mlr3book](https://mlr3book.mlr-org.com)
+
+- Text and structure improvements (mainly for the basics chapter)
+- New introduction

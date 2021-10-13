@@ -1,0 +1,106 @@
+---
+title: mlr workshop 2021 recap
+author: Patrick Schratz
+date: '2021-10-13'
+slug: mlr-workshop-2021-recap
+categories:
+  - R
+tags:
+  - workshop
+  - mlr3
+  - roadmap
+  - updates
+authors: []
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>This blog post is a recap of the mlr-org workshop 2021 which took place from the 28th of September until the 10th of October.</p>
+<div id="mlr3" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3">mlr3</a></h2>
+<p>For our core package <code>mlr3</code> we mainly focused on maintenance and issue curation.
+A little new goodie relates to scoring and aggregating: one can now conduct more complex benchmarks using different evaluation metics.</p>
+</div>
+<div id="mlr3pipelines" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3pipelines">mlr3pipelines</a></h2>
+<p><code>mlr3pipelines</code> has also seen a lot of maintenance in the first place.
+In addition, we did some code profiling and were able to improve the performance a bit by <a href="https://github.com/mlr-org/mlr3pipelines/pull/622">reducing the overhead when cloning</a> Paramsets and learners.
+This comes with the new <code>%&gt;&gt;&gt;%</code> operator which concatenetes partial <code>Graphs</code> in place and is essentially carrying the memory and speed improvements from above.</p>
+<p>A new sugar function <a href="https://mlr3pipelines.mlr-org.com/dev/reference/po.html"><code>pos()</code></a> now exists, making it possible to initialize multiple pipe operators more easily.</p>
+<p>We also started working on adding more sugar to <code>paradox</code> (e.g. trafos) which should make life easier in <code>mlr3pipelines</code> in the long run.</p>
+<p>Last, we overwhauled some error messages internally to make them more descriptive for users.</p>
+</div>
+<div id="tuning" class="section level2">
+<h2>Tuning</h2>
+<p><strong>mlr3tuning / bbotk / mlr3mbo / mlr3hyperband</strong></p>
+<div id="mlr3hyperband" class="section level3">
+<h3><a href="https://github.com/mlr-org/mlr3hyperband">mlr3hyperband</a></h3>
+<p>One focus with respect to tuning was on “hot starting” learners.
+This means that learners can save their tuning state at an arbitrary point and can be retrained later on starting from this point.
+This means that tuning can be done in decoupled chunks instead of one big task.
+This is especially helpful for certain tuning methods like “hyperband”, which is why we have listed this feature in this section.</p>
+<p>FIXME: <span class="citation">@be-marc</span> - need a link/reference here :)</p>
+<p>Another improvement for {mlr3hyperband} was the support for asynchronous evaluations of hyperparameter configurations.
+Before, one had to wait until all hyperband configurations were evaluated to propose a new point.
+Now, new points can be evaluated at any time, making more efficient use of parallelization.
+This also avoids the issue of waiting on a few slow workers with an ineffecient configuriation that takes a long time to finish.</p>
+<p>FIXME: <span class="citation">@be-marc</span>: can we link the paper you showed me for this?</p>
+</div>
+<div id="mlr3mbo" class="section level3">
+<h3><a href="https://github.com/mlr-org/mlr3mbo">mlr3mbo</a></h3>
+<p>We finally found the time to port {mlrMBO} from the old {mlr} over to {mlr3} - welcome {mlr3MBO}!
+It is not yet on CRAN as we still need to apply some final touches - but you are welcome to try it by installing the package from GitHub.</p>
+</div>
+</div>
+<div id="mlr3learners" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3learners">mlr3learners</a></h2>
+<p>For our curated set of learners we updated some ParamSet to the most recent versions and ensured that our custom “Paramtest”, i.e. the heuristic how we validate the ParamSets of mlr3learners against their upstream packages, works again smoothly.</p>
+</div>
+<div id="mlr3fairness" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3fairness">mlr3fairness</a></h2>
+<p>We’ve done substantial work on {mlr3fairness} and plan to release it within the workshop or soon after.
+The package will include bias-auditing metrics, visualizations and debiasing techniques for arbitrary learners.</p>
+<div class="figure">
+<img src="mlr3fairness-example.png" alt="" />
+<p class="caption">mlr3fairness example plots</p>
+</div>
+</div>
+<div id="mlr3viz" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3viz">mlr3viz</a></h2>
+<p>We created a new ggplot2 theme <code>theme_mlr3()</code> which is being applied by default to all plots created with {mlr3viz}, i.e. all <code>autoplot()</code> methods in mlr3.
+This theme is heavily inspired by <code>ggpubr::theme_pubr()</code>.
+In addition to the theme, all mlr3viz plots now use the viridis color palette by default.
+Last, we have added some information how users can easily apply theming changes to the plots returned by <code>autoplot()</code>.</p>
+<div class="figure">
+<img src="theme-mlr3-example.png" alt="" />
+<p class="caption"><code>theme_mlr3()</code> example plot</p>
+</div>
+</div>
+<div id="mlr3spatial" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3spatial">mlr3spatial</a></h2>
+<p>mlr3spatial is a new package for spatial backends able to handle {sf}, {stars} and {terra} objects.
+It is capable of performing predictions on spatial raster objects in parallel using the internal mlr3 parallelization heuristic (which uses the {future} framework under the hood).
+Together with the {mlr3spatiotempcv} package it extends the support for spatial machine learning in mlr3.</p>
+</div>
+<div id="mlr-org-meta" class="section level2">
+<h2>mlr-org meta</h2>
+<div id="roadmap" class="section level4">
+<h4><a href="https://github.com/orgs/mlr-org/projects/6">Roadmap</a></h4>
+<p>We have createad a Roadmap of upcoming packages and planned features across the whole mlr3 ecosystem.
+This roadmap aims both for internal organization and giving external people an idea of what is upcoming.
+The roadmap is quite new and not yet fully operational at the time this blog post got released - however, we encourage to look at it from time to time as we try to keep it up-to-date.</p>
+</div>
+<div id="mlr3-wiki" class="section level4">
+<h4><a href="https://github.com/mlr-org/mlr3/wiki">mlr3 wiki</a></h4>
+<p>We have updated and reorganized our <a href="https://github.com/mlr-org/mlr3/wiki">mlr3 wiki</a>.
+It now has a better sidebar appearance for easier navigation and we have updated the sections with respect to their content.</p>
+</div>
+<div id="mlr3book" class="section level4">
+<h4><a href="https://mlr3book.mlr-org.com">mlr3book</a></h4>
+<ul>
+<li>Text and structure improvements (mainly for the basics chapter)</li>
+<li>New introduction</li>
+</ul>
+</div>
+</div>
