@@ -34,7 +34,7 @@ A little new goodie relates to scoring and aggregating: one can now conduct more
 <h2><a href="https://github.com/mlr-org/mlr3pipelines">mlr3pipelines</a></h2>
 <p>{mlr3pipelines} has also seen a lot of maintenance in the first place.
 In addition, we did some code profiling and were able to improve the performance a bit by <a href="https://github.com/mlr-org/mlr3pipelines/pull/622">reducing the overhead when cloning</a> Paramsets and learners.
-This comes with the new <code>%&gt;&gt;&gt;%</code> operator which concatenetes partial <code>Graphs</code> in place and is essentially carrying the memory and speed improvements from above.</p>
+This comes with the new <code>%&gt;&gt;!%</code> operator which concatenetes partial <code>Graphs</code> in place and is essentially carrying the memory and speed improvements from above.</p>
 <p>A new sugar function <a href="https://mlr3pipelines.mlr-org.com/dev/reference/po.html"><code>pos()</code></a> now exists, making it possible to initialize multiple pipe operators more easily.</p>
 <p>We also started working on adding more sugar to {paradox} (e.g. trafos) which should make life easier in {mlr3pipelines} in the long run.</p>
 <p>Last, we overwhauled some error messages internally to make them more descriptive for users.</p>
