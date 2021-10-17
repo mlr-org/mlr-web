@@ -1,0 +1,125 @@
+---
+title: mlr workshop 2021 recap
+author: Patrick Schratz
+date: '2021-10-13'
+slug: mlr-workshop-2021-recap
+categories:
+  - R
+tags:
+  - workshop
+  - mlr3
+  - roadmap
+  - updates
+authors: []
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>This blog post is a recap of the mlr-org workshop 2021 which took place from the 28th of September until the 10th of October.</p>
+<p>First of all, we would like to thank all people and organizations which made this workshop possible:</p>
+<ul>
+<li>our (19) <a href="https://github.com/sponsors/mlr-org">GitHub sponsors</a> ⭐️</li>
+<li>the <a href="https://www.slds.stat.uni-muenchen.de/">Statistical Learning and Data Science</a> group of LMU Munich</li>
+<li><a href="https://cynkra.com/">cynkra</a></li>
+<li><a href="https://www.essentialds.de/">Essential Data Science</a></li>
+</ul>
+<p>If you like our work and want to see more of such workshops where we are able to devot our full time to mlr3, consider becoming a GitHub sponsor ❤️</p>
+<div id="mlr3" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3">mlr3</a></h2>
+<p>For our core package {mlr3} we mainly focused on maintenance and issue curation.
+A little new goodie relates to scoring and aggregating: one can now conduct more complex benchmarks using different evaluation metics.</p>
+</div>
+<div id="mlr3pipelines" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3pipelines">mlr3pipelines</a></h2>
+<p>{mlr3pipelines} has also seen a lot of maintenance in the first place.
+In addition, we did some code profiling and were able to improve the performance a bit by <a href="https://github.com/mlr-org/mlr3pipelines/pull/622">reducing the overhead when cloning</a> Paramsets and learners.
+This comes with the new <code>%&gt;&gt;!%</code> operator which concatenetes partial <code>Graphs</code> in place and is essentially carrying the memory and speed improvements from above.</p>
+<p>A new sugar function <a href="https://mlr3pipelines.mlr-org.com/dev/reference/po.html"><code>pos()</code></a> now exists, making it possible to initialize multiple pipe operators more easily.</p>
+<p>We also started working on adding more sugar to {paradox} (e.g. trafos) which should make life easier in {mlr3pipelines} in the long run.</p>
+<p>Last, we overwhauled some error messages internally to make them more descriptive for users.</p>
+</div>
+<div id="tuning" class="section level2">
+<h2>Tuning</h2>
+<p><strong>mlr3tuning / bbotk / mlr3mbo / mlr3hyperband</strong></p>
+</div>
+<div id="mlr3hyperband" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3hyperband">mlr3hyperband</a></h2>
+<p>One focus with respect to tuning was on “hot starting” learners.
+This means that learners can save their tuning state at an arbitrary point and can be retrained later on starting from this point.
+This means that tuning can be done in decoupled chunks instead of one big task.
+This is especially helpful for certain tuning methods like “hyperband”, which is why we have listed this feature in this section.</p>
+<p><a href="https://github.com/mlr-org/mlr3/issues/716">Proposal</a></p>
+</div>
+<div id="bbotk" class="section level2">
+<h2><a href="https://github.com/mlr-org/bbotk">bbotk</a></h2>
+<p>Another improvement for {bbotk} and all tuning packages was the support for asynchronous evaluations of hyperparameter configurations.
+Before, one had to wait until all hyperband configurations were evaluated to propose a new point.
+Now, new points can be evaluated at any time, making more efficient use of parallelization.
+This also avoids the issue of waiting on a few slow workers with an ineffecient configuriation that takes a long time to finish.</p>
+</div>
+<div id="mlr3mbo" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3mbo">mlr3mbo</a></h2>
+<p>We made great progress in finalizing {mlr3mbo}.
+{mlr3mbo} is a flexible Bayesian optimization toolkit and much more modular than its predecessor {mlrMBO}.
+Most of the functionality {mlrMBO} offers is already integrated, and we are looking forward to a CRAN release in the near future - in the meantime make sure to check out the package on GitHub.</p>
+</div>
+<div id="mlr3learners" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3learners">mlr3learners</a></h2>
+<p>For our curated set of learners we updated some ParamSet to the most recent versions and ensured that our custom “Paramtest”, i.e. the heuristic how we validate the ParamSets of mlr3learners against their upstream packages, works again smoothly.</p>
+</div>
+<div id="mlr3fairness" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3fairness">mlr3fairness</a></h2>
+<p>{mlr3} now allows for bias auditing and debiasing through <a href="https://github.com/mlr-org/mlr3fairness/">mlr3fairness</a> for arbitrary learners.
+The package contains <strong>Fairness Metrics</strong>, <strong>Debiasing Strategies</strong> and <strong>Visualizations</strong> for
+arbitrary models trained through {mlr3}.
+We plan a to realease on CRAN soon, but the package is already usable.
+If you wanna learn more, check out the tutorials for the individual components:</p>
+<ul>
+<li><a href="https://mlr3fairness.mlr-org.com/articles/measures-vignette.html">Fairness Metrics</a></li>
+<li><a href="https://mlr3fairness.mlr-org.com/articles/debiasing-vignette.html">Debiasing Methods</a></li>
+<li><a href="https://mlr3fairness.mlr-org.com/articles/visualization-vignette.html">Fairness Visualizations</a></li>
+</ul>
+<div class="figure">
+<img src="mlr3fairness-example.png" alt="" />
+<p class="caption">mlr3fairness example plots</p>
+</div>
+</div>
+<div id="mlr3viz" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3viz">mlr3viz</a></h2>
+<p>We created a new ggplot2 theme <code>theme_mlr3()</code> which is being applied by default to all plots created with {mlr3viz}, i.e. all <code>autoplot()</code> methods in mlr3.
+This theme is heavily inspired by <code>ggpubr::theme_pubr()</code>.
+In addition to the theme, all mlr3viz plots now use the viridis color palette by default.
+Last, we have added some information how users can easily apply theming changes to the plots returned by <code>autoplot()</code>.</p>
+<div class="figure">
+<img src="theme-mlr3-example.png" alt="" />
+<p class="caption"><code>theme_mlr3()</code> example plot</p>
+</div>
+</div>
+<div id="mlr3spatial" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3spatial">mlr3spatial</a></h2>
+<p>mlr3spatial is a new package for spatial backends able to handle {sf}, {stars} and {terra} objects.
+It is capable of performing predictions on spatial raster objects in parallel using the internal mlr3 parallelization heuristic (which uses the {future} framework under the hood).
+Together with the {mlr3spatiotempcv} package it extends the support for spatial machine learning in mlr3.</p>
+</div>
+<div id="mlr-org-meta" class="section level2">
+<h2>mlr-org meta</h2>
+</div>
+<div id="roadmap" class="section level2">
+<h2><a href="https://github.com/orgs/mlr-org/projects/6">Roadmap</a></h2>
+<p>We have createad a Roadmap of upcoming packages and planned features across the whole mlr3 ecosystem.
+This roadmap aims both for internal organization and giving external people an idea of what is upcoming.
+The roadmap is quite new and not yet fully operational at the time this blog post got released - however, we encourage to look at it from time to time as we try to keep it up-to-date.</p>
+</div>
+<div id="mlr3-wiki" class="section level2">
+<h2><a href="https://github.com/mlr-org/mlr3/wiki">mlr3 wiki</a></h2>
+<p>We have updated and reorganized our <a href="https://github.com/mlr-org/mlr3/wiki">mlr3 wiki</a>.
+It now has a better sidebar appearance for easier navigation and we have updated the sections with respect to their content.</p>
+</div>
+<div id="mlr3book" class="section level2">
+<h2><a href="https://mlr3book.mlr-org.com">mlr3book</a></h2>
+<ul>
+<li>Text and structure improvements (mainly for the basics chapter)</li>
+<li>New introduction</li>
+</ul>
+</div>
