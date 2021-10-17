@@ -9,21 +9,16 @@ It integrates very well with the live preview of `blogdown`.
 
 # How to add a new blog post
 
-1. Add yourself as an author to https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page and create an "author page" for the website (similar to the ones in `data/authors`).
+1. Add yourself as an author to <https://github.com/mlr-org/mlr/wiki/Misc#mlr-developer-team-and-contributors-page> and create an "author page" for the website (similar to the ones in `data/authors`).
 
 1. Create a new post in `content/post/` via `blogdown::new_post(title = "<title>", categories = "R", ext = ".Rmd")`
-
-1. Put external images in `static/images/<name of your post>`.
-
+1. Put external images in `post/<name of your post>/<image name>` and reference it via `[<alt text>](<image name>)` in the post.
 1. Run `git submodule update --init --recursive` from the repo root to clone the Hugo theme.
-
 1. Preview your post by running `blogdown::serve_site()`.
-
 1. Commit the **Rmd and HTML** file and possible external resources.
-
 1. Open a Pull Request. You can preview the changes you made by clicking on "Details" of your opened PR on Github:
 
-![](static/images/readme01.png)
+![Netlify preview example](static/images/readme01.png)
 
 ## RSS
 
@@ -32,5 +27,5 @@ Hugo automatically creates RSS feeds (index.xml) for tags and categories.
 For R-Bloggers the feed should return the full content, not just a summary.
 To accomplish this, a custom `layouts/_default/rss.xml` file exists where `.Summary` was replaced by `.Content`.
 
-The RSS feed used for R-Weekly and R-Bloggers is https://mlr-org.com/categories/r/index.xml.
+The RSS feed used for R-Weekly and R-Bloggers is <https://mlr-org.com/categories/r/index.xml>.
 Hence, every post tagged with `categories: r` will also forward the post to these two sites.
