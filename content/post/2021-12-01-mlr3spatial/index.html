@@ -1,0 +1,30 @@
+---
+title: mlr3spatial
+author: Marc Becker
+date: '2021-12-01'
+slug: mlr3spatial
+categories:
+  - R
+tags:
+  - mlr3spatial
+  - CRAN
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>We are happy to announce that <a href="https://mlr3spatial.mlr-org.com/">mlr3spatial</a> has been released on <a href="https://cran.r-project.org/web/packages/mlr3spatial/index.html">CRAN</a>.
+<a href="https://mlr3spatial.mlr-org.com/">mlr3spatial</a> simplifies the handling of spatial objects in the <a href="https://github.com/mlr-org">mlr3</a> ecosystem.
+Before <a href="https://mlr3spatial.mlr-org.com/">mlr3spatial</a>, the user had to extract raw values from spatial objects to train a model or predict a map.</p>
+<p>Now, mlr3 <a href="https://mlr3.mlr-org.com/reference/Task.html">tasks</a> can directly read from spatial objects via specialized <a href="https://mlr3.mlr-org.com/reference/DataBackend.html">data backends</a>.
+Such tasks can be used to train a model or to perform resampling just like any other mlr3 task.
+We support spatial raster objects created by the packages <a href="https://CRAN.R-project.org/package=terra">terra</a>, <a href="https://CRAN.R-project.org/package=raster">raster</a> and <a href="https://CRAN.R-project.org/package=stars">stars</a>.
+Additionally, vector data is handled with the package <a href="https://CRAN.R-project.org/package=sf">sf</a>.</p>
+<p>The <code>predict_raster()</code> function makes a map with predictions from an mlr3 learner.
+We only have to pass a task with a spatial data backend which provides the data and spatial reference.
+To avoid memory issues with large raster files, the prediction is done in chunks.
+One after the other, the raster chunks are loaded into memory and the prediction is written to disk.
+Finally, the complete map is available on disk.
+The learner can also make use of future-based parallelization to accelerate the predictions.
+The vignette on <a href="https://mlr3spatial.mlr-org.com/articles/benchmark.html">“Benchmarking parallel predictions”</a> showcases the parallelization capabilities of <a href="https://mlr3spatial.mlr-org.com/">mlr3spatial</a>.</p>
+<p>For a quick introduction see the <a href="https://mlr3spatial.mlr-org.com/articles/mlr3spatial.html">“Get Startet”</a> vignette.</p>
