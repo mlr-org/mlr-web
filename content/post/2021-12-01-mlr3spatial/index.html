@@ -18,7 +18,7 @@ tags:
 Before <a href="https://mlr3spatial.mlr-org.com/">mlr3spatial</a>, the user had to tabular data from spatial objects to train a model or predict a map.</p>
 <p>Now, mlr3 <a href="https://mlr3.mlr-org.com/reference/Task.html">tasks</a> can directly read from spatial objects via specialized <a href="https://mlr3.mlr-org.com/reference/DataBackend.html">data backends</a>.
 Such tasks can be used to train a model or to perform resampling just like any other mlr3 task.
-We support spatial raster objects created by the packages <a href="https://CRAN.R-project.org/package=terra">terra</a>, <a href="https://CRAN.R-project.org/package=raster">raster</a> and <a href="https://CRAN.R-project.org/package=stars">stars</a>.
+We support spatial raster objects created by the <a href="https://CRAN.R-project.org/package=terra">terra</a>, <a href="https://CRAN.R-project.org/package=raster">raster</a> and <a href="https://CRAN.R-project.org/package=stars">stars</a> packages.
 Additionally, vector data is handled with the package <a href="https://CRAN.R-project.org/package=sf">sf</a>.</p>
 <p>The <code>predict_raster()</code> function makes a spatial raster with predictions from an mlr3 learner.
 We only have to pass a task with a spatial data backend which provides the data and spatial reference.
@@ -27,4 +27,72 @@ One after the other, the raster chunks are loaded into memory and the prediction
 Finally, the complete raster is available on disk.
 The learner can also make use of future-based parallelization to accelerate the predictions.
 The vignette on <a href="https://mlr3spatial.mlr-org.com/articles/benchmark.html">“Benchmarking parallel predictions”</a> showcases the parallelization capabilities of <a href="https://mlr3spatial.mlr-org.com/">mlr3spatial</a>.</p>
-<p>For a quick introduction see the <a href="https://mlr3spatial.mlr-org.com/articles/mlr3spatial.html">“Get Startet”</a> vignette.</p>
+<div id="use-case---landsat7-data-as-stars-object" class="section level2">
+<h2>Use Case - Landsat7 data as {stars} object</h2>
+<div id="data-preparation" class="section level3">
+<h3>Data Preparation</h3>
+<pre class="r"><code>library(&quot;mlr3&quot;)
+library(&quot;mlr3spatial&quot;)</code></pre>
+<p>First, the TIFF files is read via <code>stars::read_stars()</code> and put into a <code>DataBackendRaster</code>.
+The DataBackend is then used to create a regression task with the response being <code>layer.1</code>.</p>
+<pre class="r"><code>tif = system.file(&quot;tif/L7_ETMs.tif&quot;, package = &quot;stars&quot;)
+stack = stars::read_stars(tif)
+
+backend = as_data_backend(stack)
+task = as_task_regr(backend, target = &quot;layer.1&quot;)
+
+print(task)</code></pre>
+<pre><code>## &lt;TaskRegr:backend&gt; (122848 x 6)
+## * Target: layer.1
+## * Properties: -
+## * Features (5):
+##   - dbl (5): layer.2, layer.3, layer.4, layer.5, layer.6</code></pre>
+<p>For large raster files with millions of values it helps to predict in parallel.
+To enable this, set <code>learner$parallel_predict = TRUE</code> and initiate a parallel plan via {future}.
+Since this is only an example, parallelization is not enabled here.
+Here we will use a simple regression tree as an example learner.
+In practice you might want to use a different learner - you can find an overview of available learners <a href="https://mlr3extralearners.mlr-org.com/articles/learners/list_learners.html">here</a>.</p>
+<pre class="r"><code>learner = lrn(&quot;regr.rpart&quot;)
+set.seed(42)
+row_ids = sample(1:task$nrow, 500)
+learner$train(task, row_ids = row_ids)
+
+print(learner)</code></pre>
+<pre><code>## &lt;LearnerRegrRpart:regr.rpart&gt;
+## * Model: rpart
+## * Parameters: xval=0
+## * Packages: mlr3, rpart
+## * Predict Type: response
+## * Feature types: logical, integer, numeric, factor, ordered
+## * Properties: importance, missings, selected_features, weights</code></pre>
+</div>
+<div id="prediction" class="section level3">
+<h3>Prediction</h3>
+<p>For prediction <code>predict_spatial()</code> is used.
+It will return a raster file which contains the predictions.
+Users can select which R spatial format the returned raster should have.</p>
+<pre class="r"><code>ras = predict_spatial(task, learner, format = &quot;stars&quot;)</code></pre>
+<pre><code>## INFO  [12:43:50.396] Start raster prediction 
+## INFO  [12:43:50.427] Prediction is executed with a chunksize of 200, 1 chunk(s) in total, 122848 values per chunk 
+## INFO  [12:43:50.826] Chunk 1 of 1 finished 
+## INFO  [12:43:50.843] Finished raster prediction in 0 seconds</code></pre>
+<pre class="r"><code>names(ras) = &quot;cadmium&quot;
+
+print(ras)</code></pre>
+<pre><code>## stars object with 2 dimensions and 1 attribute
+## attribute(s):
+##             Min.  1st Qu.   Median     Mean 3rd Qu.     Max.
+## cadmium  62.3629 70.30233 77.01695 79.05135 89.2809 118.1429
+## dimension(s):
+##   from  to  offset delta                       refsys point values x/y
+## x    1 349  288776  28.5 UTM Zone 25, Southern Hem... FALSE   NULL [x]
+## y    1 352 9120761 -28.5 UTM Zone 25, Southern Hem... FALSE   NULL [y]</code></pre>
+</div>
+<div id="visualization" class="section level3">
+<h3>Visualization</h3>
+<p>Finally we can plot the predictions.
+The color vector is extract from the viridis color palette via <code>dput(viridis::viridis_pal()(5))</code>.</p>
+<pre class="r"><code>plot(ras, col = c(&quot;#440154FF&quot;, &quot;#443A83FF&quot;, &quot;#31688EFF&quot;, &quot;#21908CFF&quot;, &quot;#35B779FF&quot;, &quot;#8FD744FF&quot;, &quot;#FDE725FF&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+</div>

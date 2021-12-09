@@ -27,4 +27,65 @@ Finally, the complete raster is available on disk.
 The learner can also make use of future-based parallelization to accelerate the predictions.
 The vignette on [“Benchmarking parallel predictions”](https://mlr3spatial.mlr-org.com/articles/benchmark.html) showcases the parallelization capabilities of [mlr3spatial](https://mlr3spatial.mlr-org.com/).
 
-For a quick introduction see the ["Get Startet"](https://mlr3spatial.mlr-org.com/articles/mlr3spatial.html) vignette. 
+## Use Case - Landsat7 data as {stars} object
+
+### Data Preparation
+
+```{r, include=FALSE}
+library("stars")
+```
+
+```{r}
+library("mlr3")
+library("mlr3spatial")
+```
+
+First, the TIFF files is read via `stars::read_stars()` and put into a `DataBackendRaster`.
+The DataBackend is then used to create a regression task with the response being `layer.1`.
+
+```{r, error=TRUE}
+tif = system.file("tif/L7_ETMs.tif", package = "stars")
+stack = stars::read_stars(tif)
+
+backend = as_data_backend(stack)
+task = as_task_regr(backend, target = "layer.1")
+
+print(task)
+```
+
+For large raster files with millions of values it helps to predict in parallel.
+To enable this, set `learner$parallel_predict = TRUE` and initiate a parallel plan via {future}.
+Since this is only an example, parallelization is not enabled here.
+Here we will use a simple regression tree as an example learner.
+In practice you might want to use a different learner - you can find an overview of available learners [here](https://mlr3extralearners.mlr-org.com/articles/learners/list_learners.html).
+
+```{r}
+learner = lrn("regr.rpart")
+set.seed(42)
+row_ids = sample(1:task$nrow, 500)
+learner$train(task, row_ids = row_ids)
+
+print(learner)
+```
+
+### Prediction
+
+For prediction `predict_spatial()` is used.
+It will return a raster file which contains the predictions.
+Users can select which R spatial format the returned raster should have.
+
+```{r, warning=FALSE}
+ras = predict_spatial(task, learner, format = "stars")
+names(ras) = "cadmium"
+
+print(ras)
+```
+
+### Visualization
+
+Finally we can plot the predictions.
+The color vector is extract from the viridis color palette via `dput(viridis::viridis_pal()(5))`.
+
+```{r}
+plot(ras, col = c("#440154FF", "#443A83FF", "#31688EFF", "#21908CFF", "#35B779FF", "#8FD744FF", "#FDE725FF"))
+```
