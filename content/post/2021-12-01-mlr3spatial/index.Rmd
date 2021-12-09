@@ -10,20 +10,20 @@ tags:
   - CRAN
 ---
 
-We are happy to announce that [mlr3spatial](https://mlr3spatial.mlr-org.com/) has been released on [CRAN](https://cran.r-project.org/web/packages/mlr3spatial/index.html). 
+We are happy to announce that [mlr3spatial](https://mlr3spatial.mlr-org.com/) has been released on [CRAN](https://cran.r-project.org/web/packages/mlr3spatial/index.html) in November 2021. 
 [mlr3spatial](https://mlr3spatial.mlr-org.com/) simplifies the handling of spatial objects in the [mlr3](https://github.com/mlr-org) ecosystem.
-Before [mlr3spatial](https://mlr3spatial.mlr-org.com/), the user had to extract raw values from spatial objects to train a model or predict a map.
+Before [mlr3spatial](https://mlr3spatial.mlr-org.com/), the user had to tabular data from spatial objects to train a model or predict a map.
 
 Now, mlr3 [tasks](https://mlr3.mlr-org.com/reference/Task.html) can directly read from spatial objects via specialized [data backends](https://mlr3.mlr-org.com/reference/DataBackend.html).
 Such tasks can be used to train a model or to perform resampling just like any other mlr3 task.
 We support spatial raster objects created by the packages [terra](https://CRAN.R-project.org/package=terra), [raster](https://CRAN.R-project.org/package=raster) and [stars](https://CRAN.R-project.org/package=stars).
 Additionally, vector data is handled with the package [sf](https://CRAN.R-project.org/package=sf).
 
-The `predict_raster()` function makes a map with predictions from an mlr3 learner.
+The `predict_raster()` function makes a spatial raster with predictions from an mlr3 learner.
 We only have to pass a task with a spatial data backend which provides the data and spatial reference.
 To avoid memory issues with large raster files, the prediction is done in chunks.
 One after the other, the raster chunks are loaded into memory and the prediction is written to disk.
-Finally, the complete map is available on disk. 
+Finally, the complete raster is available on disk. 
 The learner can also make use of future-based parallelization to accelerate the predictions.
 The vignette on [“Benchmarking parallel predictions”](https://mlr3spatial.mlr-org.com/articles/benchmark.html) showcases the parallelization capabilities of [mlr3spatial](https://mlr3spatial.mlr-org.com/).
 
