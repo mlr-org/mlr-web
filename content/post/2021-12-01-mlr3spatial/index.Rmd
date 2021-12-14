@@ -16,8 +16,8 @@ Before [mlr3spatial](https://mlr3spatial.mlr-org.com/), the user had to tabular 
 
 Now, mlr3 [tasks](https://mlr3.mlr-org.com/reference/Task.html) can directly read from spatial objects via specialized [data backends](https://mlr3.mlr-org.com/reference/DataBackend.html).
 Such tasks can be used to train a model or to perform resampling just like any other mlr3 task.
-We support spatial raster objects created by the [terra](https://CRAN.R-project.org/package=terra), [raster](https://CRAN.R-project.org/package=raster) and [stars](https://CRAN.R-project.org/package=stars) packages.
-Additionally, vector data is handled with the package [sf](https://CRAN.R-project.org/package=sf).
+We support spatial raster objects created by the [terra](https://CRAN.R-project.org/package=terra), [raster](https://CRAN.R-project.org/package=raster) and [stars](https://CRAN.R-project.org/package=stars) packages with the [`DataBackendRaster`](https://mlr3spatial.mlr-org.com/reference/DataBackendRaster.html).
+Additionally, vector data created with the package [sf](https://CRAN.R-project.org/package=sf) is handled with the [`DataBackendVector`](https://mlr3spatial.mlr-org.com/reference/DataBackendVector.html).
 
 The `predict_raster()` function makes a spatial raster with predictions from an mlr3 learner.
 We only have to pass a task with a spatial data backend which provides the data and spatial reference.
