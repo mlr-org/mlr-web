@@ -389,7 +389,7 @@ print(task)</code></pre>
 ## * Properties: -
 ## * Features (5):
 ##   - dbl (5): layer.2, layer.3, layer.4, layer.5, layer.6</code></pre>
-<p>For large raster files with millions of values it helps to predict in parallel. To enable this, set <code>learner$parallel_predict = TRUE</code> and initiate a parallel plan via {future}. Since this is only an example, parallelization is not enabled here. Here we will use a simple regression tree as an example learner. In practice you might want to use a different learner - you can find an overview of available learners <a href="https://mlr3extralearners.mlr-org.com/articles/learners/list_learners.html">here</a>.</p>
+<p>For large raster files with millions of values it helps to predict in parallel. To enable this, set <code>learner$parallel_predict = TRUE</code> and initiate a parallel plan via {future}, e.g. via <code>plan(&quot;multisession&quot;)</code>. Since this is only an example, parallelization is not enabled here. Here we will use a simple regression tree as an example learner. In practice you might want to use a different learner - you can find an overview of available learners <a href="https://mlr3extralearners.mlr-org.com/articles/learners/list_learners.html">here</a>.</p>
 <pre class="r"><code>learner = lrn(&quot;regr.rpart&quot;)
 set.seed(42)
 row_ids = sample(1:task$nrow, 500)
@@ -408,10 +408,10 @@ print(learner)</code></pre>
 <h3>Prediction</h3>
 <p>For prediction <code>predict_spatial()</code> is used. It will return a raster file which contains the predictions. Users can select which R spatial format the returned raster should have.</p>
 <pre class="r"><code>ras = predict_spatial(task, learner, format = &quot;stars&quot;)</code></pre>
-<pre><code>## INFO  [18:35:24.534] Start raster prediction 
-## INFO  [18:35:24.575] Prediction is executed with a chunksize of 200, 1 chunk(s) in total, 122848 values per chunk 
-## INFO  [18:35:24.845] Chunk 1 of 1 finished 
-## INFO  [18:35:24.859] Finished raster prediction in 0 seconds</code></pre>
+<pre><code>## INFO  [18:36:27.119] Start raster prediction 
+## INFO  [18:36:27.161] Prediction is executed with a chunksize of 200, 1 chunk(s) in total, 122848 values per chunk 
+## INFO  [18:36:27.411] Chunk 1 of 1 finished 
+## INFO  [18:36:27.426] Finished raster prediction in 0 seconds</code></pre>
 <pre class="r"><code>names(ras) = &quot;cadmium&quot;
 
 print(ras)</code></pre>
