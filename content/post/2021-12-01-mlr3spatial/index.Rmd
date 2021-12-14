@@ -60,7 +60,7 @@ print(task)
 ```
 
 For large raster files with millions of values it helps to predict in parallel.
-To enable this, set `learner$parallel_predict = TRUE` and initiate a parallel plan via {future}.
+To enable this, set `learner$parallel_predict = TRUE` and initiate a parallel plan via {future}, e.g. via `plan("multisession")`.
 Since this is only an example, parallelization is not enabled here.
 Here we will use a simple regression tree as an example learner.
 In practice you might want to use a different learner - you can find an overview of available learners [here](https://mlr3extralearners.mlr-org.com/articles/learners/list_learners.html).
