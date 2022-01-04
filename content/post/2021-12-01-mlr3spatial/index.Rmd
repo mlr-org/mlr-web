@@ -1,6 +1,6 @@
 ---
 title: Announcing mlr3spatial
-author: Marc Becker
+authors: ["marc-becker", "patrick-schratz"]
 date: '2022-01-04'
 slug: mlr3spatial
 categories:

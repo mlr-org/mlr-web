@@ -1,6 +1,6 @@
 ---
 title: Announcing mlr3spatial
-author: Marc Becker
+authors: ["marc-becker", "patrick-schratz"]
 date: '2022-01-04'
 slug: mlr3spatial
 categories:
@@ -79,10 +79,10 @@ Users can select which R spatial format the returned raster should have.
 Note that by default <code>mlr3spatial</code> operates with <code>SpatRaster</code> objects from package <code>terra</code>.
 If a different output format is requested (e.g. <code>"stars"</code>), coercion is happening in the background which might take some time.</p>
 <pre class="r"><code>ras = predict_spatial(task, learner, format = &quot;stars&quot;)</code></pre>
-<pre><code>## INFO  [10:53:39.630] Start raster prediction 
-## INFO  [10:53:39.647] Prediction is executed with a chunksize of 200, 1 chunk(s) in total, 122848 values per chunk 
-## INFO  [10:53:39.804] Chunk 1 of 1 finished 
-## INFO  [10:53:39.814] Finished raster prediction in 0 seconds</code></pre>
+<pre><code>## INFO  [15:50:07.531] Start raster prediction 
+## INFO  [15:50:07.548] Prediction is executed with a chunksize of 200, 1 chunk(s) in total, 122848 values per chunk 
+## INFO  [15:50:07.705] Chunk 1 of 1 finished 
+## INFO  [15:50:07.716] Finished raster prediction in 0 seconds</code></pre>
 <pre class="r"><code>names(ras) = &quot;cadmium&quot;
 
 print(ras)</code></pre>
