@@ -1,7 +1,7 @@
 ---
-title: mlr3spatial
+title: Announcing mlr3spatial
 author: Marc Becker
-date: '2021-12-01'
+date: '2022-01-04'
 slug: mlr3spatial
 categories:
   - R
@@ -14,12 +14,12 @@ We are happy to announce that [mlr3spatial](https://mlr3spatial.mlr-org.com/) ha
 [mlr3spatial](https://mlr3spatial.mlr-org.com/) simplifies the handling of spatial objects in the [mlr3](https://github.com/mlr-org) ecosystem.
 Before [mlr3spatial](https://mlr3spatial.mlr-org.com/), the user had to extract tabular data from spatial objects to train a model or predict spatial data.
 
-Now, mlr3 [tasks](https://mlr3.mlr-org.com/reference/Task.html) can directly read from spatial objects via specialized [data backends](https://mlr3.mlr-org.com/reference/DataBackend.html).
-Such tasks can be used to train a model or to perform resampling just like any other mlr3 task.
-We support spatial raster objects created by the [terra](https://CRAN.R-project.org/package=terra), [raster](https://CRAN.R-project.org/package=raster) and [stars](https://CRAN.R-project.org/package=stars) packages with the [`DataBackendRaster`](https://mlr3spatial.mlr-org.com/reference/DataBackendRaster.html).
-Additionally, vector data created with the package [sf](https://CRAN.R-project.org/package=sf) is handled with the [`DataBackendVector`](https://mlr3spatial.mlr-org.com/reference/DataBackendVector.html).
+Now, mlr3 [Tasks](https://mlr3.mlr-org.com/reference/Task.html) can directly read from spatial objects via specialized [Data Backends](https://mlr3.mlr-org.com/reference/DataBackend.html).
+Such tasks can be used to train a model or to perform resampling just like any other `mlr3` task.
+We support spatial raster objects created by the [terra](https://CRAN.R-project.org/package=terra), [raster](https://CRAN.R-project.org/package=raster) and [stars](https://CRAN.R-project.org/package=stars) packages with [`DataBackendRaster`](https://mlr3spatial.mlr-org.com/reference/DataBackendRaster.html).
+Additionally, vector data created with the [sf](https://CRAN.R-project.org/package=sf) package is handled with [`DataBackendVector`](https://mlr3spatial.mlr-org.com/reference/DataBackendVector.html).
 
-The `predict_raster()` function makes spatial rasters and features with predictions from mlr3 learners.
+The `predict_raster()` function creates spatial rasters and features with predictions from mlr3 learners.
 We only have to pass a task with a spatial data backend which provides the data and spatial reference.
 To avoid memory issues with large raster files, prediction is done in chunks.
 For this, the raster map is divided into multiple horizontal strips.
@@ -79,6 +79,8 @@ print(learner)
 For prediction `predict_spatial()` is used.
 It will return a raster file which contains the predictions.
 Users can select which R spatial format the returned raster should have.
+Note that by default `mlr3spatial` operates with `SpatRaster` objects from package `terra`.
+If a different output format is requested (e.g. `"stars"`), coercion is happening in the background which might take some time.
 
 ```{r mlr3spatial-005, warning=FALSE}
 ras = predict_spatial(task, learner, format = "stars")
@@ -90,7 +92,7 @@ print(ras)
 ### Visualization
 
 Finally we can plot the predictions.
-The color vector is extract from the viridis color palette via `dput(viridis::viridis_pal()(5))`.
+The color vector is extracted from the "viridis" color palette via `dput(viridis::viridis_pal()(5))` and provided to the S3 `plot()` call, which makes use of the S3 plot method within the `stars` package in this scenario.
 
 ```{r mlr3spatial-006}
 plot(ras, col = c("#440154FF", "#443A83FF", "#31688EFF", "#21908CFF", "#35B779FF", "#8FD744FF", "#FDE725FF"))
