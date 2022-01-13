@@ -10,7 +10,7 @@ authors: []
 ---
 
 Due to the high amount of packages in the mlr3 ecosystem, it is hard to keep up with the latest changes across all packages.
-This post tries to tackle this issue by listing all release notes of the packages most recent releases in the last quarter.
+This posts gives an overview by listing the recent release notes of mlr3 packages from the last quarter.
 Note that only CRAN packages are listed here and the sort order is alphabetically.
 
 Interval: 2021-10-01 - 2021-12-31
