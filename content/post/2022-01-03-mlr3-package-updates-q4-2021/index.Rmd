@@ -78,6 +78,13 @@ Interval: 2021-10-01 - 2021-12-31
   - `PipeOpProxy`: Avoid unnecessary clone
   - `PipeOpScale`: Performance improvement
 
+
+# mlr3tuningspaces 0.0.1 - https://github.com/mlr-org/mlr3tuningspaces
+
+**Description: Search Spaces for Hyperparameter Tuning**
+
+* Initial release.
+
 # mlr3viz 0.5.7 - https://github.com/mlr-org/mlr3viz
 
 **Description: Visualizations for 'mlr3'**
