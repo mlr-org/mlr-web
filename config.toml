@@ -78,7 +78,7 @@ sidebar = [
     "about",
     #"search",
     "sidebar_menu",
-    "taxonomy_cloud",
+    #"taxonomy_cloud",
 ]
 footer = ["social_menu"]
 
